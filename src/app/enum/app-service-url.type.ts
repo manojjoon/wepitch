@@ -1,0 +1,27 @@
+export enum AppServiceUrl {
+    login = 'account/AdminLogin',
+    brands = 'api/brand',
+    coupan = 'api/coupan',
+    brand = 'api/Brand',
+    advertiser = 'api/Category',
+    banner = 'api/Banner',
+    deals = 'api/Deals',
+    advertisers = 'api/Product',
+    allbanners = 'getBanner',
+    alladvertiser = 'getCategory',
+    stores = 'api/Store',
+    allstores = 'getStore',
+    allbrands = 'getBrand',
+    allproducts = 'getProduct',
+    countryList = 'api/Constants/Country',
+    constant = 'api/Constants',
+    publisherOffers = 'api/PublisherOffers',
+    getOffers = 'getOffers',
+    getAffiliates = 'getAffiliates',
+    offerByPulisher = 'offer',
+    trackingReport = 'api/reports/DashboardCoreStakesReport',
+    document = 'api/Documents',
+    hourlyReport = 'api/reports/HourlyConversionComparisionReport',
+    monthlyReport = 'api/reports/MonthlyConversionComparisionReport'
+
+}
