@@ -50,7 +50,7 @@
   </div>
 </div>
 <div class="col-12">
-<table class=" table table-striped table-hover table-bordered table-responsive">
+<!-- <table class=" table table-striped table-hover table-bordered table-responsive">
   <thead class="thead-light">
     <tr>
       <th >#</th>
@@ -69,7 +69,7 @@
                   <a href="#" class="text-danger"> Delete</a></td>
     </tr>
    </tbody>
-    </table>
+    </table> -->
      </div>
 <!-- jyoti html table ends -->
 
@@ -88,7 +88,11 @@
           </div>    
           <div class="card-body position-relative">    
             <div class="ag-theme-balham" style="height:550px;">    
-              <wepitch-grid *ngIf="AgLoad" [ColumnDefs]="this.ColumnDefs" [RowData]="this.RowData"    
+              <wepitch-grid
+                *ngIf="AgLoad"
+                [context]="context"
+                [ColumnDefs]="this.ColumnDefs"
+                [RowData]="this.RowData"    
                 [IsColumnsToFit]="true">    
               </wepitch-grid>    
             </div>    
