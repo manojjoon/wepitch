@@ -9,12 +9,26 @@ import { AmenitiesService } from 'src/app/shared/amenities.service';
 import { GroundService } from 'src/app/shared/services/ground.service';
 import { environment } from 'src/environments/environment';
 
+declare let google: any;
+
+const componentForm = {
+  street_number: "short_name",
+  route: "long_name",
+  locality: "long_name",
+  administrative_area_level_1: "short_name",
+  country: "long_name",
+  postal_code: "short_name",
+};
+
 @Component({
   selector: 'app-addGround',
   templateUrl: './addGround.component.html',
   styleUrls: ['./addGround.component.css']
 })
 export class addGroundComponent implements OnInit {
+
+  placeSearch: google.maps.places.PlacesService;
+  autocomplete: google.maps.places.Autocomplete;
 
   groundDetailForm: FormGroup;
   groundData : Ground;
@@ -54,6 +68,7 @@ export class addGroundComponent implements OnInit {
     this.resetForm();
     // this.AddRowToTable();
     this.amenitiesService.getAmenitiesList().subscribe(res => this.amenitiesList = res as[]);
+    this.initAutocomplete();
   }
 
   setFloodLights(e) {
@@ -107,6 +122,27 @@ export class addGroundComponent implements OnInit {
       amenitiesList : [],
       groundImagesList :[]
       
+    }
+  }
+
+  fillInAddress() {
+    // Get the place details from the autocomplete object.
+    const place = this.autocomplete.getPlace();
+  
+    for (const component in componentForm) {
+      (document.getElementById(component) as HTMLInputElement).value = "";
+      (document.getElementById(component) as HTMLInputElement).disabled = false;
+    }
+  
+    // Get each component of the address from the place details,
+    // and then fill-in the corresponding field on the form.
+    for (const component of place.address_components as google.maps.GeocoderAddressComponent[]) {
+      const addressType = component.types[0];
+  
+      if (componentForm[addressType]) {
+        const val = component[componentForm[addressType]];
+        (document.getElementById(addressType) as HTMLInputElement).value = val;
+      }
     }
   }
 
@@ -219,6 +255,40 @@ deleteGroundImage(filename, a) {
 
 onClose(data: any) {
   this.close.emit(data);
+}
+
+initAutocomplete() {
+  // Create the autocomplete object, restricting the search predictions to
+  // geographical location types.
+  this.autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("autocomplete") as HTMLInputElement,
+    { types: ["geocode"] }
+  );
+
+  // Avoid paying for data that you don't need by restricting the set of
+  // place fields that are returned to just the address components.
+  this.autocomplete.setFields(["address_component"]);
+
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  this.autocomplete.addListener("place_changed", this.fillInAddress);
+}
+
+
+geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      const circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy,
+      });
+      this.autocomplete.setBounds(circle.getBounds());
+    });
+  }
 }
 
 

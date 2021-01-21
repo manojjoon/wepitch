@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 
 @Component({
@@ -9,12 +9,16 @@ import { Component, Input } from "@angular/core";
 export class AppGridComponent {  
     @Input() ColumnDefs: any;  
     @Input() RowData: any;  
-    @Input() IsColumnsToFit: boolean;  
+    @Input() IsColumnsToFit: boolean;
+    @Input() context: any;
+
+    @Output() gridReady = new EventEmitter();
     
     gridApi: any;  
     gridColumnApi: any;  
     
     BindData(params) {  
+      this.gridReady.next(params);
       this.gridApi = params.api;  
       this.gridColumnApi = params.columnApi;  
       params.api.setRowData(this.RowData);  

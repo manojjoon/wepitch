@@ -6,8 +6,8 @@ import { BaseGridComponent } from '../../shared/app-grid/base-grid.component';
 import { AppRoutes } from 'src/app/enum/app-routes.type';
 import { ActivatedRoute } from '@angular/router';
 import { GroundService } from 'src/app/shared/services/ground.service';
-import { ButtonIconsInput } from '@fullcalendar/core/types/input-types';
 import {ImageFormatterComponent} from "../../shared/image-formatter.component"
+import { ActionComponent } from 'src/app/shared/action-formatter.component';
 
 
 @Component({
@@ -21,7 +21,8 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
   routes = AppRoutes;
   ColumnDefs;  
   RowData: any;  
-  AgLoad: boolean;  
+  AgLoad: boolean;
+  context; 
 
 
 
@@ -56,6 +57,9 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
     });
    this.getData();
   // this.addAmenitiesListForm();
+    this.context = {
+      action: this.onGridReady
+    }
   }
 
   public getData() {
@@ -66,9 +70,21 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
         this.AgLoad=true;
         this.RowData = result;
  
-        this.totalItems = result.Data.RowCount;
+        //this.totalItems = result.Data.RowCount;
       }
     });
+  }
+
+  onGridReady = (params) => {
+    // params.api.addEventListener('action', (e) => {
+    //   console.log(e);
+    // })
+    const {actionId, item} = params;
+    if(actionId === 'edit'){
+      this.openModal('AmenitiesModal',item);
+    }else if(actionId === 'delete'){
+
+    }
   }
 
   // addAmenitiesListForm(){ 
@@ -193,8 +209,8 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
     this.ColumnDefs = [  
       { headerName: 'ID', field: 'id', sortable: true, filter: true },  
       { headerName: 'Amenities Description', field: 'amenitiesDescription', sortable: true, filter: true },  
-      { headerName: 'Image', field: 'imagePath', sortable: true, filter: true,cellRendererFramework: ImageFormatterComponent }, 
-      { headerName: 'Action', field: 'Action', sortable: true, filter: true,}
+      { headerName: 'Image', field: 'imagePath', sortable: true, filter: true, cellRendererFramework: ImageFormatterComponent }, 
+      { headerName: 'Action', field: 'Action', sortable: true, filter: true, cellRendererFramework: ActionComponent}
     ];  
   }  
   GetGiftVoucherList() {  

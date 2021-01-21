@@ -26,6 +26,7 @@ import { PlayerComponent } from './users/player/player.component';
 import { OrganiserComponent } from './users/organiser/organiser.component';
 import { ImageFormatterComponent } from "././shared/image-formatter.component";
 import { SafePipe } from './shared/pipes/safe.pipe';
+import { ActionComponent } from './shared/action-formatter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { SafePipe } from './shared/pipes/safe.pipe';
     PlayerComponent,
     OrganiserComponent,
     ImageFormatterComponent,
+    ActionComponent,
     SafePipe
   ],
   imports: [
@@ -54,8 +56,7 @@ import { SafePipe } from './shared/pipes/safe.pipe';
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     ModalModule,
-    AgGridModule.withComponents([]),
-    AgGridModule.withComponents([ImageFormatterComponent])
+    AgGridModule.withComponents([ImageFormatterComponent, ActionComponent])
   ],
   providers: [GroundService,LoginService],
   bootstrap: [AppComponent]
