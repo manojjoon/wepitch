@@ -24,7 +24,6 @@ export class addGroundComponent implements OnInit {
     GroundSlotName : "Morning",
     ToTime : "",
     FromTime : "",
-    BookingAmount : 0
   }];
 
   groundImageUrl: string = '';
@@ -81,7 +80,6 @@ export class addGroundComponent implements OnInit {
       GroundSlotName : "Morning",
       ToTime : "",
       FromTime : "",
-      BookingAmount : 0
     });
 
     tempList.push(_SlotObj);
@@ -105,7 +103,6 @@ export class addGroundComponent implements OnInit {
       ViewsCount : null,
       GoogleLocation : '',
       DistanceFromLocation : '',
-      BookingAmount : null,
       groundSlotList: [],
       amenitiesList : [],
       groundImagesList :[]

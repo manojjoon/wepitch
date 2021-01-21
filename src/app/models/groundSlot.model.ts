@@ -5,5 +5,4 @@ export class GroundSlot {
       GroundSlotName : string;
       ToTime : string;
       FromTime : string;
-      BookingAmount : number;
 }
