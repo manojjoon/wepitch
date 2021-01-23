@@ -1,0 +1,21 @@
+<section class="example-container">
+    <!-- <header>
+      <h2>Step {{ selectedIndex + 1 }}/{{ steps.length }}</h2>
+    </header> -->
+
+    <div class="card-header">
+        <h1> Ground Information </h1>
+      </div>
+
+    <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
+
+    <footer class="example-step-navigation-bar">
+        <!-- <button class="example-nav-button">
+            
+        </button> -->
+        <div class="form-group"style="text-align:right">
+            <button type="submit" class="btn m-1 btn-primary" cdkStepperPrevious (click)="stepChanged(selectedIndex)">Back</button>
+            <button type="submit" class="btn  btn-primary" cdkStepperNext (click)="stepChanged(selectedIndex)">{{ footerLabelStrings && footerLabelStrings[selectedIndex] }}</button>
+         </div>
+    </footer>
+</section>

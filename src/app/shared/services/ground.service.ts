@@ -4,6 +4,7 @@ import{HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
 //import { ConsoleReporter } from 'jasmine';
 // import { Console } from 'console';
 
@@ -11,8 +12,23 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GroundService {
- formData : Ground;
-  constructor(private http : HttpClient) { }
+  formData : Ground;
+  store: FormGroup;
+
+  constructor(private http : HttpClient) {
+    this.store = new FormGroup({
+      Id: new FormControl(),
+      groundName: new FormControl(),
+      groundAddress: new FormControl(),
+      googleLocation: new FormControl(),
+      distanceFromLocation: new FormControl(),
+      groundEntityName: new FormControl(),
+      amenitiesList: new FormControl(),
+      slotList: new FormControl(),
+      gstin: new FormControl(),
+      viewscount: new FormControl()
+    });
+  }
   
   postGround(formData : Ground){
   return this.http.post(`${environment.baseUrl}Ground/AddGround`,formData);
