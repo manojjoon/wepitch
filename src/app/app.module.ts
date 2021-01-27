@@ -27,6 +27,11 @@ import { OrganiserComponent } from './users/organiser/organiser.component';
 import { ImageFormatterComponent } from "././shared/image-formatter.component";
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ActionComponent } from './shared/action-formatter.component';
+import { CdkStepperModule  } from '@angular/cdk/stepper';
+import { AppStteperComponent } from './app-stteper/app-stteper.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalenderComponent } from './calender/calender.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +50,9 @@ import { ActionComponent } from './shared/action-formatter.component';
     OrganiserComponent,
     ImageFormatterComponent,
     ActionComponent,
-    SafePipe
+    SafePipe,
+    AppStteperComponent,
+    CalenderComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +63,9 @@ import { ActionComponent } from './shared/action-formatter.component';
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     ModalModule,
-    AgGridModule.withComponents([ImageFormatterComponent, ActionComponent])
+    AgGridModule.withComponents([ImageFormatterComponent, ActionComponent]),
+    CdkStepperModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [GroundService,LoginService],
   bootstrap: [AppComponent]

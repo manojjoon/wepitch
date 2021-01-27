@@ -1,81 +1,181 @@
 <div class="content-wrapper">
-  <!-- <form [formGroup]="bioSection" (ngSubmit)="callingFunction()"></form> -->
-<form  #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-<div class="container">
+  <div class="card">
+    <div class="container">
+      <form [formGroup]="service.store" autocomplete="off">
+      <app-stteper [footerLabelStrings]="fotterLablels" (onStepChnaged)="stepChanged($event)">
+        <!-- Step - 1 GroundDetails-->
+        <cdk-step>
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="fname">Ground Name</label><br>
+                    <input type="text" name="GroundName" formControlName="groundName" class="form-control" required>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="lname">Ground Entity Name</label><br>
+                    <input type="text" formControlName="groundEntityName">
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="lname">GSTIN</label><br>
+                    <input type="text" name="GSTIN" class="form-control" formControlName="gstin">
+                  </div>
 
-    <div class="card">
-      <div class="card-header">
-       <h1> Ground Information </h1>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-          <label for="fname">Ground Name</label><br>
-          <input type="text" name="GroundName" #GroundName="ngModel" [(ngModel)]="service.formData.GroundName" class="form-control" required>
-        </div>
-        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-          <label for="lname">Ground Entity Name</label><br>
-          <input type="text"  name="GroundEntityName" #GroundEntityName="ngModel" [(ngModel)]="service.formData.GroundEntityName" class="form-control">
-        </div>
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-            <label for="lname">GSTIN</label><br>
-            <input type="text"  name="GSTIN" #GSTIN="ngModel" [(ngModel)]="service.formData.GSTIN" class="form-control">
-          </div>
-          
-        <!-- </div>
-        <div class="row"> -->
-        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-        <label for="lname">Ground Owner</label><br>
-        <input type="text" name="GroundOwner" #GroundOwner="ngModel" [(ngModel)]="service.formData.GroundOwner" class="form-control">
-        </div>
-        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-          <label for="lname">Contact No</label><br>
-        <input type="text"  name="ContactNo" #ContactNo="ngModel" [(ngModel)]="service.formData.ContactNo" class="form-control">
-        </div>
-        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-          <label for="fname">Views Count</label><br>
-           <input type="number"  name="ViewsCount" #ViewsCount="ngModel" [(ngModel)]="service.formData.ViewsCount" class="form-control">
-          </div>
-        <!-- </div> -->
-      </div>
+                  <!-- </div>
+              <div class="row"> -->
+                  <!-- <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="lname">Ground Owner</label><br>
+                    <input type="text" name="GroundOwner" #GroundOwner="ngModel" [(ngModel)]="service.formData.GroundOwner"
+                      class="form-control">
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="lname">Contact No</label><br>
+                    <input type="text" name="ContactNo" #ContactNo="ngModel" [(ngModel)]="service.formData.ContactNo"
+                      class="form-control">
+                  </div> -->
 
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-            <label for="fname">Google Location</label><br>
-             <!-- <input type="text"  name="GoogleLocation" #GoogleLocation="ngModel" [(ngModel)]="service.formData.GoogleLocation" class="form-control"> -->
-            <input id="autocomplete" placeholder="Enter your address" (focus)="geolocate()" type="text" />
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="fname">Views Count</label><br>
+                    <input type="number" formControlName="viewscount" class="form-control">
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="fname">Google Location</label><br>
+                    <!-- <input type="text"  name="GoogleLocation" #GoogleLocation="ngModel" [(ngModel)]="service.formData.GoogleLocation" class="form-control"> -->
+                    <input id="autocomplete" placeholder="Enter your address" (focus)="geolocate()" type="text" />
+                  </div>
+
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="fname">Landmark</label><br>
+                    <input id="autocomplete" placeholder="Enter your address" (focus)="geolocate()" type="text" />
+                  </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <label for="fname">Rating</label><br>
+                  <input type="number" name="Rating" class="form-control">
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <label for="fname">Likes Count</label><br>
+                  <input type="number" name="LikesCount" class="form-control">
+                </div>
+
+                <div class="col-md-4 col-sm-8 col-lg-4 col-xs-4">
+                  <label for="lname">GroundAddress</label><br>
+                  <textarea class="form-control" rows="3" id="comment" name="GroundAddress"></textarea>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <label for="fname"> Flood Lights</label><br>
+                  <input type="radio" class="check-space" id="Yes" name="FloodLights" value=true
+                    (change)="setFloodLights($event)">
+                  <label for="Yes">Yes</label> &nbsp; &nbsp;
+                  <input type="radio" class="check-space" id="No" name="FloodLights" value=false
+                    (change)="setFloodLights($event)">
+                  <label for="No">No</label><br>
+                </div>
+              </div>
             </div>
+        </cdk-step>
 
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-            <label for="fname">Distance From Location</label><br>
-             <input type="text"  name="DistanceFromLocation" #DistanceFromLocation="ngModel" [(ngModel)]="service.formData.DistanceFromLocation" class="form-control">
+        <!-- Step - 2 Aminities-->
+        <cdk-step>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4 ">
+                <label for="Amenities" class="col-xs-4 amenities-topspace">Amenities And Features</label>
+              </div>
+              <div class="col-md-8"></div>
+              <!-- <div class="col-md-4"></div>        -->
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let item of amenitiesList">
+                    <input class="check-space" [ngModelOptions]="{standalone:true}" [(ngModel)]="item.isSelected"
+                      type="checkbox" id="{{item.id}}" (change)="OnAmenitiesChange(item.id, $event.target.checked)" />
+                    <label>{{item.amenitiesDescription}}</label>
+                  </div>
+                </div>
+              </div>
             </div>
-
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                <label for="fname">Rating</label><br>
-                 <input type="number"  name="Rating" #Rating="ngModel" [(ngModel)]="service.formData.Rating" class="form-control">
           </div>
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-            <label for="fname">Likes Count</label><br>
-             <input type="number"  name="LikesCount" #LikesCount="ngModel" [(ngModel)]="service.formData.LikesCount" class="form-control">
-      </div>
-     
-          <div class="col-md-4 col-sm-8 col-lg-4 col-xs-4">
-            <label for="lname">GroundAddress</label><br>
-            <!-- <input type="textarea"  name="GroundAddress" #GroundAddress="ngModel" [(ngModel)]="service.formData.GroundAddress" class="form-control"> -->
-            <textarea class="form-control" rows="3" id="comment" name="GroundAddress" #GroundAddress="ngModel" [(ngModel)]="service.formData.GroundAddress" class="form-control"></textarea>
+        </cdk-step>
+
+        <cdk-step>
+          <!-- Ground slots Step 3-->
+          <div class="col-md-4">
+            <label for="GroundSlots" class="col-xs-4 amenities-topspace">Add Ground Time Slots</label>
+          </div>
+          <table class="tableBorder" style="width:100%">
+            <tr>
+              <th>Slot Name</th>
+              <th>From Time</th>
+              <th>To Time</th>
+
+              <th><input type="button" class="btn  btn-primary" (click)="AddNewRow()" value="Add"></th>
+            </tr>
+
+            <tr *ngFor="let groundSlot of groundSlotList ; let i = index">
+              <td>
+                <select>
+                  <option *ngFor="let slotsValue of ListOfSlots"> {{slotsValue.SlotName}} </option>
+                </select>
+              </td>
+
+
+              <td> <input class="form-control" [ngModelOptions]="{standalone:true}"
+                  [(ngModel)]="groundSlotList[i].FromTime" type="time"></td>
+              <td> <input class="form-control" [ngModelOptions]="{standalone:true}"
+                  [(ngModel)]="groundSlotList[i].ToTime" type="time"></td>
+
+              <td></td>
+            </tr>
+
+
+          </table>
+
+          <app-calender></app-calender>
+        </cdk-step>
+
+        <cdk-step>
+          <div class="col-md-4 ">
+            <label for="GroundImages" class="col-xs-4 amenities-topspace">Add Ground Images</label>
           </div>
 
-          <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-            <label for="fname"> Flood Lights</label><br>
-            <input type="radio"class="check-space" id="Yes" name="FloodLights" value=true (change)="setFloodLights($event)">
-            <label for="Yes" >Yes</label> &nbsp; &nbsp;
-            <input type="radio" class="check-space" id="No" name="FloodLights" value=false (change)="setFloodLights($event)">
-            <label for="No" >No</label><br>
-         </div>
+          <div class="row">
+            <!-- <div class="col-sm-12" id="image">
+                  <input name="file" id="exampleFile" type="file" [readonly]="isReadOnly"
+                      class="form-control-file" (change)="handleFileInput($event.target.files)"
+                      accept="image/*">
+                  <img *ngIf="groundDetailForm.get('GroundImage').value" [src]="groundImageUrl"
+                      height="42" width="42">
+              </div> -->
+            <div *ngIf="uploadError">
+              <div [innerHTML]="uploadError" class="error"></div>
+            </div>
+            <div class="form-group">
+              <div class="upload-image">
+                <div #image class="image-wrapper"></div>
+                <div class="browse-btn">
+                  <input type="file" name="cameraImg" id="cameraImg" multiple
+                    (change)="handleFileInput($event.target.files)" />
+                  <div class="browse-image">
+                    <img src="assets/images/camera.jpg" width="60px" />
+                    <p>Browse image</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </cdk-step>
+
+      </app-stteper>
+      </form>
     </div>
 
-        <!-- <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+    <!-- <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
           <div *ngFor="let item of amenitiesList">
             <div class="row">
             <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
@@ -85,97 +185,5 @@
           </div>
 
          </div>-->
-
-         <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-4 ">
-                <label for="Amenities" class="col-xs-4 amenities-topspace">Amenities And Features</label>
-            </div>
-            <div class="col-md-8"></div>
-            <!-- <div class="col-md-4"></div>        -->
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-4" *ngFor="let item of amenitiesList">
-                  <input class="check-space" [ngModelOptions]="{standalone:true}" [(ngModel)]="item.isSelected"  type="checkbox" id="{{item.id}}" (change)="OnAmenitiesChange(item.id, $event.target.checked)"/>
-                  <label>{{item.amenitiesDescription}}</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-       
-
-
-
-        <div class="col-md-4 ">
-          <label for="GroundSlots" class="col-xs-4 amenities-topspace">Add Ground Time Slots</label>
-      </div>
-        <table class="tableBorder" style="width:100%">
-          <tr>
-            <th>Slot Name</th>
-            <th>From Time</th> 
-            <th>To Time</th>
-           
-            <th><input type="button"class="btn  btn-primary"  (click)="AddNewRow()"value="Add"></th> 
-          </tr>
-       
-          <tr *ngFor="let groundSlot of groundSlotList ; let i = index">
-          <td>  
-            <select>  
-            <option *ngFor="let slotsValue of ListOfSlots">  {{slotsValue.SlotName}} </option>  
-            </select>  
-          </td>
-           
-
-            <td> <input class="form-control"[ngModelOptions]="{standalone:true}" [(ngModel)]="groundSlotList[i].FromTime" type="time"  ></td>
-            <td> <input class="form-control"[ngModelOptions]="{standalone:true}" [(ngModel)]="groundSlotList[i].ToTime" type="time"  ></td>
- 
-            <td></td>
-          </tr>
-
-          
-          </table>
-
-      
-        <div class="col-md-4 ">
-          <label for="GroundImages" class="col-xs-4 amenities-topspace">Add Ground Images</label>
-      </div>
-
-      <div class="row">
-        <!-- <div class="col-sm-12" id="image">
-            <input name="file" id="exampleFile" type="file" [readonly]="isReadOnly"
-                class="form-control-file" (change)="handleFileInput($event.target.files)"
-                accept="image/*">
-            <img *ngIf="groundDetailForm.get('GroundImage').value" [src]="groundImageUrl"
-                height="42" width="42">
-        </div> -->
-        <div *ngIf="uploadError">
-          <div [innerHTML]="uploadError" class="error"></div>
-        </div>
-        <div class="form-group">
-          <div class="upload-image">
-            <div #image class="image-wrapper"></div>
-            <div class="browse-btn">
-              <input type="file" name="cameraImg" id="cameraImg" multiple (change)="handleFileInput($event.target.files)" />
-              <div class="browse-image">
-                <img src="assets/images/camera.jpg" width="60px" />
-                <p>Browse image</p>
-              </div>
-            </div>
-          </div>
-        </div>
-     </div>
-      <div class="form-group"style="text-align:center">
-        <button type="submit" class="btn  btn-primary">Add Ground</button>
-     </div>
-    </div>
-  </div>  
+  </div>
 </div>
-</form>
-</div>
-
-
-
-
-
-

@@ -17,7 +17,8 @@ const routes: Routes = [
   canActivate:[AuthGuard],
    children:[
     {path:"", component:DashboardComponent},
-    {path:"addGround", component:addGroundComponent},
+    {path:"addGround", redirectTo: 'addGround/init'}, /**Default step is init */
+    {path:"addGround/:step", component:addGroundComponent},
     {path:"addAmenities", component:amenitiesListComponent},
     {path:"players", component:PlayerComponent },
     {path:"grounds", component:GroundListComponent } 
