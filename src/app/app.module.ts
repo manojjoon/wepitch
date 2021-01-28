@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule} from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
-import {AppGridComponent} from './shared/app-grid/app-grid.component';
+import { AppGridComponent } from './shared/app-grid/app-grid.component';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -12,26 +12,28 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { addGroundComponent } from './Ground/addground/addGround.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
 import { GroundService } from './shared/services/ground.service';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { amenitiesListComponent } from './Ground/amenities-list/amenities-list.component';
 import { BasicLoginComponent } from './auth/login/login.component';
 import { LoginService } from './auth/login.services';
 import { AppContainerComponent } from './app-container/app-container.component';
-import{ ModalModule } from '../app/_modal/modal.module';
-import { AgGridModule } from 'ag-grid-angular'; 
+import { ModalModule } from '../app/_modal/modal.module';
+import { AgGridModule } from 'ag-grid-angular';
 import { APP_BASE_HREF } from '@angular/common';
 import { PlayerComponent } from './users/player/player.component';
 import { OrganiserComponent } from './users/organiser/organiser.component';
 import { ImageFormatterComponent } from "././shared/image-formatter.component";
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { ActionComponent } from './shared/action-formatter.component';
-import { CdkStepperModule  } from '@angular/cdk/stepper';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 import { AppStteperComponent } from './app-stteper/app-stteper.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalenderComponent } from './calender/calender.component';
+import { BookingListComponent } from './Ground/booking/list/booking-list.component';
+import { BookingComponent } from './Ground/booking/booking.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,9 @@ import { CalenderComponent } from './calender/calender.component';
     ActionComponent,
     SafePipe,
     AppStteperComponent,
-    CalenderComponent
+    CalenderComponent,
+    BookingComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,7 @@ import { CalenderComponent } from './calender/calender.component';
     CdkStepperModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
-  providers: [GroundService,LoginService],
+  providers: [GroundService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
