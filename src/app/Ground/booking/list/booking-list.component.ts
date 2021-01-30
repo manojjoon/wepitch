@@ -47,11 +47,14 @@ export class BookingListComponent extends BaseGridComponent implements OnInit {
   // Get columns defination for grid
   GetGridColumns() {
     this.ColumnDefs = [
-      { headerName: 'ID', field: 'bookingId', sortable: true, filter: true },
-      { headerName: 'CreatedDate', field: 'createdDate', sortable: true, filter: true },
+      { headerName: 'BookingId', field: 'bookingId', sortable: true, filter: true },
+      { headerName: 'PhoneNumber', field: 'phoneNumber', sortable: true, filter: true },
+      { headerName: 'Match Date', field: 'matchDate', sortable: true, filter: true },
+      { headerName: 'Order Date', field: 'createdDate', sortable: true, filter: true },
       { headerName: 'Booking Price', field: 'bookingPrice', sortable: true, filter: true },
       { headerName: 'Ground Name', field: 'groundName', sortable: true, filter: true },
       { headerName: 'Booking Slot', field: 'bookingSlot', sortable: true, filter: true }
+      
     ];
   }
 }
