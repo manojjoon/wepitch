@@ -1,40 +1,31 @@
 <div class="content-wrapper">
   <div class="card">
     <div class="container">
+      <!-- [footerLabelStrings]="fotterLablels"
+      [activeStep]="activeStep" -->
       <form [formGroup]="service.store" autocomplete="off">
-      <app-stteper [footerLabelStrings]="fotterLablels" (onStepChnaged)="stepChanged($event)">
-        <!-- Step - 1 GroundDetails-->
-        <cdk-step>
+        <mat-horizontal-stepper #stepper (onStepChnaged)="stepChanged($event)" [selectedIndex]="activeStep">
+          <!-- Step - 1 GroundDetails-->
+          <mat-step>
+            <ng-template matStepLabel>Basic Ground Information</ng-template>
             <div class="card">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Ground Name</label><br>
                     <input type="text" name="GroundName" formControlName="groundName" class="form-control" required>
                   </div>
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="lname">Ground Entity Name</label><br>
-                    <input type="text" formControlName="groundEntityName">
+                    <input type="text" formControlName="groundEntityName" class="form-control">
                   </div>
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="lname">GSTIN</label><br>
                     <input type="text" name="GSTIN" class="form-control" formControlName="gstin">
                   </div>
 
-                  <!-- </div>
-              <div class="row"> -->
-                  <!-- <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                    <label for="lname">Ground Owner</label><br>
-                    <input type="text" name="GroundOwner" #GroundOwner="ngModel" [(ngModel)]="service.formData.GroundOwner"
-                      class="form-control">
-                  </div>
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                    <label for="lname">Contact No</label><br>
-                    <input type="text" name="ContactNo" #ContactNo="ngModel" [(ngModel)]="service.formData.ContactNo"
-                      class="form-control">
-                  </div> -->
 
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Views Count</label><br>
                     <input type="number" formControlName="viewscount" class="form-control">
                   </div>
@@ -42,136 +33,211 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Google Location</label><br>
                     <!-- <input type="text"  name="GoogleLocation" #GoogleLocation="ngModel" [(ngModel)]="service.formData.GoogleLocation" class="form-control"> -->
-                    <input id="autocomplete" placeholder="Enter your address" (focus)="geolocate()" type="text" />
+                    <input class="form-control" id="autocomplete" placeholder="Enter your address"
+                      formControlName="googleLocation" (focus)="geolocate()" type="text" />
                   </div>
 
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Landmark</label><br>
-                    <input id="autocomplete" placeholder="Enter your address" (focus)="geolocate()" type="text" />
+                    <input class="form-control" id="autocomplete" placeholder="Enter your address"
+                      formControlName="distanceFromLocation" (focus)="geolocate()" type="text" />
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="fname">Rating</label><br>
+                    <input type="number" name="Rating" class="form-control" formControlName="rating">
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="fname">Likes Count</label><br>
+                    <input type="number" name="LikesCount" class="form-control" formControlName="likescount">
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="lname">GroundAddress</label><br>
+                    <textarea class="form-control" rows="3" id="comment" name="GroundAddress"></textarea>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="fname">Flood Lights</label><br>
+                    <input type="radio" class="check-space" id="Yes" formControlName="IsFloodLights"
+                      name="IsFloodLights" value=true (change)="setFloodLights($event)">
+                    <label for="Yes">Yes</label> &nbsp; &nbsp;
+                    <input type="radio" class="check-space" id="No" name="IsFloodLights" value=false
+                      formControlName="IsFloodLights" (change)="setFloodLights($event)">
+                    <label for="No">No</label><br>
                   </div>
                 </div>
 
-                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                  <label for="fname">Rating</label><br>
-                  <input type="number" name="Rating" class="form-control">
-                </div>
-                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                  <label for="fname">Likes Count</label><br>
-                  <input type="number" name="LikesCount" class="form-control">
-                </div>
-
-                <div class="col-md-4 col-sm-8 col-lg-4 col-xs-4">
-                  <label for="lname">GroundAddress</label><br>
-                  <textarea class="form-control" rows="3" id="comment" name="GroundAddress"></textarea>
-                </div>
-
-                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                  <label for="fname"> Flood Lights</label><br>
-                  <input type="radio" class="check-space" id="Yes" name="FloodLights" value=true
-                    (change)="setFloodLights($event)">
-                  <label for="Yes">Yes</label> &nbsp; &nbsp;
-                  <input type="radio" class="check-space" id="No" name="FloodLights" value=false
-                    (change)="setFloodLights($event)">
-                  <label for="No">No</label><br>
-                </div>
-              </div>
-            </div>
-        </cdk-step>
-
-        <!-- Step - 2 Aminities-->
-        <cdk-step>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-4 ">
-                <label for="Amenities" class="col-xs-4 amenities-topspace">Amenities And Features</label>
-              </div>
-              <div class="col-md-8"></div>
-              <!-- <div class="col-md-4"></div>        -->
-              <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-4" *ngFor="let item of amenitiesList">
-                    <input class="check-space" [ngModelOptions]="{standalone:true}" [(ngModel)]="item.isSelected"
-                      type="checkbox" id="{{item.id}}" (change)="OnAmenitiesChange(item.id, $event.target.checked)" />
-                    <label>{{item.amenitiesDescription}}</label>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4 ">
+                        <label for="Amenities" class="col-xs-4 amenities-topspace">Amenities And Features</label>
+                      </div>
+                      <div class="col-md-8"></div>
+                      <!-- <div class="col-md-4"></div>        -->
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let item of amenitiesList">
+                            <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
+                              type="checkbox" id="{{item.id}}" />
+                            <label>{{item.amenitiesDescription}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                <!-- Ground slots Step 3-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="GroundSlots" class="col-xs-4 amenities-topspace">Add Ground Time Slots</label>
+                  </div>
+                  <table style="width:100%">
+                    <tr>
+                      <th>Slot Name</th>
+                      <th>From Time</th>
+                      <th>To Time</th>
+
+                      <th><input type="button" class="btn  btn-primary" (click)="service.addSlot()" value="Add"></th>
+                    </tr>
+
+                    <tr *ngFor="let groundSlot of service.store.get('slots').controls; let i = index">
+                      <ng-container [formGroup]="groundSlot">
+                        <td>
+                          <select formControlName="slotName" class="form-control">
+                            <option *ngFor="let slotsValue of ListOfSlots" [value]="slotsValue.SlotName">
+                              {{slotsValue.SlotName}} </option>
+                          </select>
+                        </td>
+                        <td>
+                          <input class="form-control" formControlName="fromTime" type="time" step="2">
+                        </td>
+                        <td>
+                          <input class="form-control" formControlName="endTime" type="time" step="2">
+                        </td>
+                        <td></td>
+                      </ng-container>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
-          </div>
-        </cdk-step>
 
-        <cdk-step>
-          <!-- Ground slots Step 3-->
-          <div class="col-md-4">
-            <label for="GroundSlots" class="col-xs-4 amenities-topspace">Add Ground Time Slots</label>
-          </div>
-          <table class="tableBorder" style="width:100%">
-            <tr>
-              <th>Slot Name</th>
-              <th>From Time</th>
-              <th>To Time</th>
+            <footer class="example-step-navigation-bar">
+              <div class="form-group" style="text-align:right">
+                <button type="submit" class="btn  btn-primary" (click)="stepChanged(1)">
+                  Add Ground
+                </button>
+              </div>
+            </footer>
 
-              <th><input type="button" class="btn  btn-primary" (click)="AddNewRow()" value="Add"></th>
-            </tr>
+          </mat-step>
 
-            <tr *ngFor="let groundSlot of groundSlotList ; let i = index">
-              <td>
-                <select>
-                  <option *ngFor="let slotsValue of ListOfSlots"> {{slotsValue.SlotName}} </option>
-                </select>
-              </td>
+          <mat-step>
+            <ng-template matStepLabel>Add Ground Slot Pricing</ng-template>
+            <div class="card">
+              <div class="card-body">
+                <div *ngFor="let slot of service.slots" [formGroup]="slot">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                      <label for="fname">Slot Name</label><br>
+                      <input type="text" name="Ground Name" formControlName="groundSlotName" class="form-control"
+                        disabled>
+                    </div>
 
+                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                      <date-range-picker [options]="options" [parentFormGroup]="slot" [controlName]="'startDate'">
+                      </date-range-picker>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                      <label for="fname">Price</label><br>
+                      <input type="text" name="Pricing" formControlName="pricing" class="form-control" required>
+                    </div>
 
-              <td> <input class="form-control" [ngModelOptions]="{standalone:true}"
-                  [(ngModel)]="groundSlotList[i].FromTime" type="time"></td>
-              <td> <input class="form-control" [ngModelOptions]="{standalone:true}"
-                  [(ngModel)]="groundSlotList[i].ToTime" type="time"></td>
+                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                      <button class="btn m-1 btn-primary" (click)="addSlotDates(false, slot.value)">
+                        Save
+                      </button>
+                      <button class="btn btn-primary" (click)="addSlotDates(true, slot.value)">
+                        Save and Add another
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <app-calender [events]="service.calenderEvents"></app-calender>
+              </div>
+            </div>
 
-              <td></td>
-            </tr>
+            <footer class="example-step-navigation-bar">
+              <div class="form-group" style="text-align:right">
+                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(0)">Change few details</button>
+                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(2)">
+                  Add Ground Images
+                </button>
+              </div>
+            </footer>
+          </mat-step>
 
+          <mat-step>
+            <ng-template matStepLabel>Upload ground Images</ng-template>
+            <div class="col-md-4 ">
+              <label for="GroundImages" class="col-xs-4 amenities-topspace">Add Ground Images</label>
+            </div>
 
-          </table>
-
-          <app-calender></app-calender>
-        </cdk-step>
-
-        <cdk-step>
-          <div class="col-md-4 ">
-            <label for="GroundImages" class="col-xs-4 amenities-topspace">Add Ground Images</label>
-          </div>
-
-          <div class="row">
-            <!-- <div class="col-sm-12" id="image">
+            <div class="row">
+              <!-- <div class="col-sm-12" id="image">
                   <input name="file" id="exampleFile" type="file" [readonly]="isReadOnly"
                       class="form-control-file" (change)="handleFileInput($event.target.files)"
                       accept="image/*">
                   <img *ngIf="groundDetailForm.get('GroundImage').value" [src]="groundImageUrl"
                       height="42" width="42">
               </div> -->
-            <div *ngIf="uploadError">
-              <div [innerHTML]="uploadError" class="error"></div>
-            </div>
-            <div class="form-group">
-              <div class="upload-image">
-                <div #image class="image-wrapper"></div>
-                <div class="browse-btn">
-                  <input type="file" name="cameraImg" id="cameraImg" multiple
-                    (change)="handleFileInput($event.target.files)" />
-                  <div class="browse-image">
-                    <img src="assets/images/camera.jpg" width="60px" />
-                    <p>Browse image</p>
+              <div *ngIf="uploadError">
+                <div [innerHTML]="uploadError" class="error"></div>
+              </div>
+              <div class="form-group">
+                <div class="upload-image">
+                  <div #image class="image-wrapper"></div>
+                  <div class="browse-btn">
+                    <input type="file" name="cameraImg" id="cameraImg" multiple accept="image/*"
+                      (change)="handleFileInput($event.target.files)" />
+                    <div class="browse-image">
+                      <img src="assets/images/camera.jpg" width="60px" />
+                      <p>Browse image</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </cdk-step>
 
-      </app-stteper>
+            <footer class="example-step-navigation-bar">
+              <div class="form-group" style="text-align:right">
+                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(selectedIndex - 1)">Back</button>
+                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(selectedIndex + 1)">{{
+                  fotterLablels && fotterLablels[activeStep] }}</button>
+              </div>
+            </footer>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Ground Rules</ng-template>
+            <ckeditor [editor]="Editor" data="<p>Enter Ground Rules</p>"></ckeditor>
+            <footer class="example-step-navigation-bar">
+              <div class="form-group" style="text-align:right">
+                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(selectedIndex - 1)">Back</button>
+                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(selectedIndex + 1)">{{
+                  fotterLablels && fotterLablels[activeStep] }}</button>
+              </div>
+            </footer>
+          </mat-step>
+        </mat-horizontal-stepper>
       </form>
     </div>
 

@@ -34,6 +34,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalenderComponent } from './calender/calender.component';
 import { BookingListComponent } from './Ground/booking/list/booking-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { NgxDateRangeModule } from 'ngx-daterange';
+import {MatStepperModule} from '@angular/material/stepper';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,16 +66,22 @@ import { BookingComponent } from './Ground/booking/booking.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatDatepickerModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     ModalModule,
     AgGridModule.withComponents([ImageFormatterComponent, ActionComponent]),
-    CdkStepperModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    MatStepperModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgxDateRangeModule,
+    CKEditorModule
   ],
   providers: [GroundService, LoginService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    MatDatepickerModule
+  ]
 })
 export class AppModule { }
