@@ -19,4 +19,6 @@ export class GroundBookingResponse {
   groundLocation: string;
   matchDate: string;
   matchStartTime: string;
+  phoneNumber : string;
+  
 }

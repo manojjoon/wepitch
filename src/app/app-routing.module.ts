@@ -31,7 +31,8 @@ const routes: Routes = [
       { path: "addAmenities", component: amenitiesListComponent },
       { path: "players", component: PlayerComponent },
       { path: "grounds", component: GroundListComponent },
-      { path: 'booking', component: BookingComponent }
+      { path: 'booking', component: BookingComponent },
+      { path: 'setting', component: SettingComponent }
     ]
   }
 ];

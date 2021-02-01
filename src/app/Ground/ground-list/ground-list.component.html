@@ -12,7 +12,10 @@
           </div>    
           <div class="card-body position-relative">    
             <div class="ag-theme-balham" style="height:550px;">    
-              <wepitch-grid *ngIf="AgLoad" [ColumnDefs]="this.ColumnDefs" [RowData]="this.RowData"    
+              <wepitch-grid
+               *ngIf="AgLoad" 
+               [ColumnDefs]="this.ColumnDefs"
+                [RowData]="this.RowData"    
                 [IsColumnsToFit]="true">    
               </wepitch-grid>    
             </div>    
