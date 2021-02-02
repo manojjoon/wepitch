@@ -22,3 +22,10 @@ export class GroundBookingResponse {
   phoneNumber : string;
   
 }
+
+export class TeamResponse {
+  Name : string;
+  AdminMember : Number;
+  LogoUrl : string;
+  
+}

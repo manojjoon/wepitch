@@ -10,6 +10,7 @@ import { AuthGuard } from './shared/services/guards/auth.guard';
 import { PlayerComponent } from './users/player/player.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
+import { TeamListComponent } from './Ground/Team/Team-list.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: "players", component: PlayerComponent },
       { path: "grounds", component: GroundListComponent },
       { path: 'booking', component: BookingComponent },
-      { path: 'setting', component: SettingComponent }
+      { path: 'setting', component: SettingComponent }, 
+      { path: 'team', component: TeamListComponent }
     ]
   }
 ];

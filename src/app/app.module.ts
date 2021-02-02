@@ -34,6 +34,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalenderComponent } from './calender/calender.component';
 import { BookingListComponent } from './Ground/booking/list/booking-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
+import {TeamListComponent} from '../app/Ground/Team/Team-list.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { BookingComponent } from './Ground/booking/booking.component';
     AppStteperComponent,
     CalenderComponent,
     BookingComponent,
-    BookingListComponent
+    BookingListComponent,
+    TeamListComponent
   ],
   imports: [
     BrowserModule,

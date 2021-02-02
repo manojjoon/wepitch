@@ -66,6 +66,10 @@ export class GroundService {
       catchError(this.handleError)
     );
   }
+
+  
+
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occured:', error.error.message);
