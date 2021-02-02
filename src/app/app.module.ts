@@ -34,10 +34,14 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalenderComponent } from './calender/calender.component';
 import { BookingListComponent } from './Ground/booking/list/booking-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
+<<<<<<< HEAD
+import {TeamListComponent} from '../app/Ground/Team/Team-list.component'
+=======
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NgxDateRangeModule } from 'ngx-daterange';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+>>>>>>> d674f1e8401b9d47ac06ef4fec2bd0c708a9f8f1
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +64,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     AppStteperComponent,
     CalenderComponent,
     BookingComponent,
-    BookingListComponent
+    BookingListComponent,
+    TeamListComponent
   ],
   imports: [
     BrowserModule,
