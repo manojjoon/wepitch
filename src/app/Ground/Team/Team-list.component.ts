@@ -59,8 +59,8 @@ import { TeamService } from "src/app/shared/services/Team-list.service";
 
       GetAgColumns() {
         this.ColumnDefs = [
-          { headerName: 'Name', field: 'name', sortable: true, filter: true },
-          { headerName: 'AdminMember', field: 'adminMember', sortable: true, filter: true },
+          { headerName: 'TeamName', field: 'name', sortable: true, filter: true },
+          { headerName: 'Admin Member Name', field: 'adminMemberName', sortable: true, filter: true },
           { headerName: 'LogoUrl', field: 'logoUrl', sortable: true, filter: true },
           
           
