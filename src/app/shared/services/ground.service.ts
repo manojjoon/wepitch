@@ -51,7 +51,8 @@ export class GroundService {
         groundSlotName: new FormControl(slot.slotName),
         startDate: new FormControl(),
         endDate: new FormControl(),
-        pricing: new FormControl()
+        pricing: new FormControl(),
+        isAdded: new FormControl(false)
       }))
     })
   }
@@ -100,21 +101,53 @@ export class GroundService {
 
     return this.postSlotDate(body)
     .pipe(map((res) => {
-      this.calenderEvents.push(this.convertToEvent(body, res))
+      const eventToReplace = this.calenderEvents.findIndex((e) => {
+        return e.meta.groundSlotTimingId === body.groundSlotTimingId
+      })
+      if(eventToReplace != -1){
+        this.calenderEvents[eventToReplace] = this.convertToEvent(body, slotData.groundSlotName, res);
+      }else{
+        this.calenderEvents.push(this.convertToEvent(body, slotData.groundSlotName, res))
+      }
+      
       return res;
     }));
   }
 
-  convertToEvent(slotData, res){
-    return <CalendarEvent<{pricing: number, groundId: number}>> {
+  convertToEvent(slotData, groundSlotName, res){
+
+    return <CalendarEvent<{pricing: number, groundSlotTimingId: number}>> {
+      id: slotData.groundSlotTimingId,
       start: new Date(slotData.startDate),
       end: new Date(slotData.endDate),
-      title: slotData.groundSlotTimingId,
+      title: `${groundSlotName}: ${slotData.pricing}`,
       meta: {
         pricing: slotData.pricing,
-        groundId: slotData.pricing
-      }
+        groundSlotTimingId: slotData.groundSlotTimingId,
+        groundSlotName,
+        groundId: slotData.groundId
+      },
+      actions: [
+        {
+          label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+          a11yLabel: 'Edit',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.handleEvent(event);
+          },
+        }
+      ]
     }
+  }
+
+  handleEvent = (event) => {
+    /**
+     * Will be modifing in case of Update
+     */
+    const slotToEdit = this.slots.find((fg: FormGroup) => {
+        return fg.get('groundId').value === event.meta.groundId;
+    });
+
+    slotToEdit.get('isAdded').setValue(true);
   }
 
   postSlotDate(slotTiming){
@@ -143,6 +176,8 @@ export class GroundService {
         return res.result
       }));
   }
+
+
 
   getGroundList() {
     debugger;

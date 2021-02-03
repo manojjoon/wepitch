@@ -49,7 +49,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   fotterLablels = ['Next', 'Next', 'Next', 'Submit'];
 
   placeSearch: google.maps.places.PlacesService;
-  autocomplete: google.maps.places.Autocomplete;
+  autocomplete: {[key: string]: google.maps.places.Autocomplete} = {};
 
   groundDetailForm: FormGroup;
   groundData: Ground;
@@ -95,7 +95,6 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   ngOnInit() {
     this.resetForm();
     this.amenitiesService.getAmenitiesList().subscribe(res => this.amenitiesList = res as []);
-    this.initAutocomplete();
 
     this.route.params.subscribe((params) => {
       this.activeStep = {
@@ -119,6 +118,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }
 
   setFloodLights(e) {
+    //this.service.store.get('IsFloodLights').patchValue(e.value == 'true')
     if (e.target.value == "false") {
       this.ListOfSlots.splice(3, 1);
     }
@@ -168,9 +168,9 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     }
   }
 
-  fillInAddress() {
+  fillInAddress(elId) {
     // Get the place details from the autocomplete object.
-    const place = this.autocomplete.getPlace();
+    const place = this.autocomplete[elId].getPlace();
 
     for (const component in componentForm) {
       (document.getElementById(component) as HTMLInputElement).value = "";
@@ -199,12 +199,11 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
       results.forEach((result) => {
         if (result.message == "Document added succesfully") {
-          this.rootUrl = "https://localhost:5001/";
-          this.groundImageUrl = this.rootUrl + result.data.fileName;
-          const imageUrlFolder = result.data.fileName.split('\\');
+          //this.groundImageUrl = this.rootUrl + result.data.fileName;
+          const imageFileName = result.data.fileName.split('\\');
           //this.groundDetailForm.patchValue({ GroundImage: imageUrlFolder[imageUrlFolder.length - 1] });
           listOfGroundImages.push({
-            imagePath: this.groundImageUrl,
+            imagePath: imageFileName,
             isPrimary: true
           })
           this.uploadError = '';
@@ -319,21 +318,23 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     this.close.emit(data);
   }
 
-  initAutocomplete() {
+  initAutocomplete(elId) {
     // Create the autocomplete object, restricting the search predictions to
     // geographical location types.
-    this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById("autocomplete") as HTMLInputElement,
+    this.autocomplete[elId] = new google.maps.places.Autocomplete(
+      document.getElementById(elId) as HTMLInputElement,
       { types: ["geocode"] }
     );
 
     // Avoid paying for data that you don't need by restricting the set of
     // place fields that are returned to just the address components.
-    this.autocomplete.setFields(["address_component"]);
+    this.autocomplete[elId].setFields(["address_component"]);
 
     // When the user selects an address from the drop-down, populate the
     // address fields in the form.
-    this.autocomplete.addListener("place_changed", this.fillInAddress);
+    this.autocomplete[elId].addListener("place_changed", () => {
+      this.fillInAddress(elId)
+    });
   }
 
   onNext(){
@@ -344,7 +345,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     console.log(event);
   }
 
-  geolocate() {
+  geolocate(elId) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const geolocation = {
@@ -355,7 +356,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
           center: geolocation,
           radius: position.coords.accuracy,
         });
-        this.autocomplete.setBounds(circle.getBounds());
+        this.autocomplete[elId].setBounds(circle.getBounds());
       });
     }
   }
@@ -366,7 +367,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
        * Eminiies selected procedd for furhter Chanages
        * redirect to Adding ground slots ie 'addGround/addSlots'
        */
-      this.service.postGround(this.service.store.value)
+      this.service.postGround(Object.assign(this.service.store.value, {IsFloodLights: this.service.store.value['IsFloodLights'] === 'true'}))
       .subscribe((res: any) => {
         this.router.navigate([`addGround/addSlots/${res.groundId}`]);
         this.stepper.next();
@@ -404,5 +405,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     .subscribe((res) => {
       this.calendarComponent.detectChanges();
     })
+  }
+
+  ngAfterViewInit(){
+    this.initAutocomplete('googleLocation');
+    this.initAutocomplete('landmark');
   }
 }

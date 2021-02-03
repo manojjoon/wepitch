@@ -36,14 +36,14 @@
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Google Location</label><br>
                     <!-- <input type="text"  name="GoogleLocation" #GoogleLocation="ngModel" [(ngModel)]="service.formData.GoogleLocation" class="form-control"> -->
-                    <input class="form-control" id="autocomplete" placeholder="Enter your address"
-                      formControlName="googleLocation" (focus)="geolocate()" type="text" />
+                    <input class="form-control" id="googleLocation"
+                      formControlName="googleLocation" (focus)="geolocate('googleLocation')" type="text" />
                   </div>
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Landmark</label><br>
-                    <input class="form-control" id="autocomplete" placeholder="Enter your address"
-                      formControlName="distanceFromLocation" (focus)="geolocate()" type="text" />
+                    <input class="form-control" id="landmark"
+                      formControlName="distanceFromLocation" (focus)="geolocate('landmark')" type="text" />
                   </div>
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
@@ -106,7 +106,7 @@
                       <th><input type="button" class="btn  btn-primary" (click)="service.addSlot()" value="Add"></th>
                     </tr>
 
-                    <tr *ngFor="let groundSlot of service.store.get('slots').controls; let i = index">
+                    <tr *ngFor="let groundSlot of $any(service.store.get('slots')).controls; let i = index">
                       <ng-container [formGroup]="groundSlot">
                         <td>
                           <select formControlName="slotName" class="form-control">
@@ -144,29 +144,24 @@
               <div class="card-body">
                 <div *ngFor="let slot of service.slots" [formGroup]="slot">
                   <div class="row">
-                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12">
                       <label for="fname">Slot Name</label><br>
                       <input type="text" name="Ground Name" formControlName="groundSlotName" class="form-control"
                         disabled>
                     </div>
 
-                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12">
                       <date-range-picker [options]="options" [parentFormGroup]="slot" [controlName]="'startDate'">
                       </date-range-picker>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12">
                       <label for="fname">Price</label><br>
                       <input type="text" name="Pricing" formControlName="pricing" class="form-control" required>
                     </div>
 
-                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12" style="margin: auto;">
                       <button class="btn m-1 btn-primary" (click)="addSlotDates(false, slot.value)">
-                        Save
-                      </button>
-                      <button class="btn btn-primary" (click)="addSlotDates(true, slot.value)">
-                        Save and Add another
+                        {{ slot?.value?.isAdded ? 'Update' : 'Save' }}
                       </button>
                     </div>
                   </div>
