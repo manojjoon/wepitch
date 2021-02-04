@@ -105,6 +105,9 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         groundRules: 3
       }[params.step]
       this.id = params.id;
+      if (this.id) {
+        this.getGroundDetails();
+      }
     });
     this.initFormGroup();
   }
@@ -429,6 +432,18 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       }, err => {
         this._loaderService.hideLoader();
       })
+  }
+
+  getGroundDetails() {
+    this._loaderService.showLoader();
+    this.service.getGround(this.id).subscribe(res => {
+      // ToDo: Patch value to form
+      //this.service.store.patchValue(res.result);
+      this._loaderService.hideLoader();
+    }, err => {
+      this._loaderService.hideLoader();
+
+    });
   }
 
   ngAfterViewInit() {
