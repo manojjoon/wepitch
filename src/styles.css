@@ -1,7 +1,11 @@
-@import "~ag-grid-community/dist/styles/ag-grid.css";  
+@import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.transparent .mat-dialog-container {box-shadow: none;background: rgba(0, 0, 0, 0.0);z-index:1001}
+jw-modal .jw-modal {
+  z-index: 999 !important;
+}
