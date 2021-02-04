@@ -5,7 +5,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 @Component({
   selector: 'app-image-formatter',
   template: `<button class="btn btn-primary" type="button" (click)="invokeAction('edit')">Edit</button>
-  <!-- | <a class="text-danger" (click)="invokeAction('delete')">Delete</a> -->
+  | <a class="text-danger" (click)="invokeAction('delete')">Delete</a>
   `
 })
 export class ActionComponent implements ICellRendererAngularComp {

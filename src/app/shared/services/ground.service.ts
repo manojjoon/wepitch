@@ -11,6 +11,7 @@ import { GroundBookingResponse, ListingResponse } from '../models/response-model
 
 // Constant for API Urls
 const groundBookingListUrl = `GroundBooking`;
+const cancelGroundBookingUrl = `GroundBooking/Cancel`;
 
 @Injectable({
   providedIn: 'root'
@@ -62,10 +63,17 @@ export class GroundService {
   }
 
   getGroundBookings() {
-    return this.http.get<ListingResponse<GroundBookingResponse>>(`${environment.baseUrl}${groundBookingListUrl}`).pipe(
+    return this.http.get<ListingResponse<GroundBookingResponse>>(environment.baseUrl + groundBookingListUrl).pipe(
       catchError(this.handleError)
     );
   }
+
+  postCancelGroundBooking(req) {
+    return this.http.post(`${environment.baseUrl}${cancelGroundBookingUrl}`, req).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occured:', error.error.message);
