@@ -148,23 +148,25 @@
               <div class="card-body">
                 <div *ngFor="let slot of service.slots" [formGroup]="slot">
                   <div class="row">
-                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                       <label for="fname">Slot Name</label><br>
                       <input type="text" name="Ground Name" formControlName="groundSlotName" class="form-control"
                         disabled>
                     </div>
 
-                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                       <date-range-picker [options]="options" [parentFormGroup]="slot" [controlName]="'startDate'">
                       </date-range-picker>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12">
+                    <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
                       <label for="fname">Price</label><br>
                       <input type="text" name="Pricing" formControlName="pricing" class="form-control" required>
                     </div>
+                  </div>
 
+                  <div class="row" *ngIf="service.slots?.length">
                     <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12" style="margin: auto;">
-                      <button class="btn m-1 btn-primary" (click)="addSlotDates(false, slot.value)">
+                      <button class="btn m-1 btn-primary" (click)="addSlotDates(false, service.slots)">
                         {{ slot?.value?.isAdded ? 'Update' : 'Save' }}
                       </button>
                     </div>
@@ -213,6 +215,7 @@
                     </div>
                   </div>
                 </div>
+                <p *ngIf="groundImageUrl.length < 6">Please upload atleast 6 ground Images.</p>
               </div>
             </div>
 

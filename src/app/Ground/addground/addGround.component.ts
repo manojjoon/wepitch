@@ -405,19 +405,26 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       this.router.navigate([`addGround/uploadImages/${this.id}`]);
 
     } else if (e === 3) {
-      this.router.navigate(['addGround/groundRules']);
-    } else if (e === 3) {
       /**
-       * Images uploaded
-       * Need to Submit the ground
+       * Will be cheking if the images are more than six
        */
-      this.service.postGround(this.service.store.value)
-        .subscribe(() => {
-          /**
-           * Need to navigate to a diffrent page
-           */
+      if(this.groundImageUrl.length < 6){
+        this.router.navigate([`addGround/groundRules/${this.id}`]);
+      }
+      
+    } else if (e === 3) {
 
-        });
+      const rules = this.Editor.getData();
+      
+      this._loaderService.showLoader();
+      this.service.saveRules({
+        rules
+      })
+      .subscribe(() => {
+        this._loaderService.hideLoader();
+      }, () => {
+        this._loaderService.hideLoader()
+      })
 
     }
 

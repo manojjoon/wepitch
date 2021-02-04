@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ground } from 'src/app/models/ground.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs';
+import { concat, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -75,7 +75,15 @@ export class GroundService {
     }));
   }
 
-  addSlotDates(addAnother, slotData){
+  addSlotDates(addAnother, slots){
+    const cE = [];
+    slots.forEach((e) => {
+      cE.push(this.addSlotDate(e));
+    });
+    return concat(cE);
+  }
+
+  addSlotDate(slotData){
     /**
      * Add Anoyther will save and add another
      */
@@ -88,17 +96,6 @@ export class GroundService {
       groundSlotTimingId: slotData.groundSlotTimingId
      }
 
-    if (addAnother) {
-      this.slots.push(
-        new FormGroup({
-          groundId: new FormControl(slotData.groundId),
-          groundSlotTimingId: new FormControl(slotData.slotName),
-          startDate: new FormControl(),
-          endDate: new FormControl(),
-          pricing: new FormControl()
-        })
-      )
-    }
 
     return this.postSlotDate(body)
     .pipe(map((res) => {
@@ -212,6 +209,10 @@ export class GroundService {
     return this.http.post(`${environment.baseUrl}${cancelGroundBookingUrl}`, req).pipe(
       catchError(this.handleError)
     );
+  }
+
+  saveRules(body){
+    return this.http.post(``, body);
   }
 
   private handleError(error: HttpErrorResponse) {
