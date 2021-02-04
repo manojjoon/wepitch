@@ -6,6 +6,7 @@ import { GroundBookingResponse, ListingResponse } from 'src/app/shared/models/re
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActionComponent } from "src/app/shared/action-formatter.component";
 import { ModalService } from "src/app/_modal/modal.service";
+import { LoaderService } from '../../../shared/services/loader/loader.service';
 
 @Component({
   selector: 'app-booking-list',
@@ -20,7 +21,8 @@ export class BookingListComponent extends BaseGridComponent implements OnInit {
 
   cancelBookingForm: FormGroup;
 
-  constructor(_route: ActivatedRoute, private _groundService: GroundService, private _fb: FormBuilder, public _modalService: ModalService) {
+  constructor(private _loaderService: LoaderService,
+    _route: ActivatedRoute, private _groundService: GroundService, private _fb: FormBuilder, public _modalService: ModalService) {
     super(_route);
   }
 
@@ -60,19 +62,27 @@ export class BookingListComponent extends BaseGridComponent implements OnInit {
 
   // Http get request and subscription to get ground booking list
   public getData() {
+    this._loaderService.showLoader();
     this._groundService.getGroundBookings().subscribe((response: ListingResponse<GroundBookingResponse>) => {
       if (response) {
         this.AgLoad = true;
         this.RowData = response.result;
       }
+      this._loaderService.hideLoader();
+    }, err => {
+      this._loaderService.hideLoader();
     });
   }
 
   public onSubmit() {
+    this._loaderService.showLoader();
     this._groundService.postCancelGroundBooking(this.cancelBookingForm.value).subscribe(() => {
       this.resetCancelBookingForm();
       alert('Ground booking deleted successfully');
+      this._loaderService.hideLoader();
       this.getData();
+    }, err => {
+      this._loaderService.hideLoader();
     });
   }
 

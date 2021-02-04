@@ -34,12 +34,15 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalenderComponent } from './calender/calender.component';
 import { BookingListComponent } from './Ground/booking/list/booking-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
-import {TeamListComponent} from '../app/Ground/Team/Team-list.component'
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { TeamListComponent } from '../app/Ground/Team/Team-list.component'
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxDateRangeModule } from 'ngx-daterange';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import{AllUserComponent} from './users/AllUsers/AllUser.Component';
+import { AllUserComponent } from './users/AllUsers/AllUser.Component';
+import { LoaderComponent } from './shared/services/loader/loader.component';
+import { LoaderService } from './shared/services/loader/loader.service';
+import { MatProgressSpinnerModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +67,8 @@ import{AllUserComponent} from './users/AllUsers/AllUser.Component';
     CalenderComponent,
     BookingComponent,
     BookingListComponent,
-    TeamListComponent
+    TeamListComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -80,12 +84,14 @@ import{AllUserComponent} from './users/AllUsers/AllUser.Component';
     MatStepperModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NgxDateRangeModule,
-    CKEditorModule
+    CKEditorModule,
+    MatProgressSpinnerModule
   ],
-  providers: [GroundService, LoginService],
+  providers: [GroundService, LoginService, LoaderService],
   bootstrap: [AppComponent],
   exports: [
     MatDatepickerModule
-  ]
+  ],
+  entryComponents:[LoaderComponent]
 })
 export class AppModule { }

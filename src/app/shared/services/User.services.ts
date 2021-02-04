@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   })
   export class UserService {
     constructor(private http : HttpClient) { }
-  
+
     getPlayerList()
     {
       debugger;
