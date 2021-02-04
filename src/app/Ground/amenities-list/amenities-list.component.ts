@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GroundService } from 'src/app/shared/services/ground.service';
 import {ImageFormatterComponent} from "../../shared/image-formatter.component"
 import { ActionComponent } from 'src/app/shared/action-formatter.component';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-amenities-list',
@@ -154,7 +154,7 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
       this.groundservice.uploadFile(file[0]).subscribe(result => { 
         if (result.message=="Document added succesfully") 
         {
-          this.rootUrl ="https://localhost:5001/";
+          this.rootUrl = environment.baseUrlImage//"https://localhost:5001/";
           this.amenitiesImageUrl = this.rootUrl + result.data.fileName;
           const imageUrlFolder = result.data.fileName.split('\\');
          // this.amenitiesDetailForm.patchValue({ ImagePath: imageUrlFolder[imageUrlFolder.length - 1] });

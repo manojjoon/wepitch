@@ -39,6 +39,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NgxDateRangeModule } from 'ngx-daterange';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import{AllUserComponent} from './users/AllUsers/AllUser.Component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     AppGridComponent,
     PlayerComponent,
     OrganiserComponent,
+    AllUserComponent,
     ImageFormatterComponent,
     ActionComponent,
     SafePipe,

@@ -11,6 +11,8 @@ import { PlayerComponent } from './users/player/player.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
 import { TeamListComponent } from './Ground/Team/Team-list.component';
+import{OrganiserComponent} from './users/organiser/organiser.component';
+
 
 
 const routes: Routes = [
@@ -34,7 +36,11 @@ const routes: Routes = [
       { path: "grounds", component: GroundListComponent },
       { path: 'booking', component: BookingComponent },
       { path: 'setting', component: SettingComponent }, 
-      { path: 'team', component: TeamListComponent }
+      { path: 'team', component: TeamListComponent },
+      {path : 'AllUser',component : OrganiserComponent},
+    
+   
+
     ]
   }
 ];
