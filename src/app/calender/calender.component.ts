@@ -4,6 +4,7 @@ import {
   ViewChild,
   TemplateRef,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   startOfDay,
@@ -48,8 +49,6 @@ export class CalenderComponent {
   ngOnInit() {
   }
 
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -62,21 +61,13 @@ export class CalenderComponent {
   };
 
   actions: CalendarEventAction[] = [
-    // {
-    //   label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-    //   a11yLabel: 'Edit',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.handleEvent('Edited', event);
-    //   },
-    // },
-    // {
-    //   label: '<i class="fas fa-fw fa-trash-alt"></i>',
-    //   a11yLabel: 'Delete',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.events = this.events.filter((iEvent) => iEvent !== event);
-    //     this.handleEvent('Deleted', event);
-    //   },
-    // },
+    {
+      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+      a11yLabel: 'Edit',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      },
+    }
   ];
 
   refresh: Subject<any> = new Subject();
@@ -85,7 +76,7 @@ export class CalenderComponent {
 
   activeDayIsOpen: boolean = false;
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -134,5 +125,11 @@ export class CalenderComponent {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  detectChanges(){
+    console.log(this.events)
+    //this.cdr.detectChanges();
+    this.cdr.markForCheck();
   }
 }

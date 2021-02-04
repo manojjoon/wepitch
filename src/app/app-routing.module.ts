@@ -10,6 +10,9 @@ import { AuthGuard } from './shared/services/guards/auth.guard';
 import { PlayerComponent } from './users/player/player.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
 import { BookingComponent } from './Ground/booking/booking.component';
+import { TeamListComponent } from './Ground/Team/Team-list.component';
+import{OrganiserComponent} from './users/organiser/organiser.component';
+
 
 
 const routes: Routes = [
@@ -19,12 +22,25 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "", component: DashboardComponent },
-      { path: "addGround", redirectTo: 'addGround/init' }, /**Default step is init */
-      { path: "addGround/:step", component: addGroundComponent },
+      {
+        path: "addGround", redirectTo: 'addGround/init'
+      },
+      {
+        path: "addGround/:step", component: addGroundComponent
+      },
+      {
+        path: "addGround/:step/:id", component: addGroundComponent
+      }, /**Default step is init */
       { path: "addAmenities", component: amenitiesListComponent },
       { path: "players", component: PlayerComponent },
       { path: "grounds", component: GroundListComponent },
-      { path: 'booking', component: BookingComponent }
+      { path: 'booking', component: BookingComponent },
+      { path: 'setting', component: SettingComponent }, 
+      { path: 'team', component: TeamListComponent },
+      {path : 'AllUser',component : OrganiserComponent},
+    
+   
+
     ]
   }
 ];

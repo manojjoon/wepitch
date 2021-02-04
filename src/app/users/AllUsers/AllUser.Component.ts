@@ -3,13 +3,13 @@ import { AppRoutes } from 'src/app/enum/app-routes.type';
 import{UserService} from '../../shared/services/User.services';
 
 @Component({
-  selector: 'app-organiser',
-  templateUrl: './organiser.component.html',
-  styleUrls: ['./organiser.component.css']
+  selector: 'app-AllUser',
+  templateUrl: './AllUser.component.html',
+  styleUrls: ['./AllUser.component.css']
 })
-export class OrganiserComponent implements OnInit {
+export class AllUserComponent implements OnInit {
 
-  OrganiserList = [];
+  UserList = [];
   routes = AppRoutes;
   ColumnDefs;  
   RowData: any;  
@@ -18,13 +18,14 @@ export class OrganiserComponent implements OnInit {
   constructor(private UserService: UserService) { }
 
   ngOnInit() {
+
     this.GetAgColumns(); 
     this.getData();
   }
 
   public getData() {
    
-    this.UserService.getOrganiserList().subscribe((result: any) => {
+    this.UserService.getUserList().subscribe((result: any) => {
       if (result) {
         debugger;
         this.AgLoad=true;
@@ -44,5 +45,8 @@ export class OrganiserComponent implements OnInit {
       { headerName: 'Is Player', field: 'isPlayer', sortable: true}
     ];  
   } 
+
+
+  
 
 }

@@ -3,9 +3,10 @@ import { Ground } from 'src/app/models/ground.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
-import { FormControl, FormGroup } from '@angular/forms';
+import { catchError, map } from 'rxjs/operators';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GroundBookingResponse, ListingResponse } from '../models/response-model';
+import { CalendarEvent } from 'angular-calendar';
 //import { ConsoleReporter } from 'jasmine';
 // import { Console } from 'console';
 
@@ -19,32 +20,171 @@ const cancelGroundBookingUrl = `GroundBooking/Cancel`;
 export class GroundService {
   formData: Ground;
   store: FormGroup;
+  slots: any;
+  calenderEvents: CalendarEvent[] = [];
+
 
   constructor(private http: HttpClient) {
     this.store = new FormGroup({
-      Id: new FormControl(),
+      // Id: new FormControl(Math.ceil(Math.random()*10000)),
       groundName: new FormControl(),
       groundAddress: new FormControl(),
       googleLocation: new FormControl(),
       distanceFromLocation: new FormControl(),
       groundEntityName: new FormControl(),
-      amenitiesList: new FormControl(),
-      slotList: new FormControl(),
-      gstin: new FormControl(),
-      viewscount: new FormControl()
+      amenitiesList: new FormArray([]),
+      slots: new FormArray([]),
+      gstin: new FormControl(null, Validators.pattern(/\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]\dZ\d/gm)),
+      viewscount: new FormControl(),
+      likescount: new FormControl(),
+      rating: new FormControl(),
+      IsFloodLights: new FormControl()
     });
+    this.addSlot();
   }
 
-  postGround(formData: Ground) {
-    return this.http.post(`${environment.baseUrl}Ground/AddGround`, formData);
+  convertToFormArray(value){
+    this.slots = [];
+    value.slots.forEach((slot) => {
+      this.slots.push(new FormGroup({
+        groundId: new FormControl(value.groundId || value.id),
+        groundSlotTimingId: new FormControl(slot.id),
+        groundSlotName: new FormControl(slot.slotName),
+        startDate: new FormControl(),
+        endDate: new FormControl(),
+        pricing: new FormControl(),
+        isAdded: new FormControl(false)
+      }))
+    })
   }
+
+  addSlot(){
+    let max;
+    if (this.store.value.IsFloodLights !== "false") {
+      max = 4
+    } else {
+      max = 3;
+    }
+    if ((this.store.get('slots') as any).controls.length === max) {
+      return;
+    }
+    (this.store.get('slots') as any).push(new FormGroup({
+      slotName: new FormControl(),
+      fromTime: new FormControl(),
+      endTime: new FormControl()
+    }));
+  }
+
+  addSlotDates(addAnother, slotData){
+    /**
+     * Add Anoyther will save and add another
+     */
+    const [startDate, endDate] = slotData.startDate.split(' - ');
+    const body = {
+      groundId: slotData.groundId,
+      startDate,
+      endDate,
+      pricing: slotData.pricing,
+      groundSlotTimingId: slotData.groundSlotTimingId
+     }
+
+    if (addAnother) {
+      this.slots.push(
+        new FormGroup({
+          groundId: new FormControl(slotData.groundId),
+          groundSlotTimingId: new FormControl(slotData.slotName),
+          startDate: new FormControl(),
+          endDate: new FormControl(),
+          pricing: new FormControl()
+        })
+      )
+    }
+
+    return this.postSlotDate(body)
+    .pipe(map((res) => {
+      const eventToReplace = this.calenderEvents.findIndex((e) => {
+        return e.meta.groundSlotTimingId === body.groundSlotTimingId
+      })
+      if(eventToReplace != -1){
+        this.calenderEvents[eventToReplace] = this.convertToEvent(body, slotData.groundSlotName, res);
+      }else{
+        this.calenderEvents.push(this.convertToEvent(body, slotData.groundSlotName, res))
+      }
+
+      return res;
+    }));
+  }
+
+  convertToEvent(slotData, groundSlotName, res){
+
+    return <CalendarEvent<{pricing: number, groundSlotTimingId: number}>> {
+      id: slotData.groundSlotTimingId,
+      start: new Date(slotData.startDate),
+      end: new Date(slotData.endDate),
+      title: `${groundSlotName}: ${slotData.pricing}`,
+      meta: {
+        pricing: slotData.pricing,
+        groundSlotTimingId: slotData.groundSlotTimingId,
+        groundSlotName,
+        groundId: slotData.groundId
+      },
+      actions: [
+        {
+          label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+          a11yLabel: 'Edit',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.handleEvent(event);
+          },
+        }
+      ]
+    }
+  }
+
+  handleEvent = (event) => {
+    /**
+     * Will be modifing in case of Update
+     */
+    const slotToEdit = this.slots.find((fg: FormGroup) => {
+        return fg.get('groundId').value === event.meta.groundId;
+    });
+
+    slotToEdit.get('isAdded').setValue(true);
+  }
+
+  postSlotDate(slotTiming){
+    return this.http.post(`${environment.baseUrl}Ground/AddSlotPricing`, slotTiming)
+  }
+
+
+  postGround(formData: Ground) {
+    return this.http.post(`${environment.baseUrl}Ground/AddGround`, formData)
+    .pipe(map((r: any) => {
+      this.slots = this.convertToFormArray(r)
+      return r;
+    }));
+  }
+
+  getGround(id: number){
+    return this.http.get(environment.baseUrl + `Ground/${id}`)
+      .pipe(map((res: any) => {
+        return res.result
+      }));
+  }
+
+  getGroundSlotTimings(id: number){
+    return this.http.get(environment.baseUrl + `Ground/GetGroundTimingSlots?Id=${id}`)
+      .pipe(map((res: any) => {
+        return res.result
+      }));
+  }
+
+
 
   getGroundList() {
     debugger;
     return this.http.get(environment.baseUrl + 'Ground/GetAllGrounds')
   }
   uploadFile(data): Observable<any> {
-    debugger;
     let formData = new FormData();
     formData.append('formFile', data);
     return this.http.post(`${environment.baseUrl}Document`, formData);
@@ -84,5 +224,8 @@ export class GroundService {
     return throwError('something bad happened please try again later')
   }
 
+  updateGroundImages(body){
+    return this.http.post('/api/Ground/AddGroundImages', body);
+  }
 
 }

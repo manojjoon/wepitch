@@ -9,7 +9,7 @@ import{UserService} from '../../shared/services/User.services';
 })
 export class PlayerComponent implements OnInit {
 
-  UserList = [];
+  PlayerList = [];
   routes = AppRoutes;
   ColumnDefs;  
   RowData: any;  
@@ -25,7 +25,7 @@ export class PlayerComponent implements OnInit {
 
   public getData() {
    
-    this.UserService.getUserList().subscribe((result: any) => {
+    this.UserService.getPlayerList().subscribe((result: any) => {
       if (result) {
         debugger;
         this.AgLoad=true;

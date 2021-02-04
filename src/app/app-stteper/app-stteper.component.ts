@@ -11,16 +11,30 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 export class AppStteperComponent extends CdkStepper implements OnInit{
 
   @Input() footerLabelStrings: Array<string>;
+  @Input() activeStep: number;
   @Output() onStepChnaged: EventEmitter<number> = new EventEmitter<number>();
+
+
 
   constructor(dir: Directionality, cdr: ChangeDetectorRef ) {
     super(dir, cdr);
   }
 
   ngOnInit() {
+    
   }
 
   stepChanged(e){
     this.onStepChnaged.emit(e);
+  }
+
+  ngOnChanges(){
+    if(this.activeStep) {
+        this.selectedIndex = this.activeStep;
+    }
+  }
+
+  ngAfterViewInit(){
+    this.selectedIndex = this.activeStep
   }
 }

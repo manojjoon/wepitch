@@ -13,7 +13,6 @@ export class Ground {
       ViewsCount : number;
       GoogleLocation : string; 
       DistanceFromLocation : string;
-      BookingAmount : number;
       groundSlotList : GroundSlot[];
       amenitiesList : GroundAmenities[];
       groundImagesList : GroundImages[];

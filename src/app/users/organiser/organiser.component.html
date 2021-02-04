@@ -1,1 +1,81 @@
-<p>organiser works!</p>
+
+<div class="content-wrapper">
+    <div class="container">
+        
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#AllUser" role="tab" aria-controls="contact" aria-selected="false">All</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" id="home-tab" data-toggle="tab" href="#Player" role="tab" aria-controls="home" aria-selected="true">Player</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Organiser" role="tab" aria-controls="profile" aria-selected="false">Organiser</a>
+            </li>
+            
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade " id="Player" role="tabpanel" aria-labelledby="home-tab"><app-player></app-player></div>
+            <div class="tab-pane fade" id="Organiser" role="tabpanel" aria-labelledby="profile-tab">
+              <!-- <div class="content-wrapper">
+                <div class="container"> -->
+            <h3>Organiser</h3>    
+            <div class="card">    
+              <div class="card-body pb-0">    
+                <div class="row">    
+                  <div class="col-md-12">    
+                    <div class="card">    
+                      <!-- <div class="card-header">    
+                        Organiser    
+                      </div>      -->
+                      <div class="card-body position-relative">    
+                        <div class="ag-theme-balham" style="height:550px;">    
+                          <wepitch-grid *ngIf="AgLoad" [ColumnDefs]="this.ColumnDefs" [RowData]="this.RowData"    
+                            [IsColumnsToFit]="true">    
+                          </wepitch-grid>    
+                        </div>    
+                      </div>    
+                    </div>    
+                  </div>    
+                </div>    
+              </div>    
+            </div> 
+            
+            <!-- </div>
+            </div> -->
+            </div>
+            <div class="tab-pane fade show active " id="AllUser" role="tabpanel" aria-labelledby="contact-tab"><app-AllUser></app-AllUser></div>
+          </div>
+
+    </div>
+  </div>
+
+          
+<!-- <div class="content-wrapper">
+    <div class="container">
+<h3>Organiser</h3>    
+<div class="card">    
+  <div class="card-body pb-0">    
+    <div class="row">    
+      <div class="col-md-12">    
+        <div class="card">    
+          <div class="card-header">    
+            Organiser    
+          </div>     
+          <div class="card-body position-relative">    
+            <div class="ag-theme-balham" style="height:550px;">    
+              <wepitch-grid *ngIf="AgLoad" [ColumnDefs]="this.ColumnDefs" [RowData]="this.RowData"    
+                [IsColumnsToFit]="true">    
+              </wepitch-grid>    
+            </div>    
+          </div>    
+        </div>    
+      </div>    
+    </div>    
+  </div>    
+</div> 
+
+</div>
+</div> -->
+

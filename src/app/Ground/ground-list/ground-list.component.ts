@@ -27,7 +27,7 @@ export class GroundListComponent implements OnInit {
       if (result) {
         debugger;
         this.AgLoad=true;
-        this.RowData = result;
+        this.RowData = result.result;
       }
     });
   }

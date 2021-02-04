@@ -19,4 +19,13 @@ export class GroundBookingResponse {
   groundLocation: string;
   matchDate: string;
   matchStartTime: string;
+  phoneNumber : string;
+  
+}
+
+export class TeamResponse {
+  Name : string;
+  AdminMember : Number;
+  LogoUrl : string;
+  
 }

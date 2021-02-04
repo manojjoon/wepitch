@@ -1,3 +1,28 @@
-<footer class="main-footer">
-  hi it is setting page
-</footer>
+<div class="content-wrapper">
+  <div class="card">
+    <div class="container">
+      <form [formGroup] = "SettingForm" autocomplete="off" (ngSubmit)="onSubmit()">
+        <h3>Charges & Taxes</h3>
+
+ 
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="GST">Ground GST</label><br>
+                    <input type="text" formControlName="gstCharges"  class="form-control">
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <label for="ConvenienceCharge">Convenience Charge</label><br>
+                    <input type="text"  formControlName="convenienceCharges" class="form-control"> 
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-lg float-right">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- </app-stteper> -->
+        </form>
+    </div>
+  </div>
+</div>
