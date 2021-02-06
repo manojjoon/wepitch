@@ -43,6 +43,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   @ViewChild(MatStepper, { static: true }) private stepper: MatStepper;
   @Output() close = new EventEmitter();
 
+  data = '<p>Enter Ground Rules</p>';
+
   public Editor = ClassicEditor
 
   options = { minDate: moment() }
@@ -72,7 +74,6 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
 
   constructor(
-    private formbuilder: FormBuilder,
     public service: GroundService,
     private amenitiesService: AmenitiesService,
     private toastr: ToastrService,
@@ -98,14 +99,15 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     this.resetForm();
     this.getDetails();
     this.route.params.subscribe((params) => {
+
       this.activeStep = {
         'init': 0,
         addSlots: 1,
         uploadImages: 2,
         groundRules: 3
       }[params.step]
-      this.id = params.id;
-      if (this.id) {
+      this.id = +params.id;
+      if (this.id && params.step == 'init') {
         this.getGroundDetails();
       }
     });
@@ -225,7 +227,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
             const li: HTMLLIElement = this.renderer.createElement('li');
 
             const img: HTMLImageElement = this.renderer.createElement('img');
-            img.src = this.rootUrl + result.data.fileName;
+            img.src = `${environment.baseUrl}${result.data.fileName}`;
             const lastSegment = img.src.split("/").pop();
             this.groundImages.push({ "imagePath": lastSegment, "isPrimary": false });
             this.renderer.addClass(img, 'product-image');
@@ -412,15 +414,18 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         this.router.navigate([`addGround/groundRules/${this.id}`]);
       }
       
-    } else if (e === 3) {
+    } else if (e === 4) {
 
-      const rules = this.Editor.getData();
+      // const rules = this.Editor.getData();
       
       this._loaderService.showLoader();
       this.service.saveRules({
-        rules
+        "id": 0,
+        "groundId": this.id,
+        "ruleDescription": this.data
       })
       .subscribe(() => {
+        this.router.navigate(['/grounds'])
         this._loaderService.hideLoader();
       }, () => {
         this._loaderService.hideLoader()
@@ -434,7 +439,9 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     this._loaderService.showLoader();
     this.service.addSlotDates(addAnother, slot)
       .subscribe((res) => {
-        this.calendarComponent.detectChanges();
+        setTimeout(() => {
+          this.calendarComponent.detectChanges();
+        });
         this._loaderService.hideLoader();
       }, err => {
         this._loaderService.hideLoader();
@@ -445,7 +452,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     this._loaderService.showLoader();
     this.service.getGround(this.id).subscribe(res => {
       // ToDo: Patch value to form
-      //this.service.store.patchValue(res.result);
+      this.service.store.patchValue(res);
       this._loaderService.hideLoader();
     }, err => {
       this._loaderService.hideLoader();

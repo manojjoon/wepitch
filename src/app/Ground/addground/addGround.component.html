@@ -80,9 +80,11 @@
                       </div>
                      
                       <div class="col-md-4"></div>
-                       <div class="col-md-4"><button (click)="router.navigate(['/addAmenities']);">
-                        <span>Add/Edit Amenities</span>
-                     </button> </div>        
+                       <div class="col-md-4">
+                         <button class="btn  btn-primary" [routerLink]="['/addAmenities']">
+                          <span>Add/Edit Amenities</span>
+                        </button>
+                      </div>        
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-4" *ngFor="let item of amenitiesList">
@@ -163,13 +165,12 @@
                       <input type="text" name="Pricing" formControlName="pricing" class="form-control" required>
                     </div>
                   </div>
-
-                  <div class="row" *ngIf="service.slots?.length">
-                    <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12" style="margin: auto;">
-                      <button class="btn m-1 btn-primary" (click)="addSlotDates(false, service.slots)">
-                        {{ slot?.value?.isAdded ? 'Update' : 'Save' }}
-                      </button>
-                    </div>
+                </div>
+                <div class="row" *ngIf="service.slots?.length">
+                  <div class="col-md-3 col-sm-12 col-lg-3 col-xs-12" style="margin: auto;">
+                    <button class="btn m-1 btn-primary" (click)="addSlotDates(false, service.slots)">
+                      {{ slot?.value?.isAdded ? 'Update' : 'Save' }}
+                    </button>
                   </div>
                 </div>
                 <app-calender [events]="service.calenderEvents"></app-calender>
@@ -221,8 +222,8 @@
 
             <footer class="example-step-navigation-bar">
               <div class="form-group" style="text-align:right">
-                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(selectedIndex - 1)">Back</button>
-                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(selectedIndex + 1)">{{
+                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(activeStep - 1)">Back</button>
+                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(activeStep + 1)">{{
                   fotterLablels && fotterLablels[activeStep] }}</button>
               </div>
             </footer>
@@ -230,11 +231,11 @@
 
           <mat-step>
             <ng-template matStepLabel>Ground Rules</ng-template>
-            <ckeditor [editor]="Editor" data="<p>Enter Ground Rules</p>"></ckeditor>
+            <ckeditor [editor]="Editor" [data]="data"></ckeditor>
             <footer class="example-step-navigation-bar">
               <div class="form-group" style="text-align:right">
-                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(selectedIndex - 1)">Back</button>
-                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(selectedIndex + 1)">{{
+                <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(activeStep - 1)">Back</button>
+                <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(activeStep + 1)">{{
                   fotterLablels && fotterLablels[activeStep] }}</button>
               </div>
             </footer>

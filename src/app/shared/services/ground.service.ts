@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ground } from 'src/app/models/ground.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
-import { concat, Observable, throwError } from 'rxjs';
+import { concat, forkJoin, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -78,9 +78,9 @@ export class GroundService {
   addSlotDates(addAnother, slots){
     const cE = [];
     slots.forEach((e) => {
-      cE.push(this.addSlotDate(e));
+      cE.push(this.addSlotDate(e.value));
     });
-    return concat(cE);
+    return forkJoin(cE);
   }
 
   addSlotDate(slotData){
@@ -154,7 +154,10 @@ export class GroundService {
 
 
   postGround(formData: Ground) {
-    return this.http.post(`${environment.baseUrl}Ground/AddGround`, formData)
+    return (formData['id']
+    ? this.http.post(`${environment.baseUrl}Ground/AddGround`, formData)
+    : this.http.put(`${environment.baseUrl}Ground/AddGround`, formData))
+
     .pipe(map((r: any) => {
       this.slots = this.convertToFormArray(r)
       return r;
@@ -212,7 +215,7 @@ export class GroundService {
   }
 
   saveRules(body){
-    return this.http.post(``, body);
+    return this.http.post(`${environment.baseUrl}Ground/AddGroundRules`, body);
   }
 
   private handleError(error: HttpErrorResponse) {
