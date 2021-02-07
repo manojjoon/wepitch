@@ -18,6 +18,7 @@ import { concat, forkJoin } from 'rxjs';
 import { combineAll } from 'rxjs/operators';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { LoaderService } from '../../shared/services/loader/loader.service';
+import { ModalService } from 'src/app/_modal/modal.service';
 
 declare let google: any;
 declare let moment: any;
@@ -70,8 +71,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   activeStep: number = 0;
   id: number;
 
-
-
+  slottoUpdate: FormGroup;
 
   constructor(
     public service: GroundService,
@@ -82,7 +82,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     dir: Directionality,
     changeDetectorRef: ChangeDetectorRef,
     private router: Router,
-    private _loaderService: LoaderService
+    private _loaderService: LoaderService,
+    private modal: ModalService
   ) {
     super(dir, changeDetectorRef);
 
@@ -112,6 +113,17 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       }
     });
     this.initFormGroup();
+    this.service.calenderEvent
+    .subscribe((value) => {
+      console.log({value});
+      this.slottoUpdate = value;
+      this.modal.open('editDateSlot');
+    });
+  }
+
+  closeModal(){
+    this.modal.close('editDateSlot');
+    return true;
   }
 
   getDetails() {

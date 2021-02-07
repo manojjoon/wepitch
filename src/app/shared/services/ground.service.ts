@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ground } from 'src/app/models/ground.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
-import { concat, forkJoin, Observable, throwError } from 'rxjs';
+import { concat, forkJoin, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -22,6 +22,7 @@ export class GroundService {
   store: FormGroup;
   slots: any;
   calenderEvents: CalendarEvent[] = [];
+  calenderEvent: Subject<any> = new Subject<any>();
 
 
   constructor(private http: HttpClient) {
@@ -144,8 +145,9 @@ export class GroundService {
     const slotToEdit = this.slots.find((fg: FormGroup) => {
         return fg.get('groundId').value === event.meta.groundId;
     });
+    this.calenderEvent.next(slotToEdit);
 
-    slotToEdit.get('isAdded').setValue(true);
+    //slotToEdit.get('isAdded').setValue(true);
   }
 
   postSlotDate(slotTiming){
