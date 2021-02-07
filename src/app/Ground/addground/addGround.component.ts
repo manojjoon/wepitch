@@ -164,6 +164,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }
 
   resetForm(form?: NgForm) {
+    if(this.service.store){
+      this.service.store.reset()
+    }
+    
     if (form != null)
       form.resetForm();
     //this.intialGroundDetailForm();

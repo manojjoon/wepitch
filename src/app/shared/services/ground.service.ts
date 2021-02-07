@@ -155,8 +155,8 @@ export class GroundService {
 
   postGround(formData: Ground) {
     return (formData['id']
-    ? this.http.post(`${environment.baseUrl}Ground/AddGround`, formData)
-    : this.http.put(`${environment.baseUrl}Ground/AddGround`, formData))
+    ? this.http.put(`${environment.baseUrl}Ground/AddGround`, formData)
+    : this.http.post(`${environment.baseUrl}Ground/AddGround`, formData))
 
     .pipe(map((r: any) => {
       this.slots = this.convertToFormArray(r)
