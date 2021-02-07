@@ -130,6 +130,6 @@ export class CalenderComponent {
   detectChanges(){
     console.log(this.events)
     //this.cdr.detectChanges();
-    this.cdr.markForCheck();
+    this.refresh.next();
   }
 }

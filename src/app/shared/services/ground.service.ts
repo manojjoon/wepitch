@@ -143,7 +143,7 @@ export class GroundService {
      * Will be modifing in case of Update
      */
     const slotToEdit = this.slots.find((fg: FormGroup) => {
-        return fg.get('groundId').value === event.meta.groundId;
+        return fg.get('groundSlotTimingId').value === event.meta.groundSlotTimingId;
     });
     this.calenderEvent.next(slotToEdit);
 
@@ -231,7 +231,7 @@ export class GroundService {
   }
 
   updateGroundImages(body){
-    return this.http.post('/api/Ground/AddGroundImages', body);
+    return this.http.post(`${environment.baseUrl}/Ground/AddGroundImages`, body);
   }
 
 }

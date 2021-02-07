@@ -224,6 +224,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
   handleFileInput(files: any) {
     const listOfGroundImages = [];
+    this._loaderService.showLoader();
     forkJoin(Array.from(files).map((file) => {
       return this.service.uploadFile(file)
     }))
@@ -232,10 +233,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         results.forEach((result) => {
           if (result.message == "Document added succesfully") {
             //this.groundImageUrl = this.rootUrl + result.data.fileName;
-            const imageFileName = result.data.fileName.split('\\');
+            //const imageFileName = result.data.fileName.split('\\');
             //this.groundDetailForm.patchValue({ GroundImage: imageUrlFolder[imageUrlFolder.length - 1] });
             listOfGroundImages.push({
-              imagePath: imageFileName,
+              imagePath: `${environment.baseUrl}${result.data.fileName}`,
               isPrimary: true
             })
             this.uploadError = '';
@@ -266,7 +267,11 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         this.service.updateGroundImages({
           groundId: this.id,
           listOfGroundImages
-        }).subscribe();
+        }).subscribe(() => {
+          this._loaderService.hideLoader();
+        }, () => {
+          this._loaderService.hideLoader();
+        });
       });
   }
 
