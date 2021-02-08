@@ -244,7 +244,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
             const li: HTMLLIElement = this.renderer.createElement('li');
 
             const img: HTMLImageElement = this.renderer.createElement('img');
-            img.src = `${environment.baseUrl}${result.data.fileName}`;
+            img.src = `${environment.baseUrlImage}${result.data.fileName}`;
             const lastSegment = img.src.split("/").pop();
             this.groundImages.push({ "imagePath": lastSegment, "isPrimary": false });
             this.renderer.addClass(img, 'product-image');

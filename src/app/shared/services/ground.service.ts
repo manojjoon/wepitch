@@ -231,7 +231,7 @@ export class GroundService {
   }
 
   updateGroundImages(body){
-    return this.http.post(`${environment.baseUrl}/Ground/AddGroundImages`, body);
+    return this.http.post(`${environment.baseUrl}Ground/AddGroundImages`, body);
   }
 
 }
