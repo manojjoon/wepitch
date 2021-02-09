@@ -29,7 +29,10 @@ export class GroundService {
     this.store = new FormGroup({
       // Id: new FormControl(Math.ceil(Math.random()*10000)),
       groundName: new FormControl(),
-      groundAddress: new FormControl(),
+      groundOwner: new FormControl(),
+      discount:new FormControl(),
+      contactNo: new FormControl()
+,     groundAddress: new FormControl(),
       googleLocation: new FormControl(),
       distanceFromLocation: new FormControl(),
       groundEntityName: new FormControl(),

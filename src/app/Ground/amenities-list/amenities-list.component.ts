@@ -226,75 +226,7 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
       { headerName: 'Action', field: 'Action', sortable: true, filter: true, cellRendererFramework: ActionComponent }
     ];
   }
-  GetGiftVoucherList() {
-    this.AgLoad = true;
-    this.RowData = [
-      {
-        ArtNo: "100",
-        rovider: "IPhone 11",
-        ProviderArtNo: "1Yu",
-        Brand: "Apple",
-        Price: 7810.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "101",
-        Provider: "Samsung galaxy",
-        ProviderArtNo: "1Yu",
-        Brand: "Samsung",
-        Price: 2310.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "102",
-        Provider: "Iphone 11 Pro",
-        ProviderArtNo: "1Yu",
-        Brand: "Apple",
-        Price: 7810.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "103",
-        Provider: "Intex",
-        ProviderArtNo: "1Yu",
-        Brand: "Intex",
-        Price: 5810.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "100",
-        Provider: "IPhone 11",
-        ProviderArtNo: "1Yu",
-        Brand: "Apple",
-        Price: 7810.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "101",
-        Provider: "Samsung galaxy",
-        ProviderArtNo: "1Yu",
-        Brand: "Samsung",
-        Price: 2310.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "102",
-        Provider: "Iphone 11 Pro",
-        ProviderArtNo: "1Yu",
-        Brand: "Apple",
-        Price: 7810.23,
-        BuyAccount: "123",
-      },
-      {
-        ArtNo: "103",
-        Provider: "Intex",
-        ProviderArtNo: "1Yu",
-        Brand: "Intex",
-        Price: 5810.23,
-        BuyAccount: "123",
-      }
-    ];
-  }
+  
   //dummy grid ends
 
 

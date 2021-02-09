@@ -6,9 +6,12 @@ import {GroundSlot} from "./groundSlot.model"
 export class Ground {
       GroundName : string;
       GroundAddress : string;
+      Discount : number;
       GroundEntityName : string;
       GSTIN: string;
       Rating : number;
+      ContactNo : string;
+      GroundOwner :string;
       LikesCount : number;
       ViewsCount : number;
       GoogleLocation : string; 
