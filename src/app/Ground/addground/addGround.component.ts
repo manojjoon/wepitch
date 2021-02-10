@@ -166,6 +166,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         this.data = res.result.ruleDescription ? res.result.ruleDescription : 'Enter Your rules';
         this._loaderService.hideLoader();
       }, () => {
+        this.data = 'Enter Ground rules'
         this._loaderService.hideLoader();
       })
     }
@@ -469,9 +470,9 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       /**
        * Will be cheking if the images are more than six
        */
-      if((this.uploadedImages.length + this.groundImages.length) > 6){
+      //if((this.uploadedImages.length + this.groundImages.length) > 6){
         this.router.navigate([`addGround/groundRules/${this.id}`]);
-      }
+      //}
       
     } else if (e === 4) {
 
