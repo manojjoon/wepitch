@@ -15,6 +15,7 @@ export class Ground {
       LikesCount : number;
       ViewsCount : number;
       GoogleLocation : string; 
+      IsFloodLights: boolean;
       DistanceFromLocation : string;
       groundSlotList : GroundSlot[];
       amenitiesList : GroundAmenities[];

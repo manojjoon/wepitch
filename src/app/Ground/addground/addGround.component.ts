@@ -194,6 +194,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       Rating: null,
       LikesCount: null,
       ViewsCount: null,
+      IsFloodLights: null,
       GoogleLocation: '',
       DistanceFromLocation: '',
       groundSlotList: [],
