@@ -29,15 +29,18 @@ export class GroundService {
     this.store = new FormGroup({
       // Id: new FormControl(Math.ceil(Math.random()*10000)),
       groundName: new FormControl(),
-      groundAddress: new FormControl(),
+      groundOwner: new FormControl(),
+      discount:new FormControl(),
+      contactNo: new FormControl()
+,     groundAddress: new FormControl(),
       googleLocation: new FormControl(),
       distanceFromLocation: new FormControl(),
       groundEntityName: new FormControl(),
       amenitiesList: new FormArray([]),
       slots: new FormArray([]),
       gstin: new FormControl(null, Validators.pattern(/\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]\dZ\d/gm)),
-      viewscount: new FormControl(),
-      likescount: new FormControl(),
+      viewsCount: new FormControl(),
+      likesCount: new FormControl(),
       rating: new FormControl(),
       IsFloodLights: new FormControl()
     });
@@ -156,8 +159,9 @@ export class GroundService {
 
 
   postGround(formData: Ground) {
+    
     return (formData['id']
-    ? this.http.put(`${environment.baseUrl}Ground/AddGround`, formData)
+    ? this.http.put(`${environment.baseUrl}Ground/UpdateGround`, formData)
     : this.http.post(`${environment.baseUrl}Ground/AddGround`, formData))
 
     // .pipe(map((r: any) => {
@@ -183,11 +187,13 @@ export class GroundService {
 
 
   getGroundList() {
-    debugger;
+   
     return this.http.get(environment.baseUrl + 'Ground/GetAllGrounds')
   }
   uploadFile(data): Observable<any> {
+ 
     let formData = new FormData();
+
     formData.append('formFile', data);
     return this.http.post(`${environment.baseUrl}Document`, formData);
   }
@@ -231,7 +237,8 @@ export class GroundService {
   }
 
   updateGroundImages(body){
-    return this.http.post(`${environment.baseUrl}/Ground/AddGroundImages`, body);
+
+    return this.http.post(`${environment.baseUrl}Ground/AddGroundImages`, body);
   }
 
   getAllGroundImages(){

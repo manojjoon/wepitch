@@ -19,15 +19,32 @@
                     <label for="lname">Ground Entity Name</label><br>
                     <input type="text" formControlName="groundEntityName" class="form-control">
                   </div>
+   
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="GroundOwner">Ground Owner Name</label><br>
+                    <input type="text"name="groundOwner" formControlName="groundOwner" class="form-control">
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="contactNo">Contact No.</label><br>
+                    <input type="text" name="contactNo" formControlName="contactNo" class="form-control">
+                  </div>
+
+
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="lname">GSTIN</label><br>
                     <input type="text" name="GSTIN" class="form-control" formControlName="gstin">
                   </div>
 
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="lname">Discount Rate in (%)</label><br>
+                    <input type="text" name="discount" class="form-control" formControlName="discount">
+                  </div>
+
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Views Count</label><br>
-                    <input type="number" formControlName="viewscount" class="form-control">
+                    <input type="number" name="viewsCount" formControlName="viewsCount"  class="form-control">
                   </div>
                   <!-- </div> -->
                 </div>
@@ -52,12 +69,12 @@
                   </div>
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Likes Count</label><br>
-                    <input type="number" name="LikesCount" class="form-control" formControlName="likescount">
+                    <input type="number" name="likesCount" class="form-control" formControlName="likesCount">
                   </div>
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
-                    <label for="lname">GroundAddress</label><br>
-                    <textarea class="form-control" rows="3" id="comment" name="GroundAddress"></textarea>
+                    <label for="lname">Ground Address</label><br>
+                    <textarea class="form-control" rows="3"  formControlName="groundAddress" name="groundAddress"></textarea>
                   </div>
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
@@ -232,6 +249,7 @@
           </mat-step>
 
           <mat-step>
+            
             <ng-template matStepLabel>Ground Rules</ng-template>
             <ckeditor [editor]="Editor" [data]="data"></ckeditor>
             <footer class="example-step-navigation-bar">
@@ -241,6 +259,7 @@
                   fotterLablels && fotterLablels[activeStep] }}</button>
               </div>
             </footer>
+            
           </mat-step>
         </mat-horizontal-stepper>
       </form>
