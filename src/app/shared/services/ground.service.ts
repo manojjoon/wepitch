@@ -27,7 +27,7 @@ export class GroundService {
 
   constructor(private http: HttpClient) {
     this.store = new FormGroup({
-      // Id: new FormControl(Math.ceil(Math.random()*10000)),
+      id: new FormControl(),
       groundName: new FormControl(),
       groundOwner: new FormControl(),
       discount:new FormControl(),
@@ -241,8 +241,8 @@ export class GroundService {
     return this.http.post(`${environment.baseUrl}Ground/AddGroundImages`, body);
   }
 
-  getAllGroundImages(){
-    return this.http.get(`${environment.baseUrl}Ground/GetAllGroundImages`)
+  getAllGroundImages(groundId){
+    return this.http.get(`${environment.baseUrl}Ground/GetAllGroundImages?GroundId=${groundId}`)
   }
 
 }

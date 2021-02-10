@@ -224,13 +224,13 @@
               <div class="form-group">
                 <div class="upload-image">
                   <div #image class="image-wrapper">
-                    <img *ngFor="let image of uploadedImages; let i = index" [src]="image.imagePath"/>
+                    <img width="100px" *ngFor="let image of uploadedImages; let i = index" [src]="image.imagePath" style="padding: 10px;"/>
                   </div>
                   <div class="browse-btn">
                     <input type="file" name="cameraImg" id="cameraImg" multiple accept="image/*"
                       (change)="handleFileInput($event.target.files)" />
                     <div class="browse-image">
-                      <img src="assets/images/camera.jpg" width="60px" />
+                      <img src="assets/images/camera.jpg" width="100px" style="padding: 10px;"/>
                       <p>Browse image</p>
                     </div>
                   </div>
@@ -251,7 +251,7 @@
           <mat-step>
             
             <ng-template matStepLabel>Ground Rules</ng-template>
-            <ckeditor [editor]="Editor" [data]="data"></ckeditor>
+            <ckeditor [editor]="Editor" [(data)]="data" (change)="onChange($event)"></ckeditor>
             <footer class="example-step-navigation-bar">
               <div class="form-group" style="text-align:right">
                 <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(activeStep - 1)">Back</button>

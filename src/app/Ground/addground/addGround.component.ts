@@ -138,19 +138,23 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     });
   }
 
+  onChange({ editor }){
+    this.data = editor.getData();
+  }
+
   initFormGroup() {
-    if (!this.service.slots && this.activeStep === 2) {
+    if (!this.service.slots && this.activeStep === 1) {
       this.service.getGroundSlotTimings(this.id)
         .subscribe((res) => {
           this.service.convertToFormArray(res);
         })
-    } else if(this.activeStep === 3){
+    } else if(this.activeStep === 2){
       this._loaderService.showLoader();
-      this.service.getAllGroundImages()
+      this.service.getAllGroundImages(this.id)
       .subscribe((res) => {
         this.uploadedImages = Array.isArray(res) ? res : [];
         
-        this._loaderService.showLoader();
+        this._loaderService.hideLoader();
       }, () => {
         this._loaderService.hideLoader();
       });
@@ -435,7 +439,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
        */
       this.service.postGround(Object.assign(this.service.store.value, { IsFloodLights: this.service.store.value['IsFloodLights'] === 'true' }))
         .subscribe((res: any) => {
-          this.router.navigate([`addGround/addSlots/${res.groundId}`]);
+          
+          this.router.navigate([`addGround/addSlots/${res.groundId ? res.groundId : this.id}`]);
           this.stepper.next();
         }, () => {
 
