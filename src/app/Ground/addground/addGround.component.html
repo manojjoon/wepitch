@@ -206,7 +206,9 @@
               </div>
               <div class="form-group">
                 <div class="upload-image">
-                  <div #image class="image-wrapper"></div>
+                  <div #image class="image-wrapper">
+                    <img *ngFor="let image of uploadedImages; let i = index" [src]="image.imagePath"/>
+                  </div>
                   <div class="browse-btn">
                     <input type="file" name="cameraImg" id="cameraImg" multiple accept="image/*"
                       (change)="handleFileInput($event.target.files)" />

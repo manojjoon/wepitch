@@ -160,10 +160,10 @@ export class GroundService {
     ? this.http.put(`${environment.baseUrl}Ground/AddGround`, formData)
     : this.http.post(`${environment.baseUrl}Ground/AddGround`, formData))
 
-    .pipe(map((r: any) => {
-      this.slots = this.convertToFormArray(r)
-      return r;
-    }));
+    // .pipe(map((r: any) => {
+    //   this.slots = this.convertToFormArray(r)
+    //   return r;
+    // }));
   }
 
   getGround(id: number){
@@ -232,6 +232,10 @@ export class GroundService {
 
   updateGroundImages(body){
     return this.http.post(`${environment.baseUrl}/Ground/AddGroundImages`, body);
+  }
+
+  getAllGroundImages(){
+    return this.http.get(`${environment.baseUrl}Ground/GetAllGroundImages`)
   }
 
 }

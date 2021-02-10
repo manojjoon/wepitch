@@ -73,6 +73,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
   slottoUpdate: FormGroup;
 
+  uploadedImages = [];
+
   constructor(
     public service: GroundService,
     private amenitiesService: AmenitiesService,
@@ -137,11 +139,21 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }
 
   initFormGroup() {
-    if (!this.service.slots && this.activeStep === 1) {
+    if (!this.service.slots && this.activeStep === 2) {
       this.service.getGroundSlotTimings(this.id)
         .subscribe((res) => {
           this.service.convertToFormArray(res);
         })
+    } else if(this.activeStep === 3){
+      this._loaderService.showLoader();
+      this.service.getAllGroundImages()
+      .subscribe((res) => {
+        this.uploadedImages = Array.isArray(res) ? res : [];
+        
+        this._loaderService.showLoader();
+      }, () => {
+        this._loaderService.hideLoader();
+      });
     }
   }
 
@@ -425,7 +437,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
        * Slots added last page
        * Uploading images 'addGround/uploadImages'
        */
+
+
       this.router.navigate([`addGround/uploadImages/${this.id}`]);
+      
 
     } else if (e === 3) {
       /**
