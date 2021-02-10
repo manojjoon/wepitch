@@ -251,7 +251,7 @@
           <mat-step>
             
             <ng-template matStepLabel>Ground Rules</ng-template>
-            <ckeditor [editor]="Editor" [(data)]="data" (change)="onChange($event)"></ckeditor>
+            <ckeditor *ngIf="data" [editor]="Editor" [data]="data" (change)="onChange($event)"></ckeditor>
             <footer class="example-step-navigation-bar">
               <div class="form-group" style="text-align:right">
                 <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(activeStep - 1)">Back</button>

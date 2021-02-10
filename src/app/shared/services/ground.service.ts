@@ -245,4 +245,8 @@ export class GroundService {
     return this.http.get(`${environment.baseUrl}Ground/GetAllGroundImages?GroundId=${groundId}`)
   }
 
+  getGroundRules(groundId){
+    return this.http.get(`${environment.baseUrl}Ground/GetGroundRules?GroundId=${groundId}`)
+  }
+
 }

@@ -44,7 +44,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   @ViewChild(MatStepper, { static: true }) private stepper: MatStepper;
   @Output() close = new EventEmitter();
 
-  data = '<p>Enter Ground Rules</p>';
+  data;
 
   public Editor = ClassicEditor
 
@@ -113,8 +113,9 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       if (this.id && params.step == 'init') {
         this.getGroundDetails();
       }
+      this.initFormGroup();
     });
-    this.initFormGroup();
+    
     this.service.calenderEvent
     .subscribe((value) => {
       console.log({value});
@@ -158,6 +159,15 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       }, () => {
         this._loaderService.hideLoader();
       });
+    } else if(this.activeStep === 3){
+      this._loaderService.showLoader();
+      this.service.getGroundRules(this.id)
+      .subscribe((res: any) => {
+        this.data = res.result.ruleDescription ? res.result.ruleDescription : 'Enter Your rules';
+        this._loaderService.hideLoader();
+      }, () => {
+        this._loaderService.hideLoader();
+      })
     }
   }
 
@@ -250,7 +260,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     }))
       .subscribe((results: any) => {
 
-        results.forEach((result) => {
+        results.forEach((result, i) => {
           if (result.message == "Document added succesfully") {
             //this.groundImageUrl = this.rootUrl + result.data.fileName;
             //const imageFileName = result.data.fileName.split('\\');
@@ -259,7 +269,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
             listOfGroundImages.push({
               
               imagePath: imagename,
-              isPrimary: true
+              isPrimary: i === 0 && this.uploadedImages.length === 0
             })
           
             this.uploadError = '';
@@ -459,7 +469,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       /**
        * Will be cheking if the images are more than six
        */
-      if(this.groundImageUrl.length < 6){
+      if((this.uploadedImages.length + this.groundImages.length) > 6){
         this.router.navigate([`addGround/groundRules/${this.id}`]);
       }
       
