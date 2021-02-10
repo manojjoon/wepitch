@@ -159,8 +159,9 @@ export class GroundService {
 
 
   postGround(formData: Ground) {
+    debugger;
     return (formData['id']
-    ? this.http.put(`${environment.baseUrl}Ground/AddGround`, formData)
+    ? this.http.put(`${environment.baseUrl}Ground/UpdateGround`, formData)
     : this.http.post(`${environment.baseUrl}Ground/AddGround`, formData))
 
     .pipe(map((r: any) => {
