@@ -39,8 +39,8 @@ export class GroundService {
       amenitiesList: new FormArray([]),
       slots: new FormArray([]),
       gstin: new FormControl(null, Validators.pattern(/\d{2}[a-zA-Z]{5}\d{4}[a-zA-Z]\dZ\d/gm)),
-      viewscount: new FormControl(),
-      likescount: new FormControl(),
+      viewsCount: new FormControl(),
+      likesCount: new FormControl(),
       rating: new FormControl(),
       IsFloodLights: new FormControl()
     });
