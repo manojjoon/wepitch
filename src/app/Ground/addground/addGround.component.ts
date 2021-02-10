@@ -239,10 +239,13 @@ export class addGroundComponent extends CdkStepper implements OnInit {
             //this.groundImageUrl = this.rootUrl + result.data.fileName;
             //const imageFileName = result.data.fileName.split('\\');
             //this.groundDetailForm.patchValue({ GroundImage: imageUrlFolder[imageUrlFolder.length - 1] });
+            var imagename = result.data.fileName.split('\\').pop();
             listOfGroundImages.push({
-              imagePath: `${environment.baseUrl}${result.data.fileName}`,
+              
+              imagePath: imagename,
               isPrimary: true
             })
+          
             this.uploadError = '';
 
             const li: HTMLLIElement = this.renderer.createElement('li');
@@ -269,6 +272,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         });
         console.log('Here need to call api to update');
         this.service.updateGroundImages({
+        
           groundId: this.id,
           listOfGroundImages
         }).subscribe(() => {
@@ -322,7 +326,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
   onSubmit(form: NgForm) {
     const _selectedAmenities = this.amenitiesList.filter((item) => item.isSelected);
-    debugger;
+    
     const _GroundSlots = this.groundSlotList;
     const _formValues = form.value;
 

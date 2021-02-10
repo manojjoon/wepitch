@@ -159,7 +159,7 @@ export class GroundService {
 
 
   postGround(formData: Ground) {
-    debugger;
+    
     return (formData['id']
     ? this.http.put(`${environment.baseUrl}Ground/UpdateGround`, formData)
     : this.http.post(`${environment.baseUrl}Ground/AddGround`, formData))
@@ -187,11 +187,13 @@ export class GroundService {
 
 
   getGroundList() {
-    debugger;
+   
     return this.http.get(environment.baseUrl + 'Ground/GetAllGrounds')
   }
   uploadFile(data): Observable<any> {
+ 
     let formData = new FormData();
+
     formData.append('formFile', data);
     return this.http.post(`${environment.baseUrl}Document`, formData);
   }
@@ -235,6 +237,7 @@ export class GroundService {
   }
 
   updateGroundImages(body){
+
     return this.http.post(`${environment.baseUrl}Ground/AddGroundImages`, body);
   }
 
