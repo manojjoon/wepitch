@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SettingComponent } from './setting/setting.component';
+import {SystemSettingComponent} from '../app/Ground/SystemSetting/System-Setting.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { addGroundComponent } from './Ground/addground/addGround.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
@@ -50,6 +51,7 @@ import { MatProgressSpinnerModule } from '@angular/material';
     FooterComponent,
     SidenavComponent,
     SettingComponent,
+    SystemSettingComponent,
     DashboardComponent,
     addGroundComponent,
     GroundListComponent,
