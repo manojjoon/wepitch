@@ -5,6 +5,8 @@ import {
   TemplateRef,
   Input,
   ChangeDetectorRef,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import {
   startOfDay,
@@ -45,6 +47,8 @@ const colors: any = {
   styleUrls: ['./calender.component.css']
 })
 export class CalenderComponent {
+
+  @Output() eventMonthChanged = new EventEmitter<any>();
 
   ngOnInit() {
   }
@@ -131,5 +135,18 @@ export class CalenderComponent {
     console.log(this.events)
     //this.cdr.detectChanges();
     this.refresh.next();
+  }
+
+  getCalenderData(){
+    const StartDate = (new Date(this.viewDate)).setDate(1);
+    const EndDate = endOfMonth(this.viewDate);
+    this.eventMonthChanged.emit({
+      StartDate,
+      EndDate
+    })
+  }
+
+  endOfMonth(date){
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
   }
 }

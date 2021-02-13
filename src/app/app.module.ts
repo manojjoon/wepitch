@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SettingComponent } from './setting/setting.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { addGroundComponent } from './Ground/addground/addGround.component';
+import { addGroundComponent, AmenityPipe } from './Ground/addground/addGround.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
 import { GroundService } from './shared/services/ground.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -68,7 +68,8 @@ import { MatProgressSpinnerModule } from '@angular/material';
     BookingComponent,
     BookingListComponent,
     TeamListComponent,
-    LoaderComponent
+    LoaderComponent,
+    AmenityPipe
   ],
   imports: [
     BrowserModule,

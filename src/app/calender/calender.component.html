@@ -6,7 +6,7 @@
           mwlCalendarPreviousView
           [view]="view"
           [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
+          (viewDateChange)="closeOpenMonthViewDay('prev')"
         >
           Previous
         </div>
@@ -22,7 +22,7 @@
           mwlCalendarNextView
           [view]="view"
           [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
+          (viewDateChange)="closeOpenMonthViewDay('next')"
         >
           Next
         </div>

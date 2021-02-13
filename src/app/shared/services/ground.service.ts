@@ -42,9 +42,9 @@ export class GroundService {
       viewsCount: new FormControl(),
       likesCount: new FormControl(),
       rating: new FormControl(),
-      IsFloodLights: new FormControl()
+      isFloodLights: new FormControl()
     });
-    this.addSlot();
+    //this.addSlot();
   }
 
   convertToFormArray(value){

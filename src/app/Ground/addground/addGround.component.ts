@@ -1,5 +1,5 @@
 import { ifStmt } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, Renderer2, ElementRef, ViewChild, EventEmitter, Output, IterableDiffers, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, ViewChild, EventEmitter, Output, IterableDiffers, ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Ground } from 'src/app/models/ground.model';
@@ -31,6 +31,21 @@ const componentForm = {
   country: "long_name",
   postal_code: "short_name",
 };
+
+@Pipe({
+  name: 'amenity'
+})
+export class AmenityPipe implements PipeTransform{
+
+  transform(value, args){
+    console.log({value, args});
+    value.forEach((e) => {
+      e.isSelected = args.find(a => a.id === e.id) ? true : false;
+    });
+    return value;
+  }
+
+}
 
 @Component({
   selector: 'app-addGround',
@@ -112,6 +127,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       this.id = +params.id;
       if (this.id && params.step == 'init') {
         this.getGroundDetails();
+      }else{
+        this.service.addSlot();
       }
       this.initFormGroup();
     });
@@ -511,7 +528,15 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   getGroundDetails() {
     this._loaderService.showLoader();
     this.service.getGround(this.id).subscribe(res => {
-      // ToDo: Patch value to form
+      console.log({res})
+      const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
+      res.slots.forEach(() => {
+        this.service.addSlot();
+      });
+      res.amenitiesList.forEach(() => {
+        checkArray.push(new FormControl())
+      });
+      res.isFloodLights = res.isFloodLights ? "true" : "false"
       this.service.store.patchValue(res);
       this._loaderService.hideLoader();
     }, err => {

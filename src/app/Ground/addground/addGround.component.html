@@ -79,11 +79,11 @@
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="fname">Flood Lights</label><br>
-                    <input type="radio" class="check-space" id="Yes" formControlName="IsFloodLights"
-                      name="IsFloodLights" value=true (change)="setFloodLights($event)">
+                    <input type="radio" class="check-space" id="Yes" formControlName="isFloodLights"
+                      name="isFloodLights" value=true (change)="setFloodLights($event)">
                     <label for="Yes">Yes</label> &nbsp; &nbsp;
-                    <input type="radio" class="check-space" id="No" name="IsFloodLights" value=false
-                      formControlName="IsFloodLights" (change)="setFloodLights($event)">
+                    <input type="radio" class="check-space" id="No" name="isFloodLights" value=false
+                      formControlName="isFloodLights" (change)="setFloodLights($event)">
                     <label for="No">No</label><br>
                   </div>
                 </div>
@@ -104,9 +104,9 @@
                       </div>        
                       <div class="col-md-12">
                         <div class="row">
-                          <div class="col-md-4" *ngFor="let item of amenitiesList">
+                          <div class="col-md-4" *ngFor="let item of (amenitiesList | amenity: service.store?.value?.amenitiesList)">
                             <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
-                              type="checkbox" id="{{item.id}}" />
+                              type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
                             <label>{{item.amenitiesDescription}}</label>
                           </div>
                         </div>
