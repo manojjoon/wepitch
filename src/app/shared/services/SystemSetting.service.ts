@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Team } from 'src/app/models/Team.model';
+import { SystemSetting } from '..//../models/SystemSetting.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,24 +9,23 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Injectable({
     providedIn: 'root'
 })
-  export class TeamService {
-    formData: Team;
+export class SystemSettingService{
+    formData: SystemSetting;
     store: FormGroup;
 
     constructor(private http: HttpClient) {
         this.store = new FormGroup({
          
-          Name: new FormControl(),
-          AdminMember: new FormControl(),
-          LogoUrl: new FormControl(),
+          Id: new FormControl(),
+          Type: new FormControl(),
+          Description: new FormControl(),
           
         });
       }
 
-
-      getTeamList() {
+      getSystemSettingList() {
         debugger;
-        return this.http.get(environment.baseUrl + 'Team/GetAllTeams');
+        return this.http.get(environment.baseUrl + 'Settings/GetAllPrivacyPolicy');
       }
 
 
@@ -41,8 +40,3 @@ import { FormControl, FormGroup } from '@angular/forms';
       }
   
     }
-
-
-
-    
-    

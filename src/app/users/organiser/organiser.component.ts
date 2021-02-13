@@ -45,7 +45,7 @@ export class OrganiserComponent implements OnInit {
       { headerName: 'UserName', field: 'userName', sortable: true},
       { headerName: 'Phone Number', field: 'phoneNumber', sortable: true},
       { headerName: 'Is Organiser', field: 'isOrganiser', sortable: true},
-      { headerName: 'Is Player', field: 'isPlayer', sortable: true}
+      // { headerName: 'Is Player', field: 'isPlayer', sortable: true}
     ];
   }
 
