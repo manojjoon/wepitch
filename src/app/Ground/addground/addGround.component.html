@@ -24,6 +24,18 @@
                     <label for="GroundOwner">Ground Owner Name</label><br>
                     <input type="text"name="groundOwner" formControlName="groundOwner" class="form-control">
                   </div>
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="GroundOwner2">Ground Owner2</label><br>
+                    <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="owneremailid">Owner Email Id</label><br>
+                    <input type="text"name="owneremailid" formControlName="owneremailid" class="form-control">
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                    <label for="owner2emailid">Owner 2 Email Id</label><br>
+                    <input type="text"name="owner2emailid" formControlName="owner2emailid" class="form-control">
+                  </div>
 
                   <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
                     <label for="contactNo">Contact No.</label><br>
@@ -106,8 +118,8 @@
                         <div class="row">
                           <div class="col-md-4" *ngFor="let item of amenitiesList">
                             <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
-                              type="checkbox" id="{{item.id}}" />
-                            <label>{{item.amenitiesDescription}}</label>
+                              type="checkbox" id="{{item.id}}"/>
+                            <label for="item.id"><img border="0" width="20" height="30"  src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
                           </div>
                         </div>
                       </div>

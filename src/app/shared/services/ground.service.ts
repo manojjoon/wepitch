@@ -30,6 +30,9 @@ export class GroundService {
       id: new FormControl(),
       groundName: new FormControl(),
       groundOwner: new FormControl(),
+      groundOwner2: new FormControl(),
+      owneremailid: new FormControl(),
+      owner2emailid: new FormControl(),
       discount:new FormControl(),
       contactNo: new FormControl()
 ,     groundAddress: new FormControl(),
