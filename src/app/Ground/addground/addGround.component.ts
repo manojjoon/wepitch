@@ -128,6 +128,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       if (this.id && params.step == 'init') {
         this.getGroundDetails();
       }else{
+        this.service.store.setControl('slots', new FormArray([]));
+        this.service.store.setControl('amenitiesList', new FormArray([]));
         this.service.addSlot();
       }
       this.initFormGroup();
