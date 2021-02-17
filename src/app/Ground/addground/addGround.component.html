@@ -11,85 +11,76 @@
             <div class="card">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                     <label for="fname">Ground Name</label><br>
                     <input type="text" name="GroundName" formControlName="groundName" class="form-control" required>
                   </div>
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                     <label for="lname">Ground Entity Name</label><br>
                     <input type="text" formControlName="groundEntityName" class="form-control">
                   </div>
    
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                     <label for="GroundOwner">Ground Owner Name</label><br>
                     <input type="text"name="groundOwner" formControlName="groundOwner" class="form-control">
                   </div>
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="GroundOwner2">Ground Owner2</label><br>
                     <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                   </div>
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="owneremailid">Owner Email Id</label><br>
                     <input type="text"name="owneremailid" formControlName="owneremailid" class="form-control">
                   </div>
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="owner2emailid">Owner 2 Email Id</label><br>
                     <input type="text"name="owner2emailid" formControlName="owner2emailid" class="form-control">
                   </div>
 
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="contactNo">Contact No.</label><br>
                     <input type="text" name="contactNo" formControlName="contactNo" class="form-control">
                   </div>
 
 
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="lname">GSTIN</label><br>
                     <input type="text" name="GSTIN" class="form-control" formControlName="gstin">
                   </div>
 
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="lname">Discount Rate in (%)</label><br>
                     <input type="text" name="discount" class="form-control" formControlName="discount">
                   </div>
 
 
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Views Count</label><br>
                     <input type="number" name="viewsCount" formControlName="viewsCount"  class="form-control">
                   </div>
-                  <!-- </div> -->
-                </div>
 
-                <div class="row">
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Google Location</label><br>
                     <!-- <input type="text"  name="GoogleLocation" #GoogleLocation="ngModel" [(ngModel)]="service.formData.GoogleLocation" class="form-control"> -->
                     <input class="form-control" id="googleLocation"
                       formControlName="googleLocation" (focus)="geolocate('googleLocation')" type="text" />
                   </div>
-
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Landmark</label><br>
                     <input class="form-control" id="landmark"
                       formControlName="distanceFromLocation" (focus)="geolocate('landmark')" type="text" />
                   </div>
 
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Rating</label><br>
                     <input type="number" name="Rating" class="form-control" formControlName="rating">
                   </div>
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Likes Count</label><br>
                     <input type="number" name="likesCount" class="form-control" formControlName="likesCount">
                   </div>
 
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
-                    <label for="lname">Ground Address</label><br>
-                    <textarea class="form-control" rows="3"  formControlName="groundAddress" name="groundAddress"></textarea>
-                  </div>
-
-                  <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Flood Lights</label><br>
                     <input type="radio" class="check-space" id="Yes" formControlName="isFloodLights"
                       name="isFloodLights" value=true (change)="setFloodLights($event)">
@@ -98,7 +89,18 @@
                       formControlName="isFloodLights" (change)="setFloodLights($event)">
                     <label for="No">No</label><br>
                   </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
+                    <label for="lname">Ground Address</label><br>
+                    <textarea class="form-control" rows="3"  formControlName="groundAddress" name="groundAddress"></textarea>
+                  </div>
+
+                   
+
+                  <!-- </div> -->
                 </div>
+
+                <div class="row">
+                   </div>
 
                 <div class="row">
                   <div class="col-md-12">
@@ -119,7 +121,9 @@
                           <div class="col-md-4" *ngFor="let item of (amenitiesList | amenity: service.store?.value?.amenitiesList)">
                             <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
                               type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
-                            <label for="item.id"><img border="0" width="20" height="30"  src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
+                              
+                                  <label for="item.id"><img class="check-space"9  width="20" height="30" src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
+                              
                           </div>
                         </div>
                       </div>
