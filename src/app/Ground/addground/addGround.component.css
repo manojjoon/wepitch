@@ -1,5 +1,6 @@
 .check-space{
     margin-right: 15px;
+    
   }
 
   .amenities-topspace{
@@ -68,3 +69,6 @@ a.delete-btn {
 ::ng-deep .mat-horizontal-stepper-header{
     pointer-events: none !important;
 }
+
+
+
