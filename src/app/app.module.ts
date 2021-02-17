@@ -44,6 +44,9 @@ import { AllUserComponent } from './users/AllUsers/AllUser.Component';
 import { LoaderComponent } from './shared/services/loader/loader.component';
 import { LoaderService } from './shared/services/loader/loader.service';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { AddTournamentComponent } from './Tournament/add-tournament/add-tournament.component';
+import { ListTournamentComponent } from './Tournament/list-tournament/list-tournament.component';
+import { PrizesComponent } from './Prizes/prizes/prizes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +74,10 @@ import { MatProgressSpinnerModule } from '@angular/material';
     BookingListComponent,
     TeamListComponent,
     LoaderComponent,
-    AmenityPipe
+    AmenityPipe,
+    AddTournamentComponent,
+    ListTournamentComponent,
+    PrizesComponent
   ],
   imports: [
     BrowserModule,
