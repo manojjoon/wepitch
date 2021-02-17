@@ -182,7 +182,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       this._loaderService.showLoader();
       this.service.getGroundRules(this.id)
       .subscribe((res: any) => {
-        this.data = res.result.ruleDescription ? res.result.ruleDescription : 'Enter Your rules';
+        this.data = (res.result && res.result.ruleDescription) ? res.result.ruleDescription : 'Enter Your rules';
         this._loaderService.hideLoader();
       }, () => {
         this.data = 'Enter Ground rules'
