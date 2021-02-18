@@ -13,8 +13,9 @@ import { BookingComponent } from './Ground/booking/booking.component';
 import { TeamListComponent } from './Ground/Team/Team-list.component';
 import{OrganiserComponent} from './users/organiser/organiser.component';
 import {SystemSettingComponent} from '../app/Ground/SystemSetting/System-Setting.component';
-import{AddTournamentComponent} from '../app/Tournament/add-tournament/add-tournament.component';
-import{PrizesComponent} from '../app/Prizes/prizes/prizes.component';
+import { TournamentListComponent } from './Ground/Tournament/Tournament-list.component';
+// import{AddTournamentComponent} from '../app/Tournament/add-tournament/add-tournament.component';
+// import{PrizesComponent} from '../app/Prizes/prizes/prizes.component';
 
 
 const routes: Routes = [
@@ -41,8 +42,9 @@ const routes: Routes = [
       { path: 'team', component: TeamListComponent },
       {path : 'AllUser',component : OrganiserComponent},
       {path : 'systemsetting',component : SystemSettingComponent},
-      {path : 'addTournament',component : AddTournamentComponent},
-      {path : 'prizes',component : PrizesComponent},
+      {path : 'Tournaments', component : TournamentListComponent},
+      // {path : 'addTournament',component : AddTournamentComponent},
+      // {path : 'prizes',component : PrizesComponent},
    
 
     ]

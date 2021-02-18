@@ -47,6 +47,7 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { AddTournamentComponent } from './Tournament/add-tournament/add-tournament.component';
 import { ListTournamentComponent } from './Tournament/list-tournament/list-tournament.component';
 import { PrizesComponent } from './Prizes/prizes/prizes.component';
+import { TournamentListComponent} from './Ground/Tournament/Tournament-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { PrizesComponent } from './Prizes/prizes/prizes.component';
     AmenityPipe,
     AddTournamentComponent,
     ListTournamentComponent,
-    PrizesComponent
+    PrizesComponent,
+    TournamentListComponent
   ],
   imports: [
     BrowserModule,
