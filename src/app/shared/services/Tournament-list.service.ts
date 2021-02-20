@@ -38,6 +38,14 @@ export class TournamentService {
         });
       }
 
+      getGroundNameList(){
+
+        return this.http.get(environment.baseUrl + 'Ground/GetAllGroundName')
+      }
+
+
+
+
       getTournamentList() {
         debugger;
         return this.http.get(environment.baseUrl + 'Tournament/GetAllTournaments');

@@ -29,13 +29,14 @@
                     <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                   </div>
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
-                    <label for="owneremailid">Owner Email Id</label><br>
-                    <input type="text"name="owneremailid" formControlName="owneremailid" class="form-control">
+                    <label for="ownerEmailId">Owner Email Id</label><br>
+                    <input type="text" name="ownerEmailId" formControlName="ownerEmailId" class="form-control">
                   </div>
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
-                    <label for="owner2emailid">Owner 2 Email Id</label><br>
-                    <input type="text"name="owner2emailid" formControlName="owner2emailid" class="form-control">
+                    <label for="owner2EmailId">Owner 2 Email Id</label><br>
+                    <input type="text" name="owner2EmailId" formControlName="owner2EmailId" class="form-control">
                   </div>
+
 
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="contactNo">Contact No.</label><br>
@@ -170,7 +171,7 @@
             <footer class="example-step-navigation-bar">
               <div class="form-group" style="text-align:right">
                 <button type="submit" class="btn  btn-primary" (click)="stepChanged(1)">
-                  Add Ground
+                  {{AddEditGroundLabel}}
                 </button>
               </div>
             </footer>

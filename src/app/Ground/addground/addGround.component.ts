@@ -81,6 +81,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }];
 
   groundImageUrl: string = '';
+  AddEditGroundLabel: string = '';
   TotalRow: number;
 
   activeStep: number = 0;
@@ -127,11 +128,14 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       this.id = +params.id;
       if (this.id && params.step == 'init') {
         this.getGroundDetails();
+        this.AddEditGroundLabel = 'Update Ground';
       }else{
+        this.AddEditGroundLabel = 'Add Ground';
         this.service.store.setControl('slots', new FormArray([]));
         this.service.store.setControl('amenitiesList', new FormArray([]));
         this.service.addSlot();
       }
+      
       this.initFormGroup();
     });
     
@@ -235,8 +239,8 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       GroundEntityName: '',
       GroundOwner:'',
       GroundOwner2:'',
-      GroundOwnerEmailId:'',
-      GroundOwner2EmailId :'',
+      ownerEmailId:'',
+      owner2EmailId:'',
       ContactNo:'',
       Discount:null,
       GSTIN: '',
