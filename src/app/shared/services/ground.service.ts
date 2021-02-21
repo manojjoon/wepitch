@@ -151,7 +151,7 @@ export class GroundService {
     const slotToEdit = this.slots.find((fg: FormGroup) => {
         return fg.get('groundSlotTimingId').value === event.meta.groundSlotTimingId;
     });
-    this.calenderEvent.next(slotToEdit);
+    this.calenderEvent.next(slotToEdit.value);
 
     //slotToEdit.get('isAdded').setValue(true);
   }

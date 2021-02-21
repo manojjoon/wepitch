@@ -224,7 +224,7 @@
           <mat-step>
             <ng-template matStepLabel>Upload ground Images</ng-template>
             <div class="col-md-4 ">
-              <label for="GroundImages" class="col-xs-4 amenities-topspace">Add Ground Images</label>
+              <label for="GroundImages" class="col-xs-4 amenities-topspace">Add Ground Images (Please choose one icon)</label>
             </div>
 
             <div class="row">
@@ -241,7 +241,7 @@
               <div class="form-group">
                 <div class="upload-image">
                   <div #image class="image-wrapper">
-                    <img width="100px" *ngFor="let image of uploadedImages; let i = index" [src]="image.imagePath" style="padding: 10px;"/>
+                    <img width="100px" [ngClass]="{'active': primaryImage === i}" *ngFor="let image of uploadedImages; let i = index" [src]="image.imagePath" style="padding: 10px;" (click)="selectPrimary(i)"/>
                   </div>
                   <div class="browse-btn">
                     <input type="file" name="cameraImg" id="cameraImg" multiple accept="image/*"

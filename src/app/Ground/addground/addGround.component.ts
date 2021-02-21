@@ -60,7 +60,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   @Output() close = new EventEmitter();
 
   data;
-
+  primaryImage: number;
   public Editor = ClassicEditor
 
   options = { minDate: moment() }
@@ -143,7 +143,17 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     this.service.calenderEvent
     .subscribe((value) => {
       console.log({value});
-      this.slottoUpdate = value;
+      this.slottoUpdate = new FormGroup({
+        groundId: new FormControl(),
+        groundSlotTimingId: new FormControl(),
+        groundSlotName: new FormControl(),
+        startDate: new FormControl(),
+        endDate: new FormControl(),
+        pricing: new FormControl(),
+        isAdded: new FormControl(false)
+      });
+      this.slottoUpdate.patchValue(value);
+      //value;
       this.modal.open('editDateSlot');
     });
   }
@@ -296,51 +306,48 @@ export class addGroundComponent extends CdkStepper implements OnInit {
             //const imageFileName = result.data.fileName.split('\\');
             //this.groundDetailForm.patchValue({ GroundImage: imageUrlFolder[imageUrlFolder.length - 1] });
             var imagename = result.data.fileName.split('\\').pop();
-            listOfGroundImages.push({
-              
+            this.uploadedImages.push({
               imagePath: imagename,
-              isPrimary: i === 0 && this.uploadedImages.length === 0
+              isPrimary: false
             })
           
             this.uploadError = '';
 
-            const li: HTMLLIElement = this.renderer.createElement('li');
+            //const li: HTMLLIElement = this.renderer.createElement('li');
 
-            const img: HTMLImageElement = this.renderer.createElement('img');
-            img.src = `${environment.baseUrlImage}${result.data.fileName}`;
-            const lastSegment = img.src.split("/").pop();
-            this.groundImages.push({ "imagePath": lastSegment, "isPrimary": false });
-            this.renderer.addClass(img, 'product-image');
+            //const img: HTMLImageElement = this.renderer.createElement('img');
+            //img.src = `${environment.baseUrlImage}${result.data.fileName}`;
+            //const lastSegment = img.src.split("/").pop();
+            //this.groundImages.push({ "imagePath": lastSegment, "isPrimary": false });
+            //this.renderer.addClass(img, 'product-image');
 
-            const a: HTMLAnchorElement = this.renderer.createElement('a');
-            a.innerText = 'Delete';
-            this.renderer.addClass(a, 'delete-btn');
-            a.addEventListener('click', this.deleteGroundImage.bind(this, result.data.fileName, a));
+            //const a: HTMLAnchorElement = this.renderer.createElement('a');
+            //a.innerText = 'Delete';
+            //this.renderer.addClass(a, 'delete-btn');
+            //a.addEventListener('click', this.deleteGroundImage.bind(this, result.data.fileName, a));
 
-            this.renderer.appendChild(this.image.nativeElement, li);
-            this.renderer.appendChild(li, img);
-            this.renderer.appendChild(li, a);
+            // this.renderer.appendChild(this.image.nativeElement, li);
+            // this.renderer.appendChild(li, img);
+            // this.renderer.appendChild(li, a);
 
 
           } else {
             this.uploadError = result.response.message;
           }
         });
-        console.log('Here need to call api to update');
-        this.service.updateGroundImages({
-        
-          groundId: this.id,
-          listOfGroundImages
-        }).subscribe(() => {
-          this._loaderService.hideLoader();
-        }, () => {
-          this._loaderService.hideLoader();
-        });
       });
   }
 
-
-
+  updateImages(listOfGroundImages){
+    this.service.updateGroundImages({
+      groundId: this.id,
+      listOfGroundImages
+    }).subscribe(() => {
+      this._loaderService.hideLoader();
+    }, () => {
+      this._loaderService.hideLoader();
+    });
+  }
 
   onAmenitiesChange(e) {
     const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
@@ -359,7 +366,6 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     }
   }
 
-
   deleteGroundImage(filename, a) {
     const formData = new FormData();
     formData.append('filename', filename);
@@ -376,10 +382,6 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     );
   }
 
-
-
-
-
   onSubmit(form: NgForm) {
     const _selectedAmenities = this.amenitiesList.filter((item) => item.isSelected);
     
@@ -394,6 +396,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
     this.insertRecord(this.groundData)
   }
+
   insertRecord(form: Ground) {
     this._loaderService.showLoader();
     this.service.postGround(form).subscribe(res => {
@@ -407,22 +410,17 @@ export class addGroundComponent extends CdkStepper implements OnInit {
     })
   }
 
-
   addSlot() {
     // if (this.groundSlotList.length <= this.ListOfSlots.length - 1){
     //   this.AddRowToTable();
     // }
   }
 
-
   // intialGroundDetailForm() {
   //   this.groundDetailForm = this.formbuilder.group({
 
   //   });
   // }
-
-
-
 
   onClose(data: any) {
     this.close.emit(data);
@@ -499,8 +497,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       /**
        * Will be cheking if the images are more than six
        */
+
+      this.updateImages(this.uploadedImages)
       //if((this.uploadedImages.length + this.groundImages.length) > 6){
-        this.router.navigate([`addGround/groundRules/${this.id}`]);
+      this.router.navigate([`addGround/groundRules/${this.id}`]);
       //}
       
     } else if (e === 4) {
@@ -560,5 +560,11 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   ngAfterViewInit() {
     this.initAutocomplete('googleLocation');
     this.initAutocomplete('landmark');
+  }
+
+  selectPrimary(index: number){
+    this.uploadedImages[this.primaryImage] ? this.uploadedImages[this.primaryImage].isPrimary = true : {};
+    this.primaryImage = index;
+    this.uploadedImages[index].isPrimary = true;
   }
 }

@@ -10,6 +10,10 @@
       margin-top: 27px;
   }
 
+  img.active{
+    outline: auto;
+  }
+
   .image-wrapper li {
     width: 150px;
     height: 150px;
