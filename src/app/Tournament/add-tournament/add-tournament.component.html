@@ -1,94 +1,90 @@
 <div class="content-wrapper">
     <div class="card">
       <div class="container">
-        <!-- [footerLabelStrings]="fotterLablels"
-        [activeStep]="activeStep" -->
-        <form [formGroup]="service.store" autocomplete="off">
-          
-            <!-- Step - 1 GroundDetails-->
-            
+        
+            <form>
               <ng-template matStepLabel>Tournament</ng-template>
-              <div class="card">
+                <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="fname">Tournament Name</label><br>
-                      <input type="text" name="GroundName" formControlName="groundName" class="form-control" required>
+                      <input type="text" name="TournamentName" formControlName="tournamentName" class="form-control" required>
+                     </div>
+
+                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <label for="fname">Ground Name</label><br>
+                      <select>  
+                        <option value="0">--Select--</option> 
+                        <option *ngFor="let Name of GroundNameList"  
+                          value={{Name.id}}>  {{Name.groundName}}
+                         </option> 
+                         </select>
                     </div>
+
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="lname">Organizer Name</label><br>
                       <input type="text" formControlName="groundEntityName" class="form-control">
                     </div>
-                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="lname">Entity Name</label><br>
                       <input type="text" formControlName="groundEntityName" class="form-control">
                     </div>
      
-                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="GroundOwner">Contact No.</label><br>
                       <input type="text"name="groundOwner" formControlName="groundOwner" class="form-control">
                     </div>
-                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="GroundOwner2">Email Id</label><br>
                       <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                     </div>
-                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Location</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                       </div>
+
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Start Date Tournament</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                       </div>
-                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Last Date Tournament</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
-                      </div>
-                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                       </div>
+
+                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Full Pricing</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                       </div>
-                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Per Pricing</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                       </div>
-                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Tournament Description</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                       </div>
-                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      
+                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="GroundOwner2">Format Description</label><br>
                         <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
                       </div>
 
-                      
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <label for="Amenities" class="col-xs-4 amenities-topspace">Amenities And Features</label>
-                              <div class="row">
-                                
-                                <div class="col-md-12">
-                                  <label for="GroundSlots" class="col-xs-12 amenities-topspace">Add Ground Time Slots</label>
-                                </div>
-                                </div>
-                                
-                                  
-
-
-                              
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                        
-                      
-
-                    </div>
+                     
+                    
+                   
+                     </div>
                 </div>
-            </div>
-            </form>
+            </div> 
+           </form>
         </div>
     </div>
 </div>

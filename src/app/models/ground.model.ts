@@ -13,8 +13,8 @@ export class Ground {
       ContactNo : string;
       GroundOwner :string;
       GroundOwner2 :string;
-      GroundOwnerEmailId :string;
-      GroundOwner2EmailId :string;
+      ownerEmailId :string;
+      owner2EmailId :string;
       LikesCount : number;
       ViewsCount : number;
       GoogleLocation : string; 
