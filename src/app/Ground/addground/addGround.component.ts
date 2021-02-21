@@ -106,6 +106,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
     //this.intialGroundDetailForm();
   }
+  ckeditorLoaded: boolean;
   amenitiesList = [];
 
   error: string;
@@ -183,9 +184,11 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       this.service.getGroundRules(this.id)
       .subscribe((res: any) => {
         this.data = (res.result && res.result.ruleDescription) ? res.result.ruleDescription : 'Enter Your rules';
+        this.ckeditorLoaded = true;
         this._loaderService.hideLoader();
       }, () => {
         this.data = 'Enter Ground rules'
+        this.ckeditorLoaded = true;
         this._loaderService.hideLoader();
       })
     }
