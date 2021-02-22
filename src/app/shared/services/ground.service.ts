@@ -26,6 +26,11 @@ export class GroundService {
 
 
   constructor(private http: HttpClient) {
+    //this.addSlot();
+    this.reset();
+  }
+
+  reset(){
     this.store = new FormGroup({
       id: new FormControl(),
       groundName: new FormControl(),
@@ -47,7 +52,6 @@ export class GroundService {
       rating: new FormControl(),
       isFloodLights: new FormControl()
     });
-    //this.addSlot();
   }
 
   convertToFormArray(value){

@@ -47,6 +47,17 @@ export class AmenityPipe implements PipeTransform{
 
 }
 
+@Pipe({
+  name: 'bindImage'
+})
+export class ImageBindPipe implements PipeTransform{
+
+  transform(value){
+    return `${environment.baseUrlImage}${value}`
+  }
+
+}
+
 @Component({
   selector: 'app-addGround',
   templateUrl: './addGround.component.html',
@@ -134,7 +145,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
         this.AddEditGroundLabel = 'Add Ground';
         this.service.store.setControl('slots', new FormArray([]));
         this.service.store.setControl('amenitiesList', new FormArray([]));
-        this.service.addSlot();
+        //this.service.addSlot();
       }
       
       this.initFormGroup();
@@ -240,7 +251,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
   resetForm(form?: NgForm) {
     if(this.service.store){
-      this.service.store.reset()
+      this.service.reset()
     }
     
     if (form != null)
@@ -334,6 +345,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
           } else {
             this.uploadError = result.response.message;
           }
+          this._loaderService.hideLoader();
         });
       });
   }

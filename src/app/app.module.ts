@@ -10,7 +10,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SettingComponent } from './setting/setting.component';
 import {SystemSettingComponent} from '../app/Ground/SystemSetting/System-Setting.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { addGroundComponent, AmenityPipe } from './Ground/addground/addGround.component';
+import { addGroundComponent, AmenityPipe, ImageBindPipe } from './Ground/addground/addGround.component';
 import { GroundListComponent } from './Ground/ground-list/ground-list.component';
 import { GroundService } from './shared/services/ground.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -76,6 +76,7 @@ import { TournamentListComponent} from './Ground/Tournament/Tournament-list.comp
     TeamListComponent,
     LoaderComponent,
     AmenityPipe,
+    ImageBindPipe,
     AddTournamentComponent,
     ListTournamentComponent,
     PrizesComponent,

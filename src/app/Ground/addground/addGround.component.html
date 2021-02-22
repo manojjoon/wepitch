@@ -123,7 +123,7 @@
                             <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
                               type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
                               
-                                  <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
+                                  <label for="item.id"><img class="check-space" width="20" height="30" [src]="item.imagePath | bindImage">{{item.amenitiesDescription}}</label>
                               
                           </div>
                         </div>

@@ -12,7 +12,7 @@ export const environment = {
  //baseUrlImage: 'https://localhost:5001/'
 // baseUrl:'http://webtexo21-001-site3.ctempurl.com/api/',
 baseUrl: 'http://jyoti31-001-site1.itempurl.com/api/',
-  baseUrlImage: 'http://webtexo21-001-site3.ctempurl.com/'
+baseUrlImage: 'http://jyoti31-001-site1.itempurl.com/api'
 };
 
 /*
