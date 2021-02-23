@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { BaseGridComponent } from "src/app/shared/app-grid/base-grid.component";
 import { TournamentService } from "../../shared/services/Tournament-list.service";
 import { LoaderService } from "../../shared/services/loader/loader.service";
+import {GroundService} from "../../shared/services/ground.service";
 
 @Component({
   selector: 'app-add-tournament',
@@ -14,21 +15,34 @@ export class AddTournamentComponent implements OnInit {
 
  
   GroundNameList = [];
+  AmenitiesList = [];
+  ImageList = [];
   
 
-  constructor(_route: ActivatedRoute, private _tournamentService: TournamentService, private _loaderService: LoaderService) {
+  constructor(_route: ActivatedRoute, private _tournamentService: TournamentService, private GroundService : GroundService , private _loaderService: LoaderService) {
     // super(_route);
 }
 
   ngOnInit() {
-    
-    
+  
     this.getGroundList();
   }
 
+ 
+  onChange(deviceValue) {
+    debugger;
+    this.GroundService.getGround(deviceValue).subscribe((result: any) => {
+      if (result) {
+        debugger;
+        this.AmenitiesList = result.amenitiesList;
+        this.ImageList = result.groundImagesList;
+       
+      }
+    });
+  }
+
   public getGroundList()
-  
- {
+  {
     this._loaderService.showLoader();
     this._tournamentService.getGroundNameList().subscribe((result: any) => {
       if (result) {

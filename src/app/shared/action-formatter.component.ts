@@ -15,6 +15,7 @@ export class ActionComponent implements ICellRendererAngularComp {
     }
 
     invokeAction(actionId: string){
+        debugger;
         console.log(actionId);
         this.params.context.action({actionId, item: this.params.data});
     }

@@ -9,13 +9,13 @@
                   <div class="row">
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                      <label for="fname">Tournament Name</label><br>
+                      <label for="tournamentName">Tournament Name</label><br>
                       <input type="text" name="TournamentName" formControlName="tournamentName" class="form-control" required>
                      </div>
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                      <label for="fname">Ground Name</label><br>
-                      <select>  
+                      <label for="groundName">Ground Name</label><br>
+                      <select (change)="onChange($event.target.value)">  
                         <option value="0">--Select--</option> 
                         <option *ngFor="let Name of GroundNameList"  
                           value={{Name.id}}>  {{Name.groundName}}
@@ -24,60 +24,105 @@
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                      <label for="lname">Organizer Name</label><br>
-                      <input type="text" formControlName="groundEntityName" class="form-control">
+                      <label for="organizerName">Organizer Name</label><br>
+                      <input type="text" formControlName="organizerName" class="form-control">
                     </div>
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                      <label for="lname">Entity Name</label><br>
-                      <input type="text" formControlName="groundEntityName" class="form-control">
+                      <label for="entityName">Entity Name</label><br>
+                      <input type="text" formControlName="entityName" class="form-control">
                     </div>
      
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                      <label for="GroundOwner">Contact No.</label><br>
-                      <input type="text"name="groundOwner" formControlName="groundOwner" class="form-control">
+                      <label for="contactNo1">Contact No1</label><br>
+                      <input type="text"name="groundOwner" formControlName="contactNo1" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <label for="contactNo2">Contact No2</label><br>
+                      <input type="text"name="groundOwner" formControlName="contactNo2" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <label for="contactNo3">Contact No3</label><br>
+                      <input type="text"name="groundOwner" formControlName="contactNo3" class="form-control">
                     </div>
 
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                      <label for="GroundOwner2">Email Id</label><br>
-                      <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                      <label for="emailId1">Email Id1</label><br>
+                      <input type="text"name="groundOwner2" formControlName="emailId1" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <label for="emailId2">Email Id2</label><br>
+                      <input type="text"name="groundOwner2" formControlName="emailId2" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <label for="emailId3">Email Id3</label><br>
+                      <input type="text"name="groundOwner2" formControlName="emailId3" class="form-control">
                     </div>
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Location</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="location">Location</label><br>
+                        <input type="text"name="groundOwner2" formControlName="location" class="form-control">
                       </div>
 
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Start Date Tournament</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="startDateTournament">Start Date Tournament</label><br>
+                        <input type="text"name="groundOwner2" formControlName="startDateTournament" class="form-control">
                       </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Last Date Tournament</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="lastDateTournament">Last Date Tournament</label><br>
+                        <input type="text"name="lastDateTournament" formControlName="lastDateTournament" class="form-control">
                        </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Full Pricing</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="fullPricing">Full Pricing</label><br>
+                        <input type="text"name="fullPricing" formControlName="fullPricing" class="form-control">
                       </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Per Pricing</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="perPricing">Per Pricing</label><br>
+                        <input type="text"name="perPricing" formControlName="perPricing" class="form-control">
                       </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Tournament Description</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="tournamentDescription">Tournament Description</label><br>
+                        <input type="text"name="tournamentDescription" formControlName="tournamentDescription" class="form-control">
                       </div>
                       
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                        <label for="GroundOwner2">Format Description</label><br>
-                        <input type="text"name="groundOwner2" formControlName="groundOwner2" class="form-control">
+                        <label for="FormatDescription">Format Description</label><br>
+                        <input type="text"name="FormatDescription" formControlName="FormatDescription" class="form-control">
+                      </div>
+                    
+
+                      <div class="col-md-12">
+                        <label for="AmenitiesandFeatures">Amenities and Features </label><br>
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let item of AmenitiesList">
+                            <input class="check-space"  [value]="item.id" type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
+                              
+                                  <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
+  
+                          </div>
+                        </div>
                       </div>
 
+
+                      <div class="col-md-12">
+                        <label for="GroundImages">Ground Images </label><br>
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let item of ImageList">
+                            <input class="check-space"  [value]="item.id" type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
+                
+                                  <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}"></label>
+  
+                          </div>
+                        </div>
+                      </div>
                      
                     
                    
