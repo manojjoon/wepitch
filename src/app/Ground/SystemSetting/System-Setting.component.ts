@@ -104,6 +104,11 @@ import { environment } from 'src/environments/environment';
     //   }
     // }
 
+    // closeModal(id: string) {
+    //   this.modalService.close(id);
+    //   this.amenitiesDetailForm.reset();
+    // }
+
 
     // openModal(targetModal, item) {
     //   debugger;

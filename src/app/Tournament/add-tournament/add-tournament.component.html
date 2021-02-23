@@ -104,10 +104,8 @@
                         <div class="row">
                           <div class="col-md-4" *ngFor="let item of AmenitiesList">
                             <input class="check-space"  [value]="item.id" type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
-                              
-                                  <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
-  
-                          </div>
+                               <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}">{{item.amenitiesDescription}}</label>
+                         </div>
                         </div>
                       </div>
 
@@ -117,15 +115,25 @@
                         <div class="row">
                           <div class="col-md-4" *ngFor="let item of ImageList">
                             <input class="check-space"  [value]="item.id" type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
-                
-                                  <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}"></label>
-  
-                          </div>
+                            <label for="item.id"><img class="check-space" width="20" height="30" src="{{item.imagePath}}"></label>
+                         </div>
                         </div>
                       </div>
-                     
-                    
-                   
+
+
+                      <div class="col-md-12">
+                        <label for="AmenitiesandFeatures">Slots Name </label><br>
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let item of SlotList">
+                             <label for="item.id">{{item.slotName}}
+                                    <br>
+                                    FromTime
+                                    {{item.fromTime}} 
+                             </label>
+                           </div>
+                        </div>
+                      </div>
+
                      </div>
                 </div>
             </div> 
