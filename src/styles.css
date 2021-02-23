@@ -7,5 +7,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .transparent .mat-dialog-container {box-shadow: none;background: rgba(0, 0, 0, 0.0);z-index:1001}
 jw-modal .jw-modal {
+  margin-right: auto !important;
+  width: fit-content;
   z-index: 999 !important;
 }

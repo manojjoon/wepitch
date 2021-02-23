@@ -7,36 +7,42 @@ import { catchError } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class SystemSettingService{
-    formData: SystemSetting;
-    store: FormGroup;
+export class SystemSettingService {
+  formData: SystemSetting;
+  store: FormGroup;
 
-    constructor(private http: HttpClient) {
-        this.store = new FormGroup({
-         
-          Id: new FormControl(),
-          Type: new FormControl(),
-          Description: new FormControl(),
-          
-        });
-      }
+  constructor(private http: HttpClient) {
+    this.store = new FormGroup({
 
-      getSystemSettingList() {
-        debugger;
-        return this.http.get(environment.baseUrl + 'Settings/GetAllPrivacyPolicy');
-      }
+      Id: new FormControl(),
+      Type: new FormControl(),
+      Description: new FormControl(),
 
+    });
+  }
 
-      private handleError(error: HttpErrorResponse) {
-        if (error.error instanceof ErrorEvent) {
-          console.error('An error occured:', error.error.message);
-        }
-        else {
-          console.error(`Backend returned code ${error.status},` + `body was :${error.error}`)
-        }
-        return throwError('something bad happened please try again later')
-      }
-  
+  getSystemSettingList() {
+    return this.http.get(environment.baseUrl + 'Settings/GetAllPrivacyPolicy');
+  }
+
+  postSystemSetting(systemSettingFormValues) {
+    return this.http.post(environment.baseUrl + 'Settings/AddPrivayPolicy', systemSettingFormValues)
+  }
+
+  updateSystemSetting(systemSettingFormValues) {
+    return this.http.put(environment.baseUrl + 'Settings/UpdatePrivacyPolicy', systemSettingFormValues)
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occured:', error.error.message);
     }
+    else {
+      console.error(`Backend returned code ${error.status},` + `body was :${error.error}`)
+    }
+    return throwError('something bad happened please try again later')
+  }
+
+}

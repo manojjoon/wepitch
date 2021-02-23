@@ -9,18 +9,17 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
   `
 })
 export class ActionComponent implements ICellRendererAngularComp {
-    params: any;
-    agInit(params: any) {
-        this.params = params;
-    }
+  params: any;
+  agInit(params: any) {
+    this.params = params;
+  }
 
-    invokeAction(actionId: string){
-        debugger;
-        console.log(actionId);
-        this.params.context.action({actionId, item: this.params.data});
-    }
+  invokeAction(actionId: string) {
+    console.log(actionId);
+    this.params.context.action({ actionId, item: this.params.data });
+  }
 
-    refresh(): boolean {
-        return false;
-    }
+  refresh(): boolean {
+    return false;
+  }
 }
