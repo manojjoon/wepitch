@@ -6,7 +6,7 @@ import { BaseGridComponent } from '../../shared/app-grid/base-grid.component';
 import { AppRoutes } from 'src/app/enum/app-routes.type';
 import { ActivatedRoute } from '@angular/router';
 import { GroundService } from 'src/app/shared/services/ground.service';
-import { ImageFormatterComponent } from "../../shared/image-formatter.component"
+import { ImageFormatterComponent } from "../../shared/image-formatter.component";
 import { ActionComponent } from 'src/app/shared/action-formatter.component';
 import { environment } from 'src/environments/environment';
 import { LoaderService } from '../../shared/services/loader/loader.service';

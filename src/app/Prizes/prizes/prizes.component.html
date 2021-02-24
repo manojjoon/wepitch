@@ -1,27 +1,58 @@
 <div class="content-wrapper">
   <div class="container">
-    <jw-modal id="SystemSettingModal">
+    <jw-modal id="PrizeModal">
       <div class="container">
-        <form [formGroup]="systemsettingDetailForm" (ngSubmit)="recordSubmit()">
+        <form [formGroup]="PrizeDetailForm" (ngSubmit)="recordSubmit()">
           <div class="col-md-12">
             <div class="row">
               <div class="form-group">
-                <div class="col-md-12">
-                  <label for="fname">Type</label><br>
-                  <input type="text"  formControlName="type" required>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <label for="fname">PrizeType</label><br>
+                  <input type="text"  formControlName="prizeType"required>
                 </div>
-                <div class="col-md-12">
-                  <label for="fname">Description</label><br>
-                  <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
+                </div>
+
+                <div class="form-group">
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                  <label for="fname">PrizeDescription</label><br>
+                  <input type="text"  formControlName="prizeDescription"required>
                 </div>
               </div>
+
+
+
+
+              &nbsp; &nbsp;
+              <div class="form-group">
+              <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                <label for="fname">Browse Image</label><br>
+                <div class="upload-image">
+                  <div #image class="image-wrapper"></div>
+                  <div class="browse-btn">
+                    <input type="file" #inputFileAmenities name="cameraImg" id="cameraImg" 
+                    multiple (change)="handleFileInput($event.target.files)" />
+                    <div class="browse-image">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+
+
+
+
+
               <div class="col-12">
                 <button type="submit" class="btn btn-info btn-md">Submit</button>
               </div>
             </div>
           </div>
         </form>
-        <button (click)="closeModal('SystemSettingModal');">Close</button>
+        <br>
+
+        <button (click)="closeModal('PrizeModal');">Close</button>
       </div>
     </jw-modal>
 
@@ -32,7 +63,7 @@
       </div>
       <div class="col-5 text-right">
         <button type="button" class="btn btn-primary pull-right" class="btn btn-primary" data-toggle="modal"
-          (click)="openModal('SystemSettingModal','add')">Add System Setting</button>
+          (click)="openModal('PrizeModal','add')">Add Prizes</button>
       </div>
     </div>
     <div class="col-12">

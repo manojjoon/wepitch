@@ -31,6 +31,21 @@ import { FormControl, FormGroup } from '@angular/forms';
       }
 
 
+      postPrizes(PrizeDetailForm)
+  {debugger;
+   return this.http.post(environment.baseUrl + 'Prize/AddPrizes',PrizeDetailForm);
+  }
+
+  updatePrizes(PrizeDetailForm)
+  {debugger;
+   return this.http.put(environment.baseUrl + 'Prize/Editprizes',PrizeDetailForm)
+  }
+
+
+
+
+
+
       private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
           console.error('An error occured:', error.error.message);
