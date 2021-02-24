@@ -1,115 +1,27 @@
 <div class="content-wrapper">
   <div class="container">
-    <jw-modal id="AmenitiesModal">
-      <div class="container">
-        <form [formGroup]="amenitiesDetailForm" (ngSubmit)="recordSubmit()" >
-            <div class="col-md-12">
-              <div class="row"> 
-                <div class="form-group">
-              <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                <label for="fname">AmenitiesDescription</label><br>
-                <input type="text"  formControlName="amenitiesDescription"required>
-              </div>
-            </div>
-              &nbsp; &nbsp;
-              <div class="form-group">
-              <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                <label for="fname">Browse Image</label><br>
-                <div class="upload-image">
-                  <div #image class="image-wrapper"></div>
-                  <div class="browse-btn">
-                    <input type="file" #inputFileAmenities name="cameraImg" id="cameraImg" 
-                    multiple (change)="handleFileInput($event.target.files)" />
-                    <div class="browse-image">
-                    </div>
-                  </div>
+    <!-- Booking table -->
+    <h3>Prize List</h3>
+    <div class="card">
+      <div class="card-body pb-0">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <!-- <div class="card-header">
+            Amenities
+          </div> -->
+              <div class="card-body position-relative">
+                <div class="ag-theme-balham" style="height:550px;">
+                  <wepitch-grid *ngIf="AgLoad" [context]="context" [ColumnDefs]="this.ColumnDefs"
+                    [RowData]="this.RowData" [IsColumnsToFit]="true">
+                  </wepitch-grid>
                 </div>
               </div>
             </div>
-            <br>
-                <div >
-                <button type="submit" class="btn btn-info btn-md" >Submit</button>
-              </div>
-            </div>
           </div>
-        </form>
-        <button (click)="closeModal('AmenitiesModal');">Close</button>
+        </div>
       </div>
-    </jw-modal>
-
-
-
-<!-- jyoti html table -->
-<div class="row">
-  <div class="col-7">
-    <h3 id="quote">Amenities list</h3>
-  </div>
-  <div class="col-5 text-right">
-    <button type="button" class="btn btn-primary pull-right" class="btn btn-primary" 
-    data-toggle="modal" (click)="openModal('AmenitiesModal','add')">Add Amenities</button>
+    </div>
+    <!-- Booking table ends-->
   </div>
 </div>
-<div class="col-12">
-<!-- <table class=" table table-striped table-hover table-bordered table-responsive">
-  <thead class="thead-light">
-    <tr>
-      <th >#</th>
-      <th>AmenitiesName</th>
-      <th>AmenitiesImage</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of amenitiesList" >
-      <th>{{item.id}}</th>
-      <td>{{item.amenitiesDescription}}</td>
-      <td>{{item.imagePath}}</td>
-      <td>
-         <button type="button" class="btn btn-primary" (click)="openModal('AmenitiesModal',item)">Edit</button>|
-                  <a href="#" class="text-danger"> Delete</a></td>
-    </tr>
-   </tbody>
-    </table> -->
-     </div>
-<!-- jyoti html table ends -->
-
-
-
-
-<!-- dummy grid -->
-<!-- <h1>Amenities</h1>     -->
-<div class="card">    
-  <div class="card-body pb-0">    
-    <div class="row">    
-      <div class="col-md-12">    
-        <div class="card">    
-          <!-- <div class="card-header">    
-            Amenities    
-          </div>     -->
-          <div class="card-body position-relative">    
-            <div class="ag-theme-balham" style="height:550px;">    
-              <wepitch-grid
-                *ngIf="AgLoad"
-                [context]="context"
-                [ColumnDefs]="this.ColumnDefs"
-                [RowData]="this.RowData"    
-                [IsColumnsToFit]="true">    
-              </wepitch-grid>    
-            </div>    
-          </div>    
-        </div>    
-      </div>    
-    </div>    
-  </div>    
-</div> 
-<!-- dummy grid -->
-
-
-
-
-
-
-  </div>
-  
-</div>
-

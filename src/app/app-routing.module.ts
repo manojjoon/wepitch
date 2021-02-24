@@ -15,8 +15,8 @@ import{OrganiserComponent} from './users/organiser/organiser.component';
 import {SystemSettingComponent} from '../app/Ground/SystemSetting/System-Setting.component';
 import { TournamentListComponent } from './Ground/Tournament/Tournament-list.component';
 import{AddTournamentComponent} from '../app/Tournament/add-tournament/add-tournament.component';
-import{PrizesComponent} from '../app/Prizes/prizes/prizes.component';
-
+//import{PrizesComponent} from '../app/Prizes/prizes/prizes.component';
+import{PrizeComponent} from '../app/Prizes/prizes/prizes.component'
 
 const routes: Routes = [
   { path: "login", component: BasicLoginComponent },
@@ -44,7 +44,8 @@ const routes: Routes = [
       {path : 'systemsetting',component : SystemSettingComponent},
       {path : 'Tournaments', component : TournamentListComponent},
       {path : 'addTournament',component : AddTournamentComponent},
-       {path : 'prizes',component : PrizesComponent},
+      // {path : 'prizes',component : PrizesComponent},
+      {path : 'prize',component : PrizeComponent},
    
 
     ]
