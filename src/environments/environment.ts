@@ -8,11 +8,11 @@ export const environment = {
   //baseUrlImage: 'http://35.154.63.176/'
   // baseUrl: 'http://sachin18-001-site1.btempurl.com/api/',
    //baseUrlImage: 'http://sachin18-001-site1.btempurl.com/'
-    baseUrl: 'https://localhost:44389/api/',
- baseUrlImage: 'https://localhost:44389/'
+//     baseUrl: 'https://localhost:44389/api/',
+//  baseUrlImage: 'https://localhost:44389/'
 // baseUrl:'http://webtexo21-001-site3.ctempurl.com/api/',
-//baseUrl: 'http://jyoti31-001-site1.itempurl.com/api/',
-  //baseUrlImage: 'http://jyoti31-001-site1.itempurl.com/'
+baseUrl: 'http://jyoti31-001-site1.itempurl.com/api/',
+  baseUrlImage: 'http://jyoti31-001-site1.itempurl.com/'
 };
 
 /*
