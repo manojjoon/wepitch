@@ -46,12 +46,9 @@ import { LoaderService } from './shared/services/loader/loader.service';
 import { MatNativeDateModule, MatProgressSpinnerModule } from '@angular/material';
 import { AddTournamentComponent } from './Tournament/add-tournament/add-tournament.component';
 import { ListTournamentComponent } from './Tournament/list-tournament/list-tournament.component';
-import { PrizesComponent } from './Prizes/prizes/prizes.component';
+//import { PrizesComponent } from './Prizes/prizes/prizes.component';
 import { TournamentListComponent} from './Ground/Tournament/Tournament-list.component';
-
- 
-
-
+//import{PrizeComponent} from './Prizes/prizes/prizes.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,8 +79,9 @@ import { TournamentListComponent} from './Ground/Tournament/Tournament-list.comp
     AmenityPipe,
     AddTournamentComponent,
     ListTournamentComponent,
-    PrizesComponent,
-    TournamentListComponent
+    //PrizesComponent,
+    TournamentListComponent,
+    //PrizeComponent
   ],
   imports: [
     BrowserModule,
