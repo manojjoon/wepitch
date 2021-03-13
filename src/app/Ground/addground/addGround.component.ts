@@ -526,8 +526,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
 
   addSlotDates(addAnother, slot) {
     this._loaderService.showLoader();
+    debugger;
     this.service.addSlotDates(addAnother, slot)
       .subscribe((res) => {
+        debugger;
         setTimeout(() => {
           this.calendarComponent.detectChanges();
         });

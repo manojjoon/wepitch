@@ -2,7 +2,7 @@
     <div class="card">
       <div class="container">
         
-            <form>
+        <form [formGroup]="service.TournamentValues" autocomplete="off">
               <ng-template matStepLabel>Tournament</ng-template>
                 <div class="card">
                 <div class="card-body">
@@ -10,7 +10,7 @@
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="tournamentName">Tournament Name</label><br>
-                      <input type="text" name="TournamentName" formControlName="tournamentName" class="form-control" required>
+                      <input type="text" name="TournamentName"class="form-control" formControlName="TournamentName"  required>
                      </div>
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
@@ -25,72 +25,84 @@
 
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="organizerName">Organizer Name</label><br>
-                      <input type="text" formControlName="organizerName" class="form-control">
+                      <input type="text"name="organizerName" formControlName="OrganizerName" class="form-control">
                     </div>
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="entityName">Entity Name</label><br>
-                      <input type="text" formControlName="entityName" class="form-control">
+                      <input type="text"name="entityName" formControlName="EntityName" class="form-control">
                     </div>
      
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="contactNo1">Contact No1</label><br>
-                      <input type="text"name="groundOwner" formControlName="contactNo1" class="form-control">
+                      <input type="text"name="contactNo1" formControlName="ContactNumber" class="form-control">
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="contactNo2">Contact No2</label><br>
-                      <input type="text"name="groundOwner" formControlName="contactNo2" class="form-control">
+                      <input type="text"name="contactNo2" formControlName="ContactNumber2" class="form-control">
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="contactNo3">Contact No3</label><br>
-                      <input type="text"name="groundOwner" formControlName="contactNo3" class="form-control">
+                      <input type="text"name="contactNo3" formControlName="ContactNumber3" class="form-control">
                     </div>
 
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="emailId1">Email Id1</label><br>
-                      <input type="text"name="groundOwner2" formControlName="emailId1" class="form-control">
+                      <input type="text"name="emailId1" formControlName="EmailId" class="form-control">
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="emailId2">Email Id2</label><br>
-                      <input type="text"name="groundOwner2" formControlName="emailId2" class="form-control">
+                      <input type="text"name="emailId2" formControlName="EmailId2" class="form-control">
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                       <label for="emailId3">Email Id3</label><br>
-                      <input type="text"name="groundOwner2" formControlName="emailId3" class="form-control">
+                      <input type="text"name="emailId3" formControlName="EmailId3" class="form-control">
                     </div>
+
+                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <label for="gstin">GSTIN</label><br>
+                      <input type="text"name="gstin" formControlName="Gstin" class="form-control">
+                    </div>
+
+
+
+
 
                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="location">Location</label><br>
-                        <input type="text"name="groundOwner2" formControlName="location" class="form-control">
+                        <input type="text"name="location" formControlName="location" class="form-control">
                       </div>
 
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="startDateTournament">Start Date Tournament</label><br>
-                        <input type="text"name="groundOwner2" formControlName="startDateTournament" class="form-control">
+                    <input type="date"name="startDateTournament" formControlName="StartDateOfTournament" class="form-control">
                       </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="lastDateTournament">Last Date Tournament</label><br>
-                        <input type="text"name="lastDateTournament" formControlName="lastDateTournament" class="form-control">
-                       </div>
-
+                        
+                        <input type="date" name="lastDateTournament" formControlName="LastDateOfRegistration" class="form-control">
+                      </div>
+                      
+                
+                      
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="fullPricing">Full Pricing</label><br>
-                        <input type="text"name="fullPricing" formControlName="fullPricing" class="form-control">
+                        <input type="text"name="fullPricing" formControlName="FullMatchPricing" class="form-control">
                       </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="perPricing">Per Pricing</label><br>
-                        <input type="text"name="perPricing" formControlName="perPricing" class="form-control">
+                        <input type="text"name="perPricing" formControlName="PerMatchPricing" class="form-control">
                       </div>
 
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="tournamentDescription">Tournament Description</label><br>
-                        <input type="text"name="tournamentDescription" formControlName="tournamentDescription" class="form-control">
+                        <input type="text"name="tournamentDescription" formControlName="TournamentDescription" class="form-control">
                       </div>
                       
                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
@@ -133,6 +145,16 @@
                            </div>
                         </div>
                       </div>
+
+                      <div class="col-md-12">
+                      <div class="form-group" style="text-align:right">
+                        <button type="submit" class="btn  btn-primary" (click)="AddTournament()">
+                        Add Tournament
+                        </button>
+                      </div>
+                    </div>
+
+
 
                      </div>
                 </div>

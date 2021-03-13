@@ -43,11 +43,15 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AllUserComponent } from './users/AllUsers/AllUser.Component';
 import { LoaderComponent } from './shared/services/loader/loader.component';
 import { LoaderService } from './shared/services/loader/loader.service';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatNativeDateModule, MatProgressSpinnerModule } from '@angular/material';
 import { AddTournamentComponent } from './Tournament/add-tournament/add-tournament.component';
 import { ListTournamentComponent } from './Tournament/list-tournament/list-tournament.component';
 import { PrizesComponent } from './Prizes/prizes/prizes.component';
 import { TournamentListComponent} from './Ground/Tournament/Tournament-list.component';
+
+ 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,9 +100,13 @@ import { TournamentListComponent} from './Ground/Tournament/Tournament-list.comp
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NgxDateRangeModule,
     CKEditorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+    
+   
   ],
-  providers: [GroundService, LoginService, LoaderService],
+  providers: [GroundService, LoginService, LoaderService,MatDatepickerModule],
   bootstrap: [AppComponent],
   exports: [
     MatDatepickerModule

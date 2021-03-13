@@ -21,6 +21,8 @@ export class GroundService {
   formData: Ground;
   store: FormGroup;
   slots: any;
+
+
   calenderEvents: CalendarEvent[] = [];
   calenderEvent: Subject<any> = new Subject<any>();
 
@@ -83,36 +85,51 @@ export class GroundService {
   }
 
   addSlotDates(addAnother, slots){
+    debugger;
     const cE = [];
+    var SlotList = [];
     slots.forEach((e) => {
-      cE.push(this.addSlotDate(e.value));
+    debugger;
+    const [startDate, endDate] = e.controls.startDate.value.split(' - ');
+    const body = {
+      groundId: e.controls.groundId.value,
+      startDate,
+      endDate,
+      pricing: e.controls.pricing.value,
+      groundSlotTimingId: e.controls.groundSlotTimingId.value
+     }
+     SlotList.push(body);
+      debugger;
+      // cE.push(this.addSlotDate(e.value));
     });
-    return forkJoin(cE);
+    return this.addSlotDate(SlotList);
+    
   }
 
   addSlotDate(slotData){
+    debugger;
     /**
      * Add Anoyther will save and add another
      */
-    const [startDate, endDate] = slotData.startDate.split(' - ');
-    const body = {
-      groundId: slotData.groundId,
-      startDate,
-      endDate,
-      pricing: slotData.pricing,
-      groundSlotTimingId: slotData.groundSlotTimingId
-     }
+    // const [startDate, endDate] = slotData.startDate.split(' - ');
+    // const body = {
+    //   groundId: slotData.groundId,
+    //   startDate,
+    //   endDate,
+    //   pricing: slotData.pricing,
+    //   groundSlotTimingId: slotData.groundSlotTimingId
+    //  }
 
 
-    return this.postSlotDate(body)
+    return this.postSlotDate(slotData)
     .pipe(map((res) => {
       const eventToReplace = this.calenderEvents.findIndex((e) => {
-        return e.meta.groundSlotTimingId === body.groundSlotTimingId
+        return e.meta.groundSlotTimingId === slotData.groundSlotTimingId
       })
       if(eventToReplace != -1){
-        this.calenderEvents[eventToReplace] = this.convertToEvent(body, slotData.groundSlotName, res);
+        this.calenderEvents[eventToReplace] = this.convertToEvent(slotData, slotData.groundSlotName, res);
       }else{
-        this.calenderEvents.push(this.convertToEvent(body, slotData.groundSlotName, res))
+        this.calenderEvents.push(this.convertToEvent(slotData, slotData.groundSlotName, res))
       }
 
       return res;
@@ -158,6 +175,7 @@ export class GroundService {
 
   postSlotDate(slotTiming){
     return this.http.post(`${environment.baseUrl}Ground/AddSlotPricing`, slotTiming)
+    debugger;
   }
 
 
