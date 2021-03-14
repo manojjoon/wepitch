@@ -21,6 +21,8 @@ export class GroundService {
   formData: Ground;
   store: FormGroup;
   slots: any;
+
+
   calenderEvents: CalendarEvent[] = [];
   calenderEvent: Subject<any> = new Subject<any>();
 
@@ -87,36 +89,50 @@ export class GroundService {
   }
 
   addSlotDates(addAnother, slots){
-    const cE = [];
+    var SlotList = [];
     slots.forEach((e) => {
-      cE.push(this.addSlotDate(e.value));
+    const [startDate, endDate] = e.controls.startDate.value.split(' - ');
+    const body = {
+      ...e.value,
+      groundId: e.controls.groundId.value,
+      startDate,
+      endDate,
+      pricing: e.controls.pricing.value,
+      groundSlotTimingId: e.controls.groundSlotTimingId.value,
+     }
+     SlotList.push(body);
+     // cE.push(this.addSlotDate(e.value));
     });
-    return forkJoin(cE);
+    return this.addSlotDate(SlotList);
+    
   }
 
-  addSlotDate(slotData){
+  addSlotDate(slotsData){
+    debugger;
     /**
      * Add Anoyther will save and add another
      */
-    const [startDate, endDate] = slotData.startDate.split(' - ');
-    const body = {
-      groundId: slotData.groundId,
-      startDate,
-      endDate,
-      pricing: slotData.pricing,
-      groundSlotTimingId: slotData.groundSlotTimingId
-     }
+    // const [startDate, endDate] = slotData.startDate.split(' - ');
+    // const body = {
+    //   groundId: slotData.groundId,
+    //   startDate,
+    //   endDate,
+    //   pricing: slotData.pricing,
+    //   groundSlotTimingId: slotData.groundSlotTimingId
+    //  }
 
 
-    return this.postSlotDate(body)
+    return this.postSlotDate(slotsData)
     .pipe(map((res) => {
       const eventToReplace = this.calenderEvents.findIndex((e) => {
-        return e.meta.groundSlotTimingId === body.groundSlotTimingId
+        return e.meta.groundSlotTimingId === slotsData[0].groundSlotTimingId
       })
       if(eventToReplace != -1){
-        this.calenderEvents[eventToReplace] = this.convertToEvent(body, slotData.groundSlotName, res);
+        this.calenderEvents[eventToReplace] = this.convertToEvent(slotsData[0], slotsData[0].groundSlotName, res);
       }else{
-        this.calenderEvents.push(this.convertToEvent(body, slotData.groundSlotName, res))
+        slotsData.forEach((slotData) => {
+          this.calenderEvents.push(this.convertToEvent(slotData, slotData.groundSlotName, res))
+        });
       }
 
       return res;

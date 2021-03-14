@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormArray,FormGroup } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
@@ -12,20 +12,21 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 export class TournamentService {
     formData: Tournament;
-    store: FormGroup;
+    TournamentValues: FormGroup;
+    
 
     constructor(private http: HttpClient) {
-        this.store = new FormGroup({
+        this.TournamentValues = new FormGroup({
          
           Id: new FormControl(),
           TournamentName: new FormControl(),
           Gstin: new FormControl(),
           EntityName: new FormControl(),
           OrganizerName: new FormControl(),
-          ContactNumber1: new FormControl(),
+          ContactNumber: new FormControl(),
           ContactNumber2: new FormControl(),
           ContactNumber3: new FormControl(),
-          EmailId1: new FormControl(),
+          EmailId: new FormControl(),
           EmailId2: new FormControl(),
           EmailId3: new FormControl(),
           StartDateOfTournament: new FormControl(),
@@ -34,6 +35,9 @@ export class TournamentService {
           PerMatchPricing: new FormControl(),
           TournamentDescription: new FormControl(),
           FormatDescription: new FormControl(),
+          AmenitiesList: new FormControl(),
+          ImageList : new FormControl(),
+          SlotList : new FormControl()
           
         });
       }
@@ -42,6 +46,23 @@ export class TournamentService {
 
         return this.http.get(environment.baseUrl + 'Ground/GetAllGroundName')
       }
+
+
+
+      postTournament(formData: Tournament) {
+    debugger;
+        return (formData['id']
+        ? this.http.put(`${environment.baseUrl}Tournament/EditTournament`, formData)
+        : this.http.post(`${environment.baseUrl}Tournament/AddTournament`, formData))
+    
+        // .pipe(map((r: any) => {
+        //   this.slots = this.convertToFormArray(r)
+        //   return r;
+        // }));
+      }
+
+
+
 
 
 

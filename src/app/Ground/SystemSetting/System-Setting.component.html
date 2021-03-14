@@ -1,27 +1,65 @@
 <div class="content-wrapper">
-    <div class="container">
-      <!-- Booking table -->
-      <h3>System & Settings</h3>
-      <div class="card">
-        <div class="card-body pb-0">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <!-- <div class="card-header">
-              Amenities
-            </div> -->
-                <div class="card-body position-relative">
-                  <div class="ag-theme-balham" style="height:550px;">
-                    <wepitch-grid *ngIf="AgLoad" [context]="context" [ColumnDefs]="this.ColumnDefs"
-                      [RowData]="this.RowData" [IsColumnsToFit]="true">
-                    </wepitch-grid>
-                  </div>
+  <div class="container">
+
+    <jw-modal id="SystemSettingModal">
+      <div class="container">
+        <form [formGroup]="systemsettingDetailForm" (ngSubmit)="recordSubmit()">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="fname">Type</label><br>
+                  <input type="text"  formControlName="type" required>
+                </div>
+                <div class="col-md-12">
+                  <label for="fname">Description</label><br>
+                  <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-info btn-md">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <button (click)="closeModal('SystemSettingModal');">Close</button>
+      </div>
+    </jw-modal>
+
+
+    <div class="row">
+      <div class="col-7">
+        <h3 id="quote"></h3>
+      </div>
+      <div class="col-5 text-right">
+        <button type="button" class="btn btn-primary pull-right" class="btn btn-primary" data-toggle="modal"
+          (click)="openModal('SystemSettingModal','add')">Add System Setting</button>
+      </div>
+    </div>
+    <div class="col-12">
+
+    </div>
+
+
+
+
+    <h3>System & Settings</h3>
+    <div class="card">
+      <div class="card-body pb-0">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body position-relative">
+                <div class="ag-theme-balham" style="height:550px;">
+                  <wepitch-grid *ngIf="AgLoad" [context]="context" [ColumnDefs]="this.ColumnDefs"
+                    [RowData]="this.SystemSettingList" [IsColumnsToFit]="true" (gridReady)="onGridReady($event)">
+                  </wepitch-grid>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Booking table ends-->
     </div>
   </div>
+</div>
