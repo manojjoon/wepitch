@@ -10,10 +10,12 @@ export class Tournament {
     Gstin : string;
     EntityName : string;
     OrganizerName : string;
-    ContactNumber : string;
+    OrganizerName2 : string;
+    OrganizerName3 : string;
+    ContactNumber1 : string;
     ContactNumber2 : string;
     ContactNumber3 : string;
-    EmailId : string;
+    EmailId1 : string;
     EmailId2 : string;
     EmailId3 : string;
     StartDateOfTournament : string;
@@ -22,6 +24,8 @@ export class Tournament {
     PerMatchPricing : string;
     TournamentDescription : string;
     FormatDescription : string;
+    MatchAward : string;
+    SeriesAward : string;
     AmenitiesList : GroundAmenities[];
     ImageList : GroundImages[];
     SlotList : GroundSlot[];

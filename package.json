@@ -33,6 +33,7 @@
     "date-fns": "^2.16.1",
     "i": "^0.3.6",
     "jquery": "^3.5.1",
+    "ng-multiselect-dropdown": "^0.3.4",
     "ngx-daterange": "^1.0.43",
     "ngx-swiper-wrapper": "^10.0.0",
     "ngx-toastr": "11.3.3",

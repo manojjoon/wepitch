@@ -273,6 +273,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
       ViewsCount: null,
       IsFloodLights: null,
       GoogleLocation: '',
+      Location:'',
       DistanceFromLocation: '',
       groundSlotList: [],
       amenitiesList: [],
@@ -489,6 +490,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
        */
       this.service.postGround(Object.assign(this.service.store.value, { IsFloodLights: this.service.store.value['IsFloodLights'] === 'true' }))
         .subscribe((res: any) => {
+          debugger;
           
           this.router.navigate([`addGround/addSlots/${res.groundId ? res.groundId : this.id}`]);
           this.stepper.next();

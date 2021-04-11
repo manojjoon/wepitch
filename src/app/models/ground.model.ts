@@ -23,5 +23,6 @@ export class Ground {
       groundSlotList : GroundSlot[];
       amenitiesList : GroundAmenities[];
       groundImagesList : GroundImages[];
+      Location : string;
 }
 

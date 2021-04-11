@@ -115,6 +115,7 @@ export class amenitiesListComponent extends BaseGridComponent implements OnInit 
       this._loaderService.showLoader();
       this.amenitiesService.updateAmenities(this.amenitiesDetailForm.value).subscribe(
         (res: any) => {
+          debugger;
           this.amenitiesService.getAmenitiesList().subscribe(res => this.amenitiesList = res as [])
           this._loaderService.hideLoader();
         },err=>{

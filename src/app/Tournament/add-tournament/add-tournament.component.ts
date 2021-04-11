@@ -6,12 +6,13 @@ import { BaseGridComponent } from "../../../app/shared/app-grid/base-grid.compon
 import { TournamentService } from "../../shared/services/Tournament-list.service";
 import { LoaderService } from "../../shared/services/loader/loader.service";
 import {GroundService} from "../../shared/services/ground.service";
-
+import{NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 @Component({
   selector: 'app-add-tournament',
   templateUrl: './add-tournament.component.html',
   styleUrls: ['./add-tournament.component.css']
 })
+
 export class AddTournamentComponent implements OnInit {
 
  
@@ -85,10 +86,12 @@ export class AddTournamentComponent implements OnInit {
       EntityName: '',
       Gstin: '',
       OrganizerName:'',
-      ContactNumber:'',
+      OrganizerName2:'',
+      OrganizerName3:'',
+      ContactNumber1:'',
       ContactNumber2:'',
       ContactNumber3:'',
-      EmailId:'',
+      EmailId1:'',
       EmailId2: '',
       EmailId3: '',
       StartDateOfTournament: '',
@@ -97,6 +100,8 @@ export class AddTournamentComponent implements OnInit {
       PerMatchPricing: '',
       FormatDescription: '',
       TournamentDescription: '',
+      MatchAward: '',
+      SeriesAward: '',
       AmenitiesList : [],
       ImageList : [],
       SlotList : []
@@ -129,7 +134,7 @@ export class AddTournamentComponent implements OnInit {
     // this._loaderService.showLoader();
     this.service.postTournament(Object.assign(this.service.TournamentValues.value)).subscribe((result: any) => {
       debugger;
-      this.toastr.success('Insert sucessfully', 'Tournament Add')
+      this.toastr.success('Insert successfully', 'Tournament Add')
       this.resetForm()
       
       this._loaderService.hideLoader();

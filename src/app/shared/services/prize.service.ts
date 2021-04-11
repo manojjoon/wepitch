@@ -23,6 +23,7 @@ import { FormControl, FormGroup } from '@angular/forms';
           
         });
       }
+      
 
 
       getPrizeList() {
