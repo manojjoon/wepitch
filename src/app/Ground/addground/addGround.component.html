@@ -92,7 +92,7 @@
                       name="isFloodLights" value=true (change)="setFloodLights($event)">
                     <label for="Yes">Yes</label> &nbsp; &nbsp;
                     <input type="radio" class="check-space" id="No" name="isFloodLights" value=false
-                      formControlName="isFloodLights" (change)="setFloodLights($event)">
+                      formControlName="isFloodLights" (change)="setFloodLights($event)" >
                     <label for="No">No</label><br>
                   </div>
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
@@ -127,8 +127,8 @@
                           <div class="col-md-4" *ngFor="let item of (amenitiesList | amenity: service.store?.value?.amenitiesList)">
                             <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
                               type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
-                              
-                                  <label for="item.id"><img class="check-space" width="20" height="30" [src]="item.imagePath | bindImage">{{item.amenitiesDescription}}</label>
+
+                           <label for="item.id"><img class="check-space" width="20" height="30" [src]="item.imagePath | bindImage">{{item.amenitiesDescription}}</label>
                               
                           </div>
                         </div>

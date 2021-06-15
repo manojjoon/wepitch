@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm,FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import { MatStepper } from '@angular/material/stepper';
 import { BaseGridComponent } from "../../../app/shared/app-grid/base-grid.component";
 import { TournamentService } from "../../shared/services/Tournament-list.service";
 import { LoaderService } from "../../shared/services/loader/loader.service";

@@ -39,6 +39,7 @@ export class AmenityPipe implements PipeTransform{
 
   transform(value, args){
     console.log({value, args});
+    debugger;
     value.forEach((e) => {
       e.isSelected = args.find(a => a.id === e.id) ? true : false;
     });
@@ -51,7 +52,7 @@ export class AmenityPipe implements PipeTransform{
   name: 'bindImage'
 })
 export class ImageBindPipe implements PipeTransform{
-
+debugger;
   transform(value){
     return `${environment.baseUrlImage}${value}`
   }
@@ -101,7 +102,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   slottoUpdate: FormGroup;
 
   uploadedImages = [];
-
+  PostAmenitiesList=[];
   constructor(
     public service: GroundService,
     private amenitiesService: AmenitiesService,
@@ -127,10 +128,11 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   public ListOfSlots = [{ SlotName: 'Morning' }, { SlotName: 'Afternoon' }, { SlotName: 'Evening' }, { SlotName: 'Night' }];
 
   ngOnInit() {
+    debugger;
     this.resetForm();
     this.getDetails();
     this.route.params.subscribe((params) => {
-
+debugger;
       this.activeStep = {
         'init': 0,
         addSlots: 1,
@@ -189,6 +191,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }
 
   initFormGroup() {
+    debugger;
     if (!this.service.slots && this.activeStep === 1) {
       this.service.getGroundSlotTimings(this.id)
         .subscribe((res) => {
@@ -222,6 +225,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   setFloodLights(e) {
     //this.service.store.get('IsFloodLights').patchValue(e.value == 'true')
     if (e.target.value == "false") {
+      debugger;
       this.ListOfSlots.splice(3, 1);
     }
     else {
@@ -363,21 +367,49 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }
 
   onAmenitiesChange(e) {
-    const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
+    debugger;
+    // const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
 
     if (e.target.checked) {
-      checkArray.push(new FormControl({ id: e.target.value, isSelected: true }));
-    } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
+      var value : number= Number(e.target.value);
+      let objIndex = this.amenitiesList.findIndex((obj => obj.id == value));
+     this.amenitiesList[objIndex].isSelected = true;
+      // checkArray.push(new FormControl({ id: e.target.value, isSelected: true }));
+     } 
+  // else {
+  //     let i: number = 0;
+  //     checkArray.controls.forEach((item: FormControl) => {
+  //       if (item.value == e.target.value) {
+  //         checkArray.removeAt(i);
+  //         return;
+  //       }
+  //       i++;
+  //   });
+  //  }
   }
+
+
+  // getListOfAmenities()
+  // {
+  //   debugger;
+  //   var elements= this.amenitiesList;
+  //     const checkArray: FormArray = this.service.store.get('PostAmenitiesList') as FormArray;
+  //   for (let i = 0; i < elements.length; i++)
+  //    {
+     
+  //        if (elements[i].isSelected)
+  //         {
+  //           this.PostAmenitiesList.push({ id: elements[i].id, isSelected: true });
+  //                                 //<== Add this line in your for loop
+  //         }
+  //         else
+  //          {
+  //           this.PostAmenitiesList.push({ id: elements[i].id, isSelected: false });
+  //          }
+
+  //     }
+
+  // }
 
   deleteGroundImage(filename, a) {
     const formData = new FormData();
@@ -396,7 +428,10 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const _selectedAmenities = this.amenitiesList.filter((item) => item.isSelected);
+    //const _selectedAmenities = this.amenitiesList.filter((item) => item.isSelected);
+   debugger;
+    const _selectedAmenities = this.amenitiesList;
+    debugger;
     
     const _GroundSlots = this.groundSlotList;
     const _formValues = form.value;
@@ -488,7 +523,12 @@ export class addGroundComponent extends CdkStepper implements OnInit {
        * Eminiies selected procedd for furhter Chanages
        * redirect to Adding ground slots ie 'addGround/addSlots'
        */
-      this.service.postGround(Object.assign(this.service.store.value, { IsFloodLights: this.service.store.value['IsFloodLights'] === 'true' }))
+      debugger;
+     // this.getListOfAmenities();
+      debugger;
+      Object.assign(this.service.store.value, { amenitiesList: this.amenitiesList})
+     debugger;
+     this.service.postGround(Object.assign(this.service.store.value, { IsFloodLights: this.service.store.value['IsFloodLights'] ==='true' }))
         .subscribe((res: any) => {
           debugger;
           
@@ -556,7 +596,11 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   getGroundDetails() {
     this._loaderService.showLoader();
     this.service.getGround(this.id).subscribe(res => {
+      debugger;
       console.log({res})
+     debugger;
+      
+     
       const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
       res.slots.forEach(() => {
         this.service.addSlot();

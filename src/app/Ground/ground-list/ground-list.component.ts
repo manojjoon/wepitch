@@ -59,8 +59,10 @@ export class GroundListComponent extends BaseGridComponent implements OnInit {
   }
 
   onGridReady = (params) => {
+    debugger;
     const { actionId, item } = params;
     if (actionId === 'edit') {
+      debugger;
       this._router.navigate(['addGround/init', item.id]);
     } else if (actionId === 'delete') {
 

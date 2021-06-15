@@ -39,6 +39,9 @@ export class TournamentService {
           FormatDescription: new FormControl(),
           MatchAward: new FormControl(),
           SeriesAward: new FormControl(),
+          Location: new FormControl(),
+          GoogleLocation: new FormControl(),
+          DistnaceFromLocation: new FormControl(), 
           AmenitiesList: new FormControl(),
           ImageList : new FormControl(),
           SlotList : new FormControl()

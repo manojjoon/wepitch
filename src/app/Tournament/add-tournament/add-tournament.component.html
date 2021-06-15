@@ -1,7 +1,16 @@
 <div class="content-wrapper">
     <div class="card">
       <div class="container">
-        
+        <mat-horizontal-stepper>
+          <mat-step label="Tournament Basic Information"></mat-step>
+          <mat-step label="Tournament Images"></mat-step>
+          <mat-step label="Tournament Rules"></mat-step>
+        </mat-horizontal-stepper>
+
+
+
+
+
         <form [formGroup]="service.TournamentValues" autocomplete="off">
               <ng-template matStepLabel>Tournament</ng-template>
                 <div class="card">
@@ -126,6 +135,19 @@
                         <input type="text"name="SeriesAward" formControlName="SeriesAward" class="form-control">
                       </div>
                       
+                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                        <label for="SeriesAward">Location</label><br>
+                        <input type="text"name="Location" formControlName="Location" class="form-control">
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                        <label for="SeriesAward">Google Location</label><br>
+                        <input type="text"name="GoogleLocation" formControlName="GoogleLocation" class="form-control">
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                        <label for="SeriesAward">Distance from Location</label><br>
+                        <input type="text"name="DistnaceFromLocation" formControlName="DistnaceFromLocation" class="form-control">
+                      </div>
+
                     
 
                       <div class="col-md-12">
