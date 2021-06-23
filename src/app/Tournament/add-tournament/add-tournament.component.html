@@ -1,18 +1,19 @@
 <div class="content-wrapper">
     <div class="card">
       <div class="container">
-        <mat-horizontal-stepper>
-          <mat-step label="Tournament Basic Information"></mat-step>
-          <mat-step label="Tournament Images"></mat-step>
-          <mat-step label="Tournament Rules"></mat-step>
-        </mat-horizontal-stepper>
-
-
-
-
-
         <form [formGroup]="service.TournamentValues" autocomplete="off">
-              <ng-template matStepLabel>Tournament</ng-template>
+        <mat-horizontal-stepper #stepper (onStepChnaged)="stepChanged($event)" [selectedIndex]="activeStep">
+          <!-- <mat-step label="Tournament Basic Information"></mat-step>
+          <mat-step label="Tournament Images"></mat-step>
+          <mat-step label="Tournament Rules"></mat-step> -->
+        
+
+
+
+
+        <mat-step>
+          <ng-template matStepLabel>Tournament Basic Information</ng-template>
+              <!-- <ng-template matStepLabel>Tournament</ng-template> -->
                 <div class="card">
                 <div class="card-body">
                   <div class="row">
@@ -92,10 +93,10 @@
 
 
 
-                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                     <!-- <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="location">Location</label><br>
                         <input type="text"name="location" formControlName="location" class="form-control">
-                      </div>
+                      </div> -->
 
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="startDateTournament">Start Date Tournament</label><br>
@@ -135,10 +136,10 @@
                         <input type="text"name="SeriesAward" formControlName="SeriesAward" class="form-control">
                       </div>
                       
-                      <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                      <!-- <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="SeriesAward">Location</label><br>
                         <input type="text"name="Location" formControlName="Location" class="form-control">
-                      </div>
+                      </div> -->
                       <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                         <label for="SeriesAward">Google Location</label><br>
                         <input type="text"name="GoogleLocation" formControlName="GoogleLocation" class="form-control">
@@ -185,19 +186,46 @@
                         </div>
                       </div>
 
-                      <div class="col-md-12">
+                      <!-- <div class="col-md-12">
                       <div class="form-group" style="text-align:right">
                         <button type="submit" class="btn  btn-primary" (click)="AddTournament()">
                         Add Tournament
                         </button>
                       </div>
-                    </div>
+                    </div> -->
 
 
 
                      </div>
                 </div>
             </div> 
+            <footer class="example-step-navigation-bar">
+              <div class="form-group" style="text-align:right">
+                <button type="submit" class="btn  btn-primary" (click)="stepChanged(2)">
+                  {{AddEditTournamentLabel}}
+                </button>
+              </div>
+            </footer>
+
+        </mat-step>
+
+
+       
+        <mat-step>
+            
+          <ng-template matStepLabel>Tournament Rules</ng-template>
+          <ckeditor *ngIf="ckeditorLoaded" [editor]="Editor" [data]="data" (change)="onChange($event)"></ckeditor>
+          <footer class="example-step-navigation-bar">
+            <div class="form-group" style="text-align:right">
+              <button type="submit" class="btn m-1 btn-primary" matStepperPrevious (click)="stepChanged(activeStep - 1)">Back</button>
+              <button type="submit" class="btn  btn-primary" matStepperNext (click)="stepChanged(activeStep + 1)">{{
+                fotterLablels && fotterLablels[activeStep] }}</button>
+            </div>
+          </footer>
+          
+        </mat-step>
+      </mat-horizontal-stepper>
+
            </form>
         </div>
     </div>

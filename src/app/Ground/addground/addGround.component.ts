@@ -39,7 +39,6 @@ export class AmenityPipe implements PipeTransform{
 
   transform(value, args){
     console.log({value, args});
-    debugger;
     value.forEach((e) => {
       e.isSelected = args.find(a => a.id === e.id) ? true : false;
     });
@@ -52,7 +51,7 @@ export class AmenityPipe implements PipeTransform{
   name: 'bindImage'
 })
 export class ImageBindPipe implements PipeTransform{
-debugger;
+
   transform(value){
     return `${environment.baseUrlImage}${value}`
   }
@@ -102,7 +101,7 @@ export class addGroundComponent extends CdkStepper implements OnInit {
   slottoUpdate: FormGroup;
 
   uploadedImages = [];
-  PostAmenitiesList=[];
+
   constructor(
     public service: GroundService,
     private amenitiesService: AmenitiesService,
@@ -191,7 +190,6 @@ debugger;
   }
 
   initFormGroup() {
-    debugger;
     if (!this.service.slots && this.activeStep === 1) {
       this.service.getGroundSlotTimings(this.id)
         .subscribe((res) => {
@@ -225,7 +223,6 @@ debugger;
   setFloodLights(e) {
     //this.service.store.get('IsFloodLights').patchValue(e.value == 'true')
     if (e.target.value == "false") {
-      debugger;
       this.ListOfSlots.splice(3, 1);
     }
     else {
@@ -277,8 +274,8 @@ debugger;
       ViewsCount: null,
       IsFloodLights: null,
       GoogleLocation: '',
-      Location:'',
       DistanceFromLocation: '',
+      Location:'',
       groundSlotList: [],
       amenitiesList: [],
       groundImagesList: []
@@ -367,49 +364,21 @@ debugger;
   }
 
   onAmenitiesChange(e) {
-    debugger;
-    // const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
+    const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
 
     if (e.target.checked) {
-      var value : number= Number(e.target.value);
-      let objIndex = this.amenitiesList.findIndex((obj => obj.id == value));
-     this.amenitiesList[objIndex].isSelected = true;
-      // checkArray.push(new FormControl({ id: e.target.value, isSelected: true }));
-     } 
-  // else {
-  //     let i: number = 0;
-  //     checkArray.controls.forEach((item: FormControl) => {
-  //       if (item.value == e.target.value) {
-  //         checkArray.removeAt(i);
-  //         return;
-  //       }
-  //       i++;
-  //   });
-  //  }
+      checkArray.push(new FormControl({ id: e.target.value, isSelected: true }));
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
   }
-
-
-  // getListOfAmenities()
-  // {
-  //   debugger;
-  //   var elements= this.amenitiesList;
-  //     const checkArray: FormArray = this.service.store.get('PostAmenitiesList') as FormArray;
-  //   for (let i = 0; i < elements.length; i++)
-  //    {
-     
-  //        if (elements[i].isSelected)
-  //         {
-  //           this.PostAmenitiesList.push({ id: elements[i].id, isSelected: true });
-  //                                 //<== Add this line in your for loop
-  //         }
-  //         else
-  //          {
-  //           this.PostAmenitiesList.push({ id: elements[i].id, isSelected: false });
-  //          }
-
-  //     }
-
-  // }
 
   deleteGroundImage(filename, a) {
     const formData = new FormData();
@@ -428,10 +397,7 @@ debugger;
   }
 
   onSubmit(form: NgForm) {
-    //const _selectedAmenities = this.amenitiesList.filter((item) => item.isSelected);
-   debugger;
-    const _selectedAmenities = this.amenitiesList;
-    debugger;
+    const _selectedAmenities = this.amenitiesList.filter((item) => item.isSelected);
     
     const _GroundSlots = this.groundSlotList;
     const _formValues = form.value;
@@ -523,14 +489,9 @@ debugger;
        * Eminiies selected procedd for furhter Chanages
        * redirect to Adding ground slots ie 'addGround/addSlots'
        */
-      debugger;
-     // this.getListOfAmenities();
-      debugger;
-      Object.assign(this.service.store.value, { amenitiesList: this.amenitiesList})
-     debugger;
-     this.service.postGround(Object.assign(this.service.store.value, { IsFloodLights: this.service.store.value['IsFloodLights'] ==='true' }))
-        .subscribe((res: any) => {
-          debugger;
+     // this.service.postGround(Object.assign(this.service.store.value, { IsFloodLights: this.service.store.value['IsFloodLights'] === 'true' }))
+     this.service.postGround(this.service.store.value)   
+     .subscribe((res: any) => {
           
           this.router.navigate([`addGround/addSlots/${res.groundId ? res.groundId : this.id}`]);
           this.stepper.next();
@@ -596,11 +557,7 @@ debugger;
   getGroundDetails() {
     this._loaderService.showLoader();
     this.service.getGround(this.id).subscribe(res => {
-      debugger;
       console.log({res})
-     debugger;
-      
-     
       const checkArray: FormArray = this.service.store.get('amenitiesList') as FormArray;
       res.slots.forEach(() => {
         this.service.addSlot();

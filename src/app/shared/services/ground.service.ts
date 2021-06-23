@@ -52,8 +52,7 @@ export class GroundService {
       viewsCount: new FormControl(),
       likesCount: new FormControl(),
       rating: new FormControl(),
-      isFloodLights: new FormControl(),
-      location: new FormControl()
+      isFloodLights: new FormControl()
     });
   }
 
@@ -183,17 +182,10 @@ export class GroundService {
 
 
   postGround(formData: Ground) {
-    debugger;
-    formData["rating"]
-    var x =  formData["rating"];
-     var y = x.toFixed(1);
-    formData["rating"] = y;
-debugger;
+    
     return (formData['id']
-
     ? this.http.put(`${environment.baseUrl}Ground/UpdateGround`, formData)
     : this.http.post(`${environment.baseUrl}Ground/AddGround`, formData))
-    debugger;
 
     // .pipe(map((r: any) => {
     //   this.slots = this.convertToFormArray(r)

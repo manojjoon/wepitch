@@ -71,11 +71,6 @@
                     <input class="form-control" id="landmark"
                       formControlName="distanceFromLocation" (focus)="geolocate('landmark')" type="text" />
                   </div>
-                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
-                    <label for="fname">Location</label><br>
-                    <input class="form-control" id="location"
-                      formControlName="location" (focus)="geolocate('location')" type="text" />
-                  </div>
 
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Rating</label><br>
@@ -85,14 +80,19 @@
                     <label for="fname">Likes Count</label><br>
                     <input type="number" name="likesCount" class="form-control" formControlName="likesCount">
                   </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
+                    <label for="fname">Location</label><br>
+                    <input class="form-control" id="location"
+                      formControlName="location" (focus)="geolocate('location')" type="text" />
+                  </div>
 
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
                     <label for="fname">Flood Lights</label><br>
-                    <input type="radio" class="check-space" id="Yes" formControlName="isFloodLights"
+                    <input type="radio" class="check-space" id="true" formControlName="isFloodLights"
                       name="isFloodLights" value=true (change)="setFloodLights($event)">
                     <label for="Yes">Yes</label> &nbsp; &nbsp;
-                    <input type="radio" class="check-space" id="No" name="isFloodLights" value=false
-                      formControlName="isFloodLights" (change)="setFloodLights($event)" >
+                    <input type="radio" class="check-space" id="false" name="isFloodLights" value=false
+                      formControlName="isFloodLights" (change)="setFloodLights($event)">
                     <label for="No">No</label><br>
                   </div>
                   <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4"><br>
@@ -127,8 +127,8 @@
                           <div class="col-md-4" *ngFor="let item of (amenitiesList | amenity: service.store?.value?.amenitiesList)">
                             <input class="check-space" (change)="onAmenitiesChange($event)" [value]="item.id"
                               type="checkbox" id="{{item.id}}" [checked]="item.isSelected"/>
-
-                           <label for="item.id"><img class="check-space" width="20" height="30" [src]="item.imagePath | bindImage">{{item.amenitiesDescription}}</label>
+                              
+                                  <label for="item.id"><img class="check-space" width="20" height="30" [src]="item.imagePath | bindImage">{{item.amenitiesDescription}}</label>
                               
                           </div>
                         </div>

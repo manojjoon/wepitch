@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute,Router } from "@angular/router";
 import { BaseGridComponent } from "src/app/shared/app-grid/base-grid.component";
 import { TournamentService } from "../../shared/services/Tournament-list.service";
 import { LoaderService } from "../../shared/services/loader/loader.service";
-
+import { ActionComponent } from 'src/app/shared/action-formatter.component';
+import { AppRoutes } from 'src/app/enum/app-routes.type';
 @Component({
     selector: 'app-Tournament-list',
     templateUrl: './Tournament-list.component.html',
@@ -14,11 +16,13 @@ import { LoaderService } from "../../shared/services/loader/loader.service";
 
     ColumnDefs;
     RowData: any;
+    routes = AppRoutes;
     AgLoad: boolean;
     tournamentList = [];
     context;
+    renderer: any;
 
-    constructor(_route: ActivatedRoute, private _tournamentService: TournamentService, private _loaderService: LoaderService) {
+    constructor(_route: ActivatedRoute, private _tournamentService: TournamentService, private _loaderService: LoaderService,private _router: Router) {
         super(_route);
     }
 
@@ -30,6 +34,9 @@ import { LoaderService } from "../../shared/services/loader/loader.service";
           this.tournamentList = res;
         });
         this.getData();
+        this.context = {
+          action: this.onGridReady
+        }
         // this.context = {
         //   action: this.onGridReady
         // }
@@ -70,9 +77,19 @@ import { LoaderService } from "../../shared/services/loader/loader.service";
           // { headerName: 'PerMatchPricing', field: 'perMatchPricing', sortable: true, filter: true },
           // { headerName: 'TournamentDescription', field: 'tournamentDescription', sortable: true, filter: true },
           // { headerName: 'FormatDescription', field: 'formatDescription', sortable: true, filter: true },
-    
+          { headerName: 'Action', field: 'Action', sortable: true, filter: true, cellRendererFramework: ActionComponent },
     
         ];
+      }
+
+      onGridReady = (params) => {
+        debugger;
+        const { actionId, item } = params;
+        if (actionId === 'edit') {
+          this._router.navigate(['addTournament/init', item.id]);
+        } else if (actionId === 'delete') {
+    
+        }
       }
     }
     

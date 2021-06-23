@@ -33,6 +33,18 @@ const routes: Routes = [
       },
       {
         path: "addGround/:step/:id", component: addGroundComponent
+      },
+
+
+      
+      {
+        path: "addTournament", redirectTo: 'addTournament/init'
+      },
+      {
+        path: "addTournament/:step", component: AddTournamentComponent
+      },
+      {
+        path: "addTournament/:step/:id", component: AddTournamentComponent
       }, /**Default step is init */
       { path: "addAmenities", component: amenitiesListComponent },
       { path: "players", component: PlayerComponent },

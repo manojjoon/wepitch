@@ -3,7 +3,7 @@ import { Tournament } from '../../models/Tournament.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { FormControl, FormArray,FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -13,6 +13,8 @@ import { FormControl, FormArray,FormGroup } from '@angular/forms';
 export class TournamentService {
     formData: Tournament;
     TournamentValues: FormGroup;
+    store: FormGroup;
+  slots: any;
     
 
     constructor(private http: HttpClient) {
@@ -68,19 +70,35 @@ export class TournamentService {
         // }));
       }
 
+      getTournament(id: number){
+        return this.http.get(environment.baseUrl + `Tournament/${id}`)
+          .pipe(map((res: any) => {
+            return res.result
+          }));
+      }
 
 
+      getAllGroundImages(groundId){
+        return this.http.get(`${environment.baseUrl}Ground/GetAllGroundImages?GroundId=${groundId}`)
+      }
 
-
+      getTournamentRules(tournamentId){
+        return this.http.get(`${environment.baseUrl}Tournament/GetTournamentRules?TournamentId=${tournamentId}`)
+      }
 
 
       getTournamentList() {
         debugger;
         return this.http.get(environment.baseUrl + 'Tournament/GetAllTournaments');
       }
+      saveRules(body){
+        return this.http.post(`${environment.baseUrl}Tournament/AddTournamentRules`, body);
+      }
 
       private handleError(error: HttpErrorResponse) {
+        debugger;
         if (error.error instanceof ErrorEvent) {
+          debugger;
           console.error('An error occured:', error.error.message);
         }
         else {
